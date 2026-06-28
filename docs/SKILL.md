@@ -69,6 +69,34 @@ type ModerationStatus = 'pending' | 'approved' | 'rejected';
 
 `data/places.ts`에 더미 데이터를 작성합니다.
 
+### Place 타입 권장 필드
+
+| 필드 | 타입 | 설명 |
+|---|---|---|
+| `id` | `string` | UUID |
+| `slug` | `string` | URL 슬러그 |
+| `name` | `string` | 장소명 |
+| `category` | `PlaceCategory` | 카테고리 |
+| `area` | `string` | 동네/지역 (예: 월명동) |
+| `description` | `string` | 한 줄 설명 |
+| `tags` | `string[]` | 핵심 태그 목록 |
+| `statuses` | `VerificationStatus[]` | 검증 상태 목록 |
+| `reviewCount` | `number` | 후기 수 |
+| `lastVerifiedAt` | `string` | 최근 확인일 (ISO 날짜) |
+| `ownerInfo` | `object` | 업체 제공 정보 |
+| `visitorInfo` | `object` | 방문자 확인 정보 |
+| `address` | `string` (optional) | 주소 |
+| `phone` | `string` (optional) | 전화번호 |
+| `latitude` | `number` (optional) | 위도 (v0.2 이후 활성화) |
+| `longitude` | `number` (optional) | 경도 (v0.2 이후 활성화) |
+
+**금지/비권장 필드:**
+
+- `neighborhood` → `area`를 사용한다.
+- `verificationStatuses` → `statuses`를 사용한다.
+
+### 더미 데이터 예시
+
 ```ts
 // 예시 구조 (실제 타입은 types/place.ts 참조)
 const places = [
@@ -77,9 +105,10 @@ const places = [
     slug: 'cafe-baro',
     name: '카페 바로',
     category: '카페',
-    neighborhood: '월명동',
+    area: '월명동',
+    description: '조용하고 혼자 가기 좋은 카페',
     tags: ['주차 가능', '혼자 가기 좋음'],
-    verificationStatuses: ['방문자 후기', '최근 확인됨'],
+    statuses: ['방문자 후기', '최근 확인됨'],
     reviewCount: 12,
     lastVerifiedAt: '2026-06-15',
     ownerInfo: { ... },
@@ -129,14 +158,14 @@ const places = [
   - 아이랑 가기 좋은 곳
   - 혼밥 가능한 곳
   - 방문자 사진 있는 곳
-- 카테고리 탭: 맛집 / 카페 / 네일·뷰티 / 병원·약국 / 생활업체
+- 카테고리 탭: 맛집 / 카페 / 네일/뷰티 / 병원/약국 / 생활업체
 
 ### 장소 카드 (`components/PlaceCard.tsx`)
 
 반드시 포함해야 하는 항목:
 
 - 장소명
-- 동네 · 카테고리
+- `area` (동네) · 카테고리
 - 핵심 태그
 - 상태 배지 (VerificationStatus)
 - 후기 수

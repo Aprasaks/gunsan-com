@@ -70,6 +70,13 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - 광고 상품
 - 사장님 대시보드
 
+### v0.1 배포 기준
+
+- Vercel Preview 배포는 v0.1에서도 가능하다.
+- custom domain 연결은 v0.1에서도 시도할 수 있다.
+- 실제 운영 공개는 제보 저장, 사진 업로드, 관리자 승인 등 최소 운영 기능이 붙은 뒤 진행한다.
+- 배포는 기능 구현과 별도 이슈로 분리한다.
+
 ### v0.2 이후 순서 (참고용)
 
 1. Supabase 연결
@@ -157,17 +164,31 @@ docs/
 
 ---
 
+## 참조 문서
+
+작업 전 반드시 다음 문서를 읽고 따른다.
+
+| 문서 | 내용 |
+|---|---|
+| [docs/WORKFLOW.md](docs/WORKFLOW.md) | 이슈·커밋·푸시·브랜치·AI 권한 기준 |
+| [docs/SKILL.md](docs/SKILL.md) | 타입 정의, 더미 데이터, 페이지별 구현 규칙 |
+| [docs/DESIGN.md](docs/DESIGN.md) | 색상, 레이아웃, 컴포넌트 디자인 규칙 |
+
+---
+
 ## 이슈·커밋·푸시 작업 기준
 
-이슈 생성, 커밋 메시지, 푸시 전 확인, 브랜치 전략, 작업 순서는 **[docs/WORKFLOW.md](docs/WORKFLOW.md)** 를 반드시 따른다.
+이슈 생성, 커밋 메시지, 푸시 전 확인, 브랜치 전략, 작업 순서, AI 권한 기준은 **[docs/WORKFLOW.md](docs/WORKFLOW.md)** 를 반드시 따른다.
 
 요약:
 
 - 하나의 이슈는 하나의 작업 단위
 - 하나의 커밋은 하나의 의도만
 - 커밋 메시지 형식: `작업 내용 #이슈번호` (한국어)
+- #1~#3은 부트스트랩 예외. #4부터는 GitHub Issue 번호와 반드시 맞춘다.
 - 코드 변경 시 커밋 전 `npm run lint` + `npm run build` 통과 필수
 - 이슈 없는 큰 작업 금지
+- **AI는 사용자 명시적 지시 없이 commit/push를 실행하지 않는다.**
 
 ---
 
