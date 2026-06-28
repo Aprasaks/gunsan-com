@@ -18,7 +18,7 @@ export default function Home() {
       <QuickQuestionChips />
       <CategoryTabs />
 
-      <section className="px-5 py-8 sm:px-6 lg:py-10">
+      <section className="px-5 py-6 sm:px-6 lg:py-8">
         <div className="mx-auto grid w-full max-w-6xl gap-6 lg:grid-cols-[288px_minmax(0,1fr)_320px] lg:items-start">
           <FilterPanel />
 

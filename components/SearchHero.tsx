@@ -2,34 +2,37 @@ import Link from "next/link";
 
 export default function SearchHero() {
   return (
-    <section className="bg-sky-50 px-5 py-14 sm:px-6 lg:py-20">
-      <div className="mx-auto grid w-full max-w-6xl gap-8 lg:grid-cols-[1fr_420px] lg:items-center">
+    <section className="bg-sky-50 px-5 py-8 sm:px-6 lg:py-10">
+      <div className="mx-auto grid w-full max-w-6xl gap-8 lg:grid-cols-[1fr_380px] lg:items-center">
         <div>
           <h1 className="max-w-3xl text-3xl font-bold leading-tight text-slate-950 sm:text-5xl">
             군산의 모든 것,
             <br className="hidden sm:block" /> 군산.com에서 확인하세요
           </h1>
-          <p className="mt-5 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
-            맛집부터 생활업체, 여행, 행사까지 군산 정보를 한곳에 모읍니다.
+          <p className="mt-5 max-w-2xl text-base leading-7 text-slate-700 sm:text-lg">
+            밥 먹을 곳, 쉬어갈 카페, 급하게 찾는 병원, 주차 되는 곳까지.
           </p>
           <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-500 sm:text-base">
-            업체 제공 정보와 방문자 확인 정보를 구분해 더 정확한 군산 정보를
-            만들어갑니다.
+            사장님이 알려준 정보와 실제 다녀온 사람이 확인한 정보를 나눠서
+            보여줍니다.
           </p>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-          <label htmlFor="hero-search" className="sr-only">
-            군산 생활 정보 검색
-          </label>
-          <input
-            id="hero-search"
-            type="search"
-            placeholder="남자 네일, 일요일 병원, 주차 카페"
-            className="h-12 w-full rounded-lg border border-slate-300 bg-white px-4 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-cyan-600 focus:ring-4 focus:ring-cyan-100"
-          />
+        <div className="flex flex-col gap-4">
+          <div className="overflow-hidden rounded-xl border border-sky-100">
+            <div className="flex h-40 items-end bg-gradient-to-br from-sky-100 to-cyan-50 p-5 lg:h-44">
+              <div>
+                <p className="text-xs font-semibold tracking-wider text-sky-700">
+                  군산의 오늘
+                </p>
+                <p className="mt-1 text-sm font-medium text-slate-700">
+                  군산에서 필요한 정보를 하나씩 모으고 있습니다.
+                </p>
+              </div>
+            </div>
+          </div>
 
-          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+          <div className="grid gap-3 sm:grid-cols-2">
             <Link
               href="/places"
               className="flex h-11 items-center justify-center rounded-lg bg-cyan-700 px-4 text-sm font-semibold text-white transition hover:bg-cyan-800"
