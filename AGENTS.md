@@ -189,6 +189,7 @@ docs/
 - 코드 변경 시 커밋 전 `npm run lint` + `npm run build` 통과 필수
 - 이슈 없는 큰 작업 금지
 - **AI는 사용자 명시적 지시 없이 commit/push를 실행하지 않는다.**
+- 사용자가 `이슈커밋푸시 진행해`라고 명시하면 이슈 생성 → 검증 → 커밋 → 푸시까지 진행할 수 있다. 상세 규칙은 [docs/WORKFLOW.md — 이슈커밋푸시 자동 진행 규칙](docs/WORKFLOW.md) 참조.
 
 ---
 
