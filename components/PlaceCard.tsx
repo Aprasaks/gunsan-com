@@ -9,7 +9,7 @@ type PlaceCardProps = {
 
 export default function PlaceCard({ place }: PlaceCardProps) {
   return (
-    <article className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-cyan-200">
+    <article className="rounded-xl border border-slate-200 bg-white p-5 transition hover:border-cyan-200">
       <div className="flex flex-wrap gap-2">
         {place.statuses.map((status) => (
           <StatusBadge key={status} status={status} />
@@ -30,7 +30,7 @@ export default function PlaceCard({ place }: PlaceCardProps) {
         {place.tags.map((tag) => (
           <span
             key={tag}
-            className="rounded-full bg-slate-50 px-3 py-1 text-xs font-medium text-slate-600"
+            className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-600"
           >
             {tag}
           </span>
