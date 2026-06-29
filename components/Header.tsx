@@ -24,7 +24,7 @@ export default function Header() {
           <input
             id="site-search"
             type="search"
-            placeholder="남자 네일, 일요일 병원, 주차 카페"
+            placeholder="맛집, 병원, 카페, 행사 등 군산 정보 검색"
             className="h-11 w-full rounded-lg border border-slate-300 bg-slate-50 px-4 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-cyan-600 focus:bg-white focus:ring-4 focus:ring-cyan-100"
           />
         </div>
