@@ -7,11 +7,31 @@ const quickLinks = [
   { label: "지도에서 보기 준비 중", active: false },
 ] as const;
 
+const visualKeywords = ["새만금", "금강", "은파", "근대거리"] as const;
+
+const visualCards = [
+  {
+    title: "생활 정보",
+    description: "병원 · 주차 · 생활업체",
+    tone: "border-cyan-200 bg-white/90 text-cyan-900",
+  },
+  {
+    title: "여행 정보",
+    description: "은파 · 새만금 · 근대거리",
+    tone: "border-sky-200 bg-white/90 text-sky-900",
+  },
+  {
+    title: "확장 예정",
+    description: "지도 · 행사 · 동네별 보기",
+    tone: "border-slate-200 bg-white/85 text-slate-700",
+  },
+] as const;
+
 export default function SearchHero() {
   return (
-    <section className="border-b border-sky-100 bg-slate-50 px-4 py-5 sm:px-6 lg:py-7">
+    <section className="border-b border-sky-100 bg-slate-50 px-4 py-5 sm:px-6 lg:py-6">
       <div className="mx-auto w-full max-w-6xl overflow-hidden rounded-2xl border border-sky-100 bg-white">
-        <div className="grid gap-0 lg:grid-cols-[minmax(0,1fr)_440px]">
+        <div className="grid gap-0 lg:grid-cols-[minmax(0,1fr)_470px]">
           <div className="min-w-0 p-5 sm:p-7 lg:p-8">
             <p className="inline-flex rounded-full border border-cyan-200 bg-cyan-50 px-3 py-1.5 text-sm font-semibold text-cyan-800">
               군산 대표 정보 포털
@@ -80,50 +100,99 @@ export default function SearchHero() {
             </div>
           </div>
 
-          <div className="relative min-h-80 overflow-hidden border-t border-sky-100 bg-sky-100 lg:border-l lg:border-t-0">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(14,165,233,0.26),transparent_28%),radial-gradient(circle_at_78%_28%,rgba(20,184,166,0.22),transparent_30%),linear-gradient(135deg,#f0f9ff,#ecfeff_48%,#f8fafc)]" />
-            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(148,163,184,0.18)_1px,transparent_1px),linear-gradient(180deg,rgba(148,163,184,0.18)_1px,transparent_1px)] bg-[size:36px_36px]" />
+          <div className="relative overflow-hidden border-t border-sky-100 bg-sky-50 lg:border-l lg:border-t-0">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_24%_20%,rgba(14,165,233,0.22),transparent_26%),radial-gradient(circle_at_84%_24%,rgba(20,184,166,0.2),transparent_28%),linear-gradient(135deg,#f0f9ff,#ecfeff_45%,#f8fafc)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(14,165,233,0.16)_0_1px,transparent_1px_46px),linear-gradient(180deg,rgba(148,163,184,0.14)_0_1px,transparent_1px_34px)] bg-[size:46px_34px]" />
+            <div className="absolute left-6 right-6 top-20 h-24 rounded-[999px] border border-white/70 bg-white/20" />
+            <div className="absolute bottom-16 left-10 right-10 h-20 rounded-[999px] border border-cyan-200/60 bg-cyan-100/20" />
 
-            <div className="relative flex min-h-80 flex-col justify-between p-5">
+            <div className="relative flex min-h-80 flex-col gap-4 p-4 sm:p-5 lg:min-h-[430px]">
               <div className="flex flex-wrap items-center justify-between gap-2">
-                <span className="rounded-full border border-white/80 bg-white/80 px-3 py-1 text-xs font-semibold text-cyan-800">
-                  이미지/GIF 자리
+                <span className="rounded-full border border-cyan-200 bg-white/85 px-3 py-1 text-xs font-semibold text-cyan-800">
+                  비주얼 placeholder
                 </span>
                 <span className="rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-xs font-semibold text-slate-500">
-                  새만금 · 금강 · 은파 · 근대거리
+                  실제 이미지 연결 전
                 </span>
               </div>
 
-              <div className="mt-6 grid gap-3">
-                {[
-                  ["오늘의 군산", "날씨 · 행사 준비 중"],
-                  ["지도에서 보기", "지도 기능 준비 중"],
-                  ["동네별 보기", "행정동 기준 정리 예정"],
-                ].map(([title, description]) => (
+              <div className="rounded-[1.25rem] border border-white/80 bg-white/75 p-4 backdrop-blur">
+                <div className="flex min-h-40 flex-col justify-between rounded-2xl border border-cyan-200/80 bg-[linear-gradient(135deg,rgba(240,249,255,0.92),rgba(236,254,255,0.88)),radial-gradient(circle_at_28%_28%,rgba(14,165,233,0.18),transparent_28%),radial-gradient(circle_at_72%_62%,rgba(20,184,166,0.14),transparent_30%)] p-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <p className="text-xs font-semibold text-cyan-700">
+                        군산의 오늘
+                      </p>
+                      <p className="mt-2 text-2xl font-bold leading-tight text-slate-950">
+                        사는 사람도,
+                        <br />
+                        오는 사람도
+                      </p>
+                    </div>
+                    <div className="grid h-14 w-14 place-items-center rounded-2xl border border-cyan-200 bg-white/80 text-xs font-bold text-cyan-700">
+                      군산
+                    </div>
+                  </div>
+
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {visualKeywords.map((keyword) => (
+                      <span
+                        key={keyword}
+                        className="rounded-full border border-white bg-white/80 px-3 py-1 text-xs font-semibold text-slate-700"
+                      >
+                        {keyword}
+                      </span>
+                    ))}
+                  </div>
+
+                  <p className="mt-4 text-sm leading-6 text-slate-600">
+                    군산에서 필요한 정보를 여기서 시작합니다.
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 gap-2 sm:grid-cols-3 lg:grid-cols-1">
+                {visualCards.map((card) => (
                   <div
-                    key={title}
-                    className="rounded-xl border border-white/80 bg-white/85 p-4"
+                    key={card.title}
+                    className={`rounded-xl border p-3 ${card.tone}`}
                   >
-                    <p className="text-sm font-bold text-slate-950">
-                      {title}
-                    </p>
-                    <p className="mt-1 text-xs font-semibold text-slate-500">
-                      {description}
+                    <p className="text-sm font-bold">{card.title}</p>
+                    <p className="mt-1 text-xs font-semibold opacity-75">
+                      {card.description}
                     </p>
                   </div>
                 ))}
               </div>
 
-              <div className="rounded-2xl border border-white/80 bg-white/90 p-4">
-                <p className="text-xs font-semibold text-slate-500">
-                  추후 대표 비주얼
-                </p>
-                <p className="mt-1 text-lg font-bold text-slate-950">
-                  군산의 생활과 여행 정보를 한 화면에서
-                </p>
-                <p className="mt-2 text-sm leading-6 text-slate-600">
-                  실제 이미지, 영상, 지도 데이터는 이후 이슈에서 연결합니다.
-                </p>
+              <div className="mt-auto grid gap-2">
+                <Link
+                  href="/places"
+                  className="rounded-xl border border-cyan-200 bg-cyan-700 p-4 text-white transition hover:bg-cyan-800"
+                >
+                  <p className="text-sm font-bold">장소 둘러보기</p>
+                  <p className="mt-1 text-xs font-medium text-cyan-50">
+                    군산의 장소 정보를 먼저 확인해보세요.
+                  </p>
+                </Link>
+                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-1">
+                  <span className="rounded-xl border border-slate-200 bg-white/85 p-3">
+                    <span className="block text-sm font-bold text-slate-700">
+                      지도에서 보기 준비 중
+                    </span>
+                    <span className="mt-1 block text-xs font-medium leading-5 text-slate-500">
+                      군산 장소를 지도에서 볼 수 있도록 준비하고 있습니다.
+                    </span>
+                  </span>
+                  <span className="rounded-xl border border-slate-200 bg-white/85 p-3">
+                    <span className="block text-sm font-bold text-slate-700">
+                      행사 정보 준비 중
+                    </span>
+                    <span className="mt-1 block text-xs font-medium leading-5 text-slate-500">
+                      군산 행사와 축제 정보를 정리할 예정입니다.
+                    </span>
+                  </span>
+                </div>
               </div>
             </div>
           </div>
