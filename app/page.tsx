@@ -75,13 +75,83 @@ const homeCategories = [
 ] as const;
 
 const popularInfo = [
-  "오늘 여는 병원",
-  "주차 편한 카페",
-  "아이랑 가기 좋은 식당",
-  "군산사랑상품권",
-  "은파호수공원",
-  "새만금방조제",
-  "이번 주말 행사",
+  {
+    label: "오늘 여는 병원",
+    description: "급하게 병원이나 약국을 찾아야 할 때",
+    group: "생활",
+    status: "active",
+    href: "/places",
+  },
+  {
+    label: "주차 편한 카페",
+    description: "차로 이동할 때 먼저 확인하고 싶은 정보",
+    group: "생활",
+    status: "active",
+    href: "/places",
+  },
+  {
+    label: "아이랑 가기 좋은 식당",
+    description: "가족과 함께 가기 좋은 곳",
+    group: "생활",
+    status: "active",
+    href: "/places",
+  },
+  {
+    label: "혼밥 가능한 곳",
+    description: "혼자 조용히 먹기 좋은 곳",
+    group: "생활",
+    status: "active",
+    href: "/places",
+  },
+  {
+    label: "남자 네일 가능한 곳",
+    description: "처음 가기 전 확인하고 싶은 뷰티 정보",
+    group: "생활",
+    status: "active",
+    href: "/places",
+  },
+  {
+    label: "군산사랑상품권",
+    description: "사용할 수 있는 곳 정리 예정",
+    group: "생활",
+    status: "coming-soon",
+  },
+  {
+    label: "은파호수공원",
+    description: "산책과 카페 정보를 함께 정리 예정",
+    group: "여행",
+    status: "coming-soon",
+  },
+  {
+    label: "새만금방조제",
+    description: "드라이브와 주변 정보를 정리 예정",
+    group: "여행",
+    status: "coming-soon",
+  },
+  {
+    label: "근대거리 코스",
+    description: "군산 여행 동선을 정리 예정",
+    group: "여행",
+    status: "coming-soon",
+  },
+  {
+    label: "이번 주말 행사",
+    description: "공식 출처 기준으로 정리 예정",
+    group: "여행",
+    status: "coming-soon",
+  },
+  {
+    label: "군산 여행 숙소",
+    description: "숙박 정보 준비 중",
+    group: "여행",
+    status: "coming-soon",
+  },
+  {
+    label: "비 오는 날 갈 만한 곳",
+    description: "날씨별 추천 정보 준비 중",
+    group: "여행",
+    status: "coming-soon",
+  },
 ] as const;
 
 const todayItems = [
@@ -193,19 +263,78 @@ export default function Home() {
         <div className="mx-auto w-full max-w-6xl">
           <SectionHeader
             eyebrow="지금 많이 찾는 정보"
-            title="사는 사람도, 오는 사람도 자주 찾는 정보"
-            description="군산에서 자주 확인하게 되는 주제를 먼저 모아둡니다."
+            title="지금 많이 찾는 군산 정보"
+            description="급하게 필요한 생활 정보부터, 군산에 오기 전에 확인하고 싶은 여행 정보까지 모으고 있습니다."
           />
 
-          <div className="mt-5 flex flex-wrap gap-2">
-            {popularInfo.map((item) => (
-              <span
-                key={item}
-                className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700"
-              >
-                {item}
-              </span>
-            ))}
+          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {popularInfo.map((item) => {
+              const isActive = item.status === "active";
+              const content = (
+                <>
+                  <div className="flex items-start justify-between gap-3">
+                    <span
+                      className={[
+                        "rounded-full border px-2.5 py-1 text-xs font-semibold",
+                        isActive
+                          ? "border-cyan-100 bg-cyan-50 text-cyan-800"
+                          : "border-slate-200 bg-slate-50 text-slate-500",
+                      ].join(" ")}
+                    >
+                      {item.group}
+                    </span>
+                    <span
+                      className={[
+                        "shrink-0 rounded-full border px-2.5 py-1 text-xs font-semibold",
+                        isActive
+                          ? "border-emerald-100 bg-emerald-50 text-emerald-700"
+                          : "border-slate-200 bg-white text-slate-500",
+                      ].join(" ")}
+                    >
+                      {isActive ? "장소 보기" : "곧 정리 예정"}
+                    </span>
+                  </div>
+                  <h3
+                    className={[
+                      "mt-3 text-base font-bold",
+                      isActive ? "text-slate-950" : "text-slate-500",
+                    ].join(" ")}
+                  >
+                    {item.label}
+                  </h3>
+                  <p
+                    className={[
+                      "mt-2 text-sm leading-6",
+                      isActive ? "text-slate-600" : "text-slate-500",
+                    ].join(" ")}
+                  >
+                    {item.description}
+                  </p>
+                </>
+              );
+
+              if (isActive) {
+                return (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    className="rounded-lg border border-slate-200 bg-white p-4 transition hover:border-cyan-300 hover:bg-cyan-50 focus:outline-none focus:ring-4 focus:ring-cyan-100"
+                  >
+                    {content}
+                  </Link>
+                );
+              }
+
+              return (
+                <div
+                  key={item.label}
+                  className="rounded-lg border border-slate-200 bg-white/70 p-4"
+                  aria-disabled="true"
+                >
+                  {content}
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
