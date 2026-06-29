@@ -213,14 +213,109 @@ const mapPreviewKeywords = [
   "카페",
 ] as const;
 
-const neighborhoods = [
-  "월명동",
-  "수송동",
-  "나운동",
+const administrativeNeighborhoods = [
+  {
+    name: "월명동",
+    description: "근대거리와 오래된 군산의 분위기",
+  },
+  {
+    name: "조촌동",
+    description: "시청 주변 생활 정보 정리 예정",
+  },
+  {
+    name: "구암동",
+    description: "구암동·내흥동 주변 정보 정리 예정",
+  },
+  {
+    name: "경암동",
+    description: "경암동 생활 정보 정리 예정",
+  },
+  {
+    name: "수송동",
+    description: "식당, 카페, 생활 정보가 모이는 곳",
+  },
+  {
+    name: "나운1동",
+    description: "나운1동 생활 정보 정리 예정",
+  },
+  {
+    name: "나운2동",
+    description: "나운2동 생활 정보 정리 예정",
+  },
+  {
+    name: "나운3동",
+    description: "나운3동 생활 정보 정리 예정",
+  },
+  {
+    name: "소룡동",
+    description: "생활업체와 산업단지 주변 정보 정리 예정",
+  },
+  {
+    name: "미성동",
+    description: "산북동, 내초동 주변 생활 정보 정리 예정",
+  },
+  {
+    name: "해신동",
+    description: "항만과 원도심 주변 정보 정리 예정",
+  },
+  {
+    name: "신풍동",
+    description: "신풍동 생활 정보 정리 예정",
+  },
+  {
+    name: "삼학동",
+    description: "삼학동 생활 정보 정리 예정",
+  },
+  {
+    name: "중앙동",
+    description: "중앙동 생활 정보 정리 예정",
+  },
+  {
+    name: "흥남동",
+    description: "흥남동 생활 정보 정리 예정",
+  },
+  {
+    name: "개정동",
+    description: "개정동 생활 정보 정리 예정",
+  },
+] as const;
+
+const detailNeighborhoods = [
+  "내흥동",
+  "경장동",
   "미장동",
-  "소룡동",
-  "은파 주변",
-  "근대거리 주변",
+  "지곡동",
+  "산북동",
+  "오식도동",
+  "비응도동",
+] as const;
+
+const localAreas = [
+  {
+    name: "은파 주변",
+    description: "산책, 카페, 주차 정보 정리 예정",
+    label: "생활권",
+  },
+  {
+    name: "근대거리 주변",
+    description: "여행 동선과 맛집 정보 정리 예정",
+    label: "관광권역",
+  },
+  {
+    name: "금강 주변",
+    description: "산책과 드라이브 정보 정리 예정",
+    label: "생활권",
+  },
+  {
+    name: "새만금 주변",
+    description: "드라이브와 여행 정보 정리 예정",
+    label: "관광권역",
+  },
+  {
+    name: "고군산군도 방향",
+    description: "섬 여행 동선 정보 정리 예정",
+    label: "관광권역",
+  },
 ] as const;
 
 const featuredPlaces = places.slice(0, 3);
@@ -533,18 +628,95 @@ export default function Home() {
           <div>
             <SectionHeader
               eyebrow="동네별 보기"
-              title="군산을 동네와 권역으로 나눠 볼 수 있게 준비합니다"
-              description="지금은 동네 이름만 먼저 보여주고, 실제 동네별 탐색은 나중에 다룹니다."
+              title="군산을 동네별로 둘러보기"
+              description="군산의 공식 행정동과 주요 생활권을 기준으로 정보를 정리할 예정입니다. 사는 곳 근처 정보부터 여행 동선 주변 정보까지, 군산을 더 정확하게 나눠볼 수 있도록 준비하고 있습니다."
             />
-            <div className="mt-5 flex flex-wrap gap-2">
-              {neighborhoods.map((neighborhood) => (
-                <span
-                  key={neighborhood}
-                  className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700"
-                >
-                  {neighborhood}
+
+            <div className="mt-6">
+              <div className="flex items-center justify-between gap-3">
+                <h3 className="text-sm font-bold text-slate-900">행정동</h3>
+                <span className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-semibold text-slate-500">
+                  공식 명칭 기준
                 </span>
-              ))}
+              </div>
+              <div className="mt-3 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+                {administrativeNeighborhoods.map((neighborhood) => (
+                  <article
+                    key={neighborhood.name}
+                    className="rounded-lg border border-slate-200 bg-slate-50 p-3"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <h4 className="text-sm font-bold text-slate-900">
+                        {neighborhood.name}
+                      </h4>
+                      <span className="shrink-0 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs font-semibold text-slate-500">
+                        행정동
+                      </span>
+                    </div>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">
+                      {neighborhood.description}
+                    </p>
+                    <p className="mt-2 text-xs font-medium text-slate-500">
+                      준비 중
+                    </p>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-7">
+              <div className="flex items-center justify-between gap-3">
+                <h3 className="text-sm font-bold text-slate-900">
+                  세부 지역
+                </h3>
+                <span className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-semibold text-slate-500">
+                  세부 지역 정리 예정
+                </span>
+              </div>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {detailNeighborhoods.map((neighborhood) => (
+                  <span
+                    key={neighborhood}
+                    className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm font-semibold text-slate-600"
+                  >
+                    {neighborhood}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-7">
+              <div className="flex items-center justify-between gap-3">
+                <h3 className="text-sm font-bold text-slate-900">
+                  생활권/관광권역
+                </h3>
+                <span className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-semibold text-slate-500">
+                  행정동과 별도 구분
+                </span>
+              </div>
+              <div className="mt-3 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+                {localAreas.map((area) => (
+                  <article
+                    key={area.name}
+                    className="rounded-lg border border-slate-200 bg-white p-3"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <h4 className="text-sm font-bold text-slate-900">
+                        {area.name}
+                      </h4>
+                      <span className="shrink-0 rounded-full border border-cyan-100 bg-cyan-50 px-2.5 py-1 text-xs font-semibold text-cyan-800">
+                        {area.label}
+                      </span>
+                    </div>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">
+                      {area.description}
+                    </p>
+                    <p className="mt-2 text-xs font-medium text-slate-500">
+                      준비 중
+                    </p>
+                  </article>
+                ))}
+              </div>
             </div>
           </div>
 
