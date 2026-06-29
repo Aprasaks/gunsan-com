@@ -9,57 +9,67 @@ import { places } from "@/data/places";
 const homeCategories = [
   {
     label: "맛집",
-    description: "밥 먹을 곳을 찾을 때",
+    description: "군산에서 밥 먹을 곳 찾기",
+    icon: "밥",
     status: "active",
     href: "/places",
   },
   {
     label: "카페",
-    description: "쉬어갈 카페를 찾을 때",
+    description: "쉬어갈 카페와 디저트",
+    icon: "차",
     status: "active",
     href: "/places",
   },
   {
     label: "병원/약국",
-    description: "급하게 문 연 곳이 필요할 때",
+    description: "급하게 찾는 병원과 약국",
+    icon: "의료",
     status: "active",
     href: "/places",
   },
   {
     label: "생활업체",
-    description: "생활에 필요한 업체를 찾을 때",
+    description: "수리, 세탁, 생활 서비스",
+    icon: "생활",
     status: "active",
     href: "/places",
   },
   {
     label: "네일/뷰티",
-    description: "방문 전 확인할 정보가 필요할 때",
+    description: "네일, 미용, 관리 정보",
+    icon: "뷰티",
     status: "active",
     href: "/places",
   },
   {
     label: "숙박",
-    description: "군산에서 머물 곳",
+    description: "군산 여행 숙소 준비 중",
+    icon: "숙박",
     status: "coming-soon",
   },
   {
     label: "관광/여행",
-    description: "군산 여행 코스와 명소",
+    description: "군산 여행 코스 준비 중",
+    icon: "여행",
     status: "coming-soon",
   },
   {
     label: "행사/축제",
-    description: "이번 주 군산에서 열리는 일",
+    description: "군산 행사와 축제 준비 중",
+    icon: "행사",
     status: "coming-soon",
   },
   {
     label: "주차",
-    description: "차를 두기 편한 곳",
+    description: "주차 정보 준비 중",
+    icon: "주차",
     status: "coming-soon",
   },
   {
     label: "문화/여가",
-    description: "공연, 전시, 산책 정보",
+    description: "전시, 공연, 체험 준비 중",
+    icon: "문화",
     status: "coming-soon",
   },
 ] as const;
@@ -103,8 +113,8 @@ export default function Home() {
         <div className="mx-auto w-full max-w-6xl">
           <SectionHeader
             eyebrow="주요 카테고리"
-            title="군산에서 필요한 곳으로 바로 들어가세요"
-            description="지금은 장소 정보부터 작게 시작하고, 숙박과 여행, 행사 정보는 준비 중으로 표시합니다."
+            title="군산에서 무엇을 찾고 있나요?"
+            description="사는 사람에게 필요한 생활 정보부터, 군산에 오는 사람이 찾는 여행 정보까지 하나씩 모으고 있습니다."
           />
 
           <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
@@ -112,17 +122,42 @@ export default function Home() {
               const isActive = category.status === "active";
               const content = (
                 <>
-                  <div className="flex items-start justify-between gap-3">
-                    <h3 className="text-base font-bold text-slate-950">
-                      {category.label}
-                    </h3>
-                    {!isActive ? (
-                      <span className="shrink-0 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-semibold text-slate-500">
-                        준비 중
-                      </span>
-                    ) : null}
+                  <div className="flex items-center justify-between gap-3">
+                    <span
+                      className={[
+                        "inline-flex h-9 min-w-9 items-center justify-center rounded-lg border px-2 text-xs font-bold",
+                        isActive
+                          ? "border-cyan-100 bg-cyan-50 text-cyan-800"
+                          : "border-slate-200 bg-white text-slate-500",
+                      ].join(" ")}
+                    >
+                      {category.icon}
+                    </span>
+                    <span
+                      className={[
+                        "shrink-0 rounded-full border px-2.5 py-1 text-xs font-semibold",
+                        isActive
+                          ? "border-emerald-100 bg-emerald-50 text-emerald-700"
+                          : "border-slate-200 bg-slate-50 text-slate-500",
+                      ].join(" ")}
+                    >
+                      {isActive ? "장소 보기" : "준비 중"}
+                    </span>
                   </div>
-                  <p className="mt-3 text-sm leading-6 text-slate-600">
+                  <h3
+                    className={[
+                      "mt-4 text-base font-bold",
+                      isActive ? "text-slate-950" : "text-slate-500",
+                    ].join(" ")}
+                  >
+                    {category.label}
+                  </h3>
+                  <p
+                    className={[
+                      "mt-2 text-sm leading-6",
+                      isActive ? "text-slate-600" : "text-slate-500",
+                    ].join(" ")}
+                  >
                     {category.description}
                   </p>
                 </>
@@ -133,7 +168,7 @@ export default function Home() {
                   <Link
                     key={category.label}
                     href={category.href}
-                    className="min-h-32 rounded-lg border border-slate-200 bg-white p-4 transition hover:border-cyan-300 hover:bg-cyan-50"
+                    className="min-h-36 rounded-lg border border-slate-200 bg-white p-4 transition hover:border-cyan-300 hover:bg-cyan-50 focus:outline-none focus:ring-4 focus:ring-cyan-100"
                   >
                     {content}
                   </Link>
@@ -143,7 +178,8 @@ export default function Home() {
               return (
                 <div
                   key={category.label}
-                  className="min-h-32 rounded-lg border border-slate-200 bg-slate-50 p-4"
+                  className="min-h-36 rounded-lg border border-slate-200 bg-slate-50 p-4"
+                  aria-disabled="true"
                 >
                   {content}
                 </div>
