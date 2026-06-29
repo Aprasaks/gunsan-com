@@ -9,61 +9,61 @@ import { places } from "@/data/places";
 const homeCategories = [
   {
     label: "맛집",
-    description: "군산에서 밥 먹을 곳 찾기",
-    icon: "밥",
+    description: "군산에서 밥 먹을 곳",
+    icon: "식",
     status: "active",
     href: "/places",
   },
   {
     label: "카페",
     description: "쉬어갈 카페와 디저트",
-    icon: "차",
+    icon: "컵",
     status: "active",
     href: "/places",
   },
   {
     label: "병원/약국",
-    description: "급하게 찾는 병원과 약국",
-    icon: "의료",
+    description: "급하게 찾는 의료 정보",
+    icon: "+",
     status: "active",
     href: "/places",
   },
   {
     label: "생활업체",
     description: "수리, 세탁, 생활 서비스",
-    icon: "생활",
+    icon: "도구",
     status: "active",
     href: "/places",
   },
   {
     label: "네일/뷰티",
     description: "네일, 미용, 관리 정보",
-    icon: "뷰티",
+    icon: "관리",
     status: "active",
     href: "/places",
   },
   {
     label: "숙박",
     description: "군산 여행 숙소 준비 중",
-    icon: "숙박",
+    icon: "숙소",
     status: "coming-soon",
   },
   {
     label: "관광/여행",
-    description: "군산 여행 코스 준비 중",
-    icon: "여행",
+    description: "여행 코스 정리 예정",
+    icon: "길",
     status: "coming-soon",
   },
   {
-    label: "행사/축제",
-    description: "군산 행사와 축제 준비 중",
-    icon: "행사",
+    label: "행사·축제",
+    description: "행사와 축제 정보 준비 중",
+    icon: "티켓",
     status: "coming-soon",
   },
   {
     label: "주차",
-    description: "주차 정보 준비 중",
-    icon: "주차",
+    description: "주차 정보 정리 예정",
+    icon: "P",
     status: "coming-soon",
   },
   {
@@ -335,44 +335,68 @@ export default function Home() {
             description="사는 사람에게 필요한 생활 정보부터, 군산에 오는 사람이 찾는 여행 정보까지 하나씩 모으고 있습니다."
           />
 
-          <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-4 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-5">
             {homeCategories.map((category) => {
               const isActive = category.status === "active";
               const content = (
                 <>
-                  <div className="flex items-center justify-between gap-3">
-                    <span
+                  <div className="flex items-start justify-between gap-2">
+                    <div
                       className={[
-                        "inline-flex h-9 min-w-9 items-center justify-center rounded-lg border px-2 text-xs font-bold",
+                        "grid h-10 min-w-10 place-items-center rounded-xl border text-xs font-bold",
                         isActive
-                          ? "border-cyan-100 bg-cyan-50 text-cyan-800"
-                          : "border-slate-200 bg-white text-slate-500",
+                          ? "border-cyan-200 bg-cyan-50 text-cyan-800"
+                          : "border-slate-200 bg-white text-slate-400",
                       ].join(" ")}
                     >
                       {category.icon}
-                    </span>
+                    </div>
+                    <div
+                      className={[
+                        "h-10 w-14 rounded-xl border",
+                        isActive
+                          ? "border-cyan-100 bg-[linear-gradient(135deg,#ecfeff,#f0f9ff)]"
+                          : "border-slate-200 bg-[linear-gradient(135deg,#f8fafc,#ffffff)]",
+                      ].join(" ")}
+                      aria-hidden="true"
+                    >
+                      <div
+                        className={[
+                          "ml-auto mt-2 h-3 w-7 rounded-full",
+                          isActive ? "bg-cyan-200/70" : "bg-slate-200",
+                        ].join(" ")}
+                      />
+                      <div
+                        className={[
+                          "ml-2 mt-1 h-2 w-8 rounded-full",
+                          isActive ? "bg-teal-100" : "bg-slate-100",
+                        ].join(" ")}
+                      />
+                    </div>
+                  </div>
+                  <div className="mt-3 flex items-center justify-between gap-2">
+                    <h3
+                      className={[
+                        "text-sm font-bold",
+                        isActive ? "text-slate-950" : "text-slate-500",
+                      ].join(" ")}
+                    >
+                      {category.label}
+                    </h3>
                     <span
                       className={[
-                        "shrink-0 rounded-full border px-2.5 py-1 text-xs font-semibold",
+                        "shrink-0 rounded-full border px-2 py-0.5 text-[11px] font-semibold",
                         isActive
                           ? "border-emerald-100 bg-emerald-50 text-emerald-700"
                           : "border-slate-200 bg-slate-50 text-slate-500",
                       ].join(" ")}
                     >
-                      {isActive ? "장소 보기" : "준비 중"}
+                      {isActive ? "바로 보기" : "준비 중"}
                     </span>
                   </div>
-                  <h3
-                    className={[
-                      "mt-3 text-sm font-bold",
-                      isActive ? "text-slate-950" : "text-slate-500",
-                    ].join(" ")}
-                  >
-                    {category.label}
-                  </h3>
                   <p
                     className={[
-                      "mt-1.5 text-sm leading-5",
+                      "mt-1.5 text-xs leading-5",
                       isActive ? "text-slate-600" : "text-slate-500",
                     ].join(" ")}
                   >
@@ -386,7 +410,7 @@ export default function Home() {
                   <Link
                     key={category.label}
                     href={category.href}
-                    className="min-h-28 rounded-lg border border-slate-200 bg-white p-3 transition hover:border-cyan-300 hover:bg-cyan-50 focus:outline-none focus:ring-4 focus:ring-cyan-100"
+                    className="min-h-[7.5rem] rounded-xl border border-slate-200 bg-white p-3 transition hover:border-cyan-300 hover:bg-cyan-50 focus:outline-none focus:ring-4 focus:ring-cyan-100"
                   >
                     {content}
                   </Link>
@@ -396,7 +420,7 @@ export default function Home() {
               return (
                 <div
                   key={category.label}
-                  className="min-h-28 rounded-lg border border-slate-200 bg-slate-50 p-3"
+                  className="min-h-[7.5rem] rounded-xl border border-slate-200 bg-slate-50 p-3 opacity-85"
                   aria-disabled="true"
                 >
                   {content}
