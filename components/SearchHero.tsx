@@ -24,6 +24,9 @@ export default function SearchHero() {
             군산 여행 정보까지. 군산에서 필요한 정보를 하나씩 모으고
             있습니다.
           </p>
+          <p className="mt-3 max-w-2xl text-sm font-semibold leading-6 text-slate-700 sm:text-base">
+            군산에 산다면, 군산.com. 군산에 여행 가고 싶다면, 군산.com.
+          </p>
           <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-500 sm:text-base">
             사장님이 알려준 정보와 실제 다녀온 사람이 확인한 정보를 나눠서
             보여줍니다.
