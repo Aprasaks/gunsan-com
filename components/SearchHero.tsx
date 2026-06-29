@@ -9,13 +9,13 @@ const quickLinks = [
 
 export default function SearchHero() {
   return (
-    <section className="border-b border-sky-100 bg-sky-50 px-5 py-8 sm:px-6 lg:py-12">
+    <section className="border-b border-sky-100 bg-sky-50 px-4 py-7 sm:px-6 lg:py-12">
       <div className="mx-auto grid w-full max-w-6xl gap-7 lg:grid-cols-[minmax(0,1fr)_410px] lg:items-center">
-        <div>
+        <div className="min-w-0">
           <p className="inline-flex rounded-full border border-cyan-200 bg-white px-3 py-1.5 text-sm font-semibold text-cyan-800">
             군산 대표 정보 포털
           </p>
-          <h1 className="mt-4 max-w-3xl text-4xl font-bold leading-tight text-slate-950 sm:text-5xl">
+          <h1 className="mt-4 max-w-3xl text-3xl font-bold leading-tight text-slate-950 sm:text-5xl">
             군산의 모든 것,
             <br className="hidden sm:block" /> 군산.com에서 시작하세요
           </h1>
@@ -49,7 +49,7 @@ export default function SearchHero() {
             </div>
           </div>
 
-          <div className="mt-4 grid max-w-2xl gap-2 sm:grid-cols-4">
+          <div className="mt-4 grid max-w-2xl grid-cols-2 gap-2 sm:grid-cols-4">
             {quickLinks.map((item) =>
               item.active ? (
                 <Link
@@ -71,10 +71,10 @@ export default function SearchHero() {
           </div>
         </div>
 
-        <div className="overflow-hidden rounded-xl border border-sky-100 bg-white">
-          <div className="flex min-h-72 flex-col justify-between p-5">
+        <div className="min-w-0 overflow-hidden rounded-xl border border-sky-100 bg-white">
+          <div className="flex flex-col justify-between p-4 sm:min-h-72 sm:p-5">
             <div>
-              <div className="flex items-center justify-between gap-3">
+              <div className="flex flex-wrap items-center justify-between gap-2">
                 <p className="text-sm font-semibold text-cyan-700">
                   군산의 오늘
                 </p>

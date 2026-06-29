@@ -8,7 +8,7 @@ const navigationLinks = [
 export default function Header() {
   return (
     <header className="border-b border-slate-200 bg-white">
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-5 py-4 sm:px-6 lg:flex-row lg:items-center lg:gap-6">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-3 px-4 py-4 sm:px-6 lg:flex-row lg:items-center lg:gap-6">
         <Link
           href="/"
           className="shrink-0 text-xl font-bold tracking-normal text-slate-950"
@@ -17,7 +17,7 @@ export default function Header() {
           군산.com
         </Link>
 
-        <div className="relative w-full lg:max-w-md">
+        <div className="relative w-full min-w-0 lg:max-w-md">
           <label htmlFor="site-search" className="sr-only">
             군산 생활 정보 검색
           </label>
@@ -30,21 +30,21 @@ export default function Header() {
         </div>
 
         <nav
-          className="flex flex-wrap items-center gap-2 text-sm font-medium text-slate-700 lg:ml-auto lg:flex-nowrap"
+          className="grid w-full grid-cols-3 gap-2 text-sm font-medium text-slate-700 lg:ml-auto lg:flex lg:w-auto lg:flex-nowrap lg:items-center"
           aria-label="주요 메뉴"
         >
           {navigationLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="rounded-md px-3 py-2 transition hover:bg-slate-100 hover:text-slate-950"
+              className="inline-flex min-h-10 items-center justify-center rounded-md px-2 py-2 text-center transition hover:bg-slate-100 hover:text-slate-950 lg:px-3"
             >
               {link.label}
             </Link>
           ))}
           <Link
             href="/owners"
-            className="rounded-md border border-cyan-200 bg-cyan-50 px-3 py-2 text-cyan-800 transition hover:border-cyan-300 hover:bg-cyan-100"
+            className="inline-flex min-h-10 items-center justify-center rounded-md border border-cyan-200 bg-cyan-50 px-2 py-2 text-center text-cyan-800 transition hover:border-cyan-300 hover:bg-cyan-100 lg:px-3"
           >
             사장님 등록
           </Link>

@@ -9,7 +9,7 @@ type PlaceCardProps = {
 
 export default function PlaceCard({ place }: PlaceCardProps) {
   return (
-    <article className="rounded-xl border border-slate-200 bg-white p-5 transition hover:border-cyan-200">
+    <article className="rounded-xl border border-slate-200 bg-white p-4 transition hover:border-cyan-200 sm:p-5">
       <div className="flex flex-wrap gap-2">
         {place.statuses.map((status) => (
           <StatusBadge key={status} status={status} />
@@ -20,7 +20,9 @@ export default function PlaceCard({ place }: PlaceCardProps) {
         <p className="text-sm font-medium text-slate-500">
           {place.area} · {place.category}
         </p>
-        <h2 className="mt-1 text-xl font-bold text-slate-950">{place.name}</h2>
+        <h2 className="mt-1 text-lg font-bold text-slate-950 sm:text-xl">
+          {place.name}
+        </h2>
         <p className="mt-3 text-sm leading-6 text-slate-600">
           {place.description}
         </p>
@@ -44,7 +46,7 @@ export default function PlaceCard({ place }: PlaceCardProps) {
         </div>
         <Link
           href={`/places/${place.slug}`}
-          className="font-semibold text-cyan-700 transition hover:text-cyan-800"
+          className="inline-flex h-10 items-center justify-center rounded-lg border border-cyan-100 bg-cyan-50 px-3 font-semibold text-cyan-700 transition hover:text-cyan-800 sm:h-auto sm:border-0 sm:bg-transparent sm:px-0"
         >
           상세 보기
         </Link>

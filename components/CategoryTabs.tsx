@@ -12,7 +12,7 @@ export default function CategoryTabs({
   onCategorySelect,
 }: CategoryTabsProps) {
   return (
-    <section className="border-b border-slate-100 bg-white px-5 py-4 sm:px-6">
+    <section className="border-b border-slate-100 bg-white px-4 py-4 sm:px-6">
       <div className="mx-auto w-full max-w-6xl">
         <div
           className="flex gap-2 overflow-x-auto pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0"

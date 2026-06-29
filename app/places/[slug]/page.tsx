@@ -78,17 +78,17 @@ export default async function PlaceDetailPage({ params }: PlaceDetailPageProps) 
   );
 
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-950">
+    <main className="min-h-screen overflow-x-hidden bg-slate-50 text-slate-950">
       <Header />
 
-      <section className="border-b border-slate-100 bg-white px-5 py-8 sm:px-6 lg:py-10">
+      <section className="border-b border-slate-100 bg-white px-4 py-7 sm:px-6 lg:py-10">
         <div className="mx-auto w-full max-w-5xl">
           <p className="text-sm font-semibold text-cyan-700">장소 상세</p>
 
           <p className="mt-4 text-sm font-medium text-slate-500">
             {place.category} · {place.area}
           </p>
-          <h1 className="mt-2 text-3xl font-bold leading-tight text-slate-950 sm:text-5xl">
+          <h1 className="mt-2 text-2xl font-bold leading-tight text-slate-950 sm:text-5xl">
             {place.name}
           </h1>
           <p className="mt-4 max-w-3xl text-base leading-7 text-slate-600 sm:text-lg">
@@ -117,22 +117,22 @@ export default async function PlaceDetailPage({ params }: PlaceDetailPageProps) 
           </div>
 
           <dl className="mt-6 grid gap-3 text-sm text-slate-600 sm:grid-cols-2">
-            <div className="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <div className="rounded-lg border border-slate-200 bg-slate-50 p-3 sm:p-4">
               <dt className="font-semibold text-slate-800">후기 수</dt>
               <dd className="mt-1">{place.reviewCount}개</dd>
             </div>
-            <div className="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <div className="rounded-lg border border-slate-200 bg-slate-50 p-3 sm:p-4">
               <dt className="font-semibold text-slate-800">최근 확인일</dt>
               <dd className="mt-1">{place.lastVerifiedAt}</dd>
             </div>
             {place.address ? (
-              <div className="rounded-lg border border-slate-200 bg-slate-50 p-4">
+              <div className="rounded-lg border border-slate-200 bg-slate-50 p-3 sm:p-4">
                 <dt className="font-semibold text-slate-800">주소</dt>
                 <dd className="mt-1">{place.address}</dd>
               </div>
             ) : null}
             {place.phone ? (
-              <div className="rounded-lg border border-slate-200 bg-slate-50 p-4">
+              <div className="rounded-lg border border-slate-200 bg-slate-50 p-3 sm:p-4">
                 <dt className="font-semibold text-slate-800">전화</dt>
                 <dd className="mt-1">{place.phone}</dd>
               </div>
@@ -153,9 +153,9 @@ export default async function PlaceDetailPage({ params }: PlaceDetailPageProps) 
         </div>
       </section>
 
-      <section className="px-5 py-8 sm:px-6 lg:py-10">
+      <section className="px-4 py-7 sm:px-6 lg:py-10">
         <div className="mx-auto grid w-full max-w-5xl gap-6 lg:grid-cols-2">
-          <section className="rounded-xl border border-sky-200 bg-sky-50 p-5">
+          <section className="rounded-xl border border-sky-200 bg-sky-50 p-4 sm:p-5">
             <div className="border-b border-sky-100 pb-4">
               <p className="text-sm font-semibold text-sky-700">
                 사장님 또는 업체가 알려준 정보
@@ -172,7 +172,7 @@ export default async function PlaceDetailPage({ params }: PlaceDetailPageProps) 
               {ownerRows.map((row) => (
                 <div
                   key={row.key}
-                  className="rounded-lg border border-sky-100 bg-white p-4"
+                  className="rounded-lg border border-sky-100 bg-white p-3 sm:p-4"
                 >
                   <dt className="text-sm font-semibold text-slate-800">
                     {row.label}
@@ -185,7 +185,7 @@ export default async function PlaceDetailPage({ params }: PlaceDetailPageProps) 
             </dl>
           </section>
 
-          <section className="rounded-xl border border-emerald-200 bg-emerald-50 p-5">
+          <section className="rounded-xl border border-emerald-200 bg-emerald-50 p-4 sm:p-5">
             <div className="border-b border-emerald-100 pb-4">
               <p className="text-sm font-semibold text-emerald-700">
                 실제 방문 기준으로 확인하는 정보
@@ -201,7 +201,7 @@ export default async function PlaceDetailPage({ params }: PlaceDetailPageProps) 
               {visitorRows.map((row) => (
                 <div
                   key={row.key}
-                  className="rounded-lg border border-emerald-100 bg-white p-4"
+                  className="rounded-lg border border-emerald-100 bg-white p-3 sm:p-4"
                 >
                   <dt className="text-sm font-semibold text-slate-800">
                     {row.label}
@@ -216,8 +216,8 @@ export default async function PlaceDetailPage({ params }: PlaceDetailPageProps) 
         </div>
       </section>
 
-      <section className="px-5 pb-12 sm:px-6">
-        <div className="mx-auto max-w-5xl rounded-xl border border-cyan-200 bg-white p-5">
+      <section className="px-4 pb-10 sm:px-6 sm:pb-12">
+        <div className="mx-auto max-w-5xl rounded-xl border border-cyan-200 bg-white p-4 sm:p-5">
           <h2 className="text-lg font-bold text-slate-950">
             정보가 달라졌나요?
           </h2>
@@ -227,7 +227,7 @@ export default async function PlaceDetailPage({ params }: PlaceDetailPageProps) 
           </p>
           <Link
             href="/submit"
-            className="mt-4 inline-flex h-10 items-center rounded-lg bg-cyan-700 px-4 text-sm font-semibold text-white transition hover:bg-cyan-800"
+            className="mt-4 inline-flex h-10 w-full items-center justify-center rounded-lg bg-cyan-700 px-4 text-sm font-semibold text-white transition hover:bg-cyan-800 sm:w-auto"
           >
             정보 차이 제보하기
           </Link>

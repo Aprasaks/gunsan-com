@@ -322,12 +322,12 @@ const featuredPlaces = places.slice(0, 3);
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-950">
+    <main className="min-h-screen overflow-x-hidden bg-slate-50 text-slate-950">
       <Header />
 
       <SearchHero />
 
-      <section className="border-b border-slate-100 bg-white px-5 py-7 sm:px-6 lg:py-8">
+      <section className="border-b border-slate-100 bg-white px-4 py-7 sm:px-6 lg:py-8">
         <div className="mx-auto w-full max-w-6xl">
           <SectionHeader
             eyebrow="주요 카테고리"
@@ -407,7 +407,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-5 py-7 sm:px-6 lg:py-8">
+      <section className="px-4 py-7 sm:px-6 lg:py-8">
         <div className="mx-auto w-full max-w-6xl">
           <SectionHeader
             eyebrow="지금 많이 찾는 정보"
@@ -487,7 +487,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-y border-slate-100 bg-white px-5 py-7 sm:px-6 lg:py-8">
+      <section className="border-y border-slate-100 bg-white px-4 py-7 sm:px-6 lg:py-8">
         <div className="mx-auto w-full max-w-6xl">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <SectionHeader
@@ -497,7 +497,7 @@ export default function Home() {
             />
             <Link
               href="/places"
-              className="inline-flex h-11 items-center justify-center rounded-lg border border-cyan-200 bg-cyan-50 px-4 text-sm font-semibold text-cyan-800 transition hover:border-cyan-300 hover:bg-cyan-100"
+              className="inline-flex h-11 w-full items-center justify-center rounded-lg border border-cyan-200 bg-cyan-50 px-4 text-sm font-semibold text-cyan-800 transition hover:border-cyan-300 hover:bg-cyan-100 sm:w-auto"
             >
               장소 목록 보기
             </Link>
@@ -511,7 +511,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-5 py-7 sm:px-6 lg:py-8">
+      <section className="px-4 py-7 sm:px-6 lg:py-8">
         <div className="mx-auto grid w-full max-w-6xl gap-4 lg:grid-cols-3">
           <InfoPanel
             eyebrow="오늘의 군산"
@@ -623,7 +623,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-t border-slate-100 bg-white px-5 py-7 sm:px-6 lg:py-8">
+      <section className="border-t border-slate-100 bg-white px-4 py-7 sm:px-6 lg:py-8">
         <div className="mx-auto grid w-full max-w-6xl gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
           <div>
             <SectionHeader
@@ -633,7 +633,7 @@ export default function Home() {
             />
 
             <div className="mt-5">
-              <div className="flex items-center justify-between gap-3">
+              <div className="flex flex-wrap items-center justify-between gap-3">
                 <h3 className="text-sm font-bold text-slate-900">행정동</h3>
                 <span className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-semibold text-slate-500">
                   공식 명칭 기준
@@ -665,7 +665,7 @@ export default function Home() {
             </div>
 
             <div className="mt-6">
-              <div className="flex items-center justify-between gap-3">
+              <div className="flex flex-wrap items-center justify-between gap-3">
                 <h3 className="text-sm font-bold text-slate-900">
                   세부 지역
                 </h3>
@@ -686,7 +686,7 @@ export default function Home() {
             </div>
 
             <div className="mt-6">
-              <div className="flex items-center justify-between gap-3">
+              <div className="flex flex-wrap items-center justify-between gap-3">
                 <h3 className="text-sm font-bold text-slate-900">
                   생활권/관광권역
                 </h3>
@@ -724,7 +724,7 @@ export default function Home() {
             <p className="text-sm font-semibold text-cyan-800">
               정보가 달라졌나요?
             </p>
-            <h2 className="mt-2 text-2xl font-bold text-slate-950">
+            <h2 className="mt-2 text-xl font-bold text-slate-950 sm:text-2xl">
               군산 정보는 제보로 더 정확해집니다
             </h2>
             <p className="mt-3 text-sm leading-6 text-slate-700">
@@ -733,7 +733,7 @@ export default function Home() {
             </p>
             <Link
               href="/submit"
-              className="mt-5 inline-flex h-11 items-center justify-center rounded-lg bg-cyan-700 px-4 text-sm font-semibold text-white transition hover:bg-cyan-800"
+              className="mt-5 inline-flex h-11 w-full items-center justify-center rounded-lg bg-cyan-700 px-4 text-sm font-semibold text-white transition hover:bg-cyan-800 sm:w-auto"
             >
               정보 제보하기
             </Link>
@@ -756,7 +756,7 @@ function SectionHeader({
   return (
     <div>
       <p className="text-sm font-semibold text-cyan-700">{eyebrow}</p>
-      <h2 className="mt-2 max-w-3xl text-2xl font-bold leading-tight text-slate-950">
+      <h2 className="mt-2 max-w-3xl text-xl font-bold leading-tight text-slate-950 sm:text-2xl">
         {title}
       </h2>
       <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">

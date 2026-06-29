@@ -15,7 +15,7 @@ const principles = [
 export default function RightSidebar() {
   return (
     <aside className="w-full space-y-4 lg:w-80">
-      <section className="rounded-xl border border-slate-200 bg-white p-5">
+      <section className="rounded-xl border border-slate-200 bg-white p-4 sm:p-5">
         <h2 className="text-base font-bold text-slate-950">자주 찾는 질문</h2>
         <div className="mt-4 space-y-3">
           {frequentQuestions.map((item) => (
@@ -32,7 +32,7 @@ export default function RightSidebar() {
         </div>
       </section>
 
-      <section className="rounded-xl border border-slate-200 bg-white p-5">
+      <section className="rounded-xl border border-slate-200 bg-white p-4 sm:p-5">
         <h2 className="text-base font-bold text-slate-950">
           군산.com 검증 원칙
         </h2>
@@ -46,7 +46,7 @@ export default function RightSidebar() {
         </ul>
       </section>
 
-      <section className="rounded-xl border border-slate-200 bg-white p-5">
+      <section className="rounded-xl border border-slate-200 bg-white p-4 sm:p-5">
         <h2 className="text-base font-bold text-slate-950">
           정보가 달라졌나요?
         </h2>
@@ -55,7 +55,7 @@ export default function RightSidebar() {
         </p>
         <Link
           href="/submit"
-          className="mt-4 inline-flex h-10 items-center rounded-lg border border-cyan-200 bg-cyan-50 px-4 text-sm font-semibold text-cyan-800 transition hover:bg-cyan-100"
+          className="mt-4 inline-flex h-10 w-full items-center justify-center rounded-lg border border-cyan-200 bg-cyan-50 px-4 text-sm font-semibold text-cyan-800 transition hover:bg-cyan-100 sm:w-auto"
         >
           제보하기
         </Link>
