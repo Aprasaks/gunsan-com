@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import Header from "@/components/Header";
 
 const reportTypes = [
@@ -175,6 +177,12 @@ export default function SubmitPage() {
               <p className="mt-3 text-xs leading-5 text-slate-500">
                 이후 Supabase와 관리자 승인 흐름을 붙일 예정입니다.
               </p>
+              <Link
+                href="/places"
+                className="mt-4 inline-flex h-10 w-full items-center justify-center rounded-lg border border-yellow-200 bg-white px-3 text-sm font-semibold text-slate-700 transition hover:border-cyan-200 hover:bg-cyan-50 hover:text-cyan-800 sm:w-auto"
+              >
+                장소 목록 먼저 보기
+              </Link>
             </section>
 
             <section className="rounded-xl border border-slate-200 bg-white p-4 sm:p-5">

@@ -3,7 +3,7 @@ import Link from "next/link";
 const quickLinks = [
   { label: "장소 둘러보기", href: "/places", active: true },
   { label: "정보 제보", href: "/submit", active: true },
-  { label: "사장님 등록", href: "/owners", active: true },
+  { label: "사장님 안내", href: "/owners", active: true },
   { label: "행사 준비 중", active: false },
 ] as const;
 
@@ -38,16 +38,21 @@ export default function SearchHero() {
                 id="home-search"
                 type="search"
                 placeholder="맛집, 병원, 카페, 행사 등 군산의 정보를 검색해 보세요"
+                readOnly
                 className="min-h-11 flex-1 rounded-lg border border-transparent bg-slate-50 px-4 text-sm text-slate-950 outline-none placeholder:text-slate-400 focus:border-cyan-500 focus:bg-white focus:ring-4 focus:ring-cyan-100"
               />
               <Link
                 href="/places"
                 className="inline-flex min-h-11 items-center justify-center rounded-lg bg-cyan-700 px-5 text-sm font-semibold text-white transition hover:bg-cyan-800"
               >
-                둘러보기
+                장소 둘러보기
               </Link>
             </div>
           </div>
+          <p className="mt-2 max-w-2xl text-xs leading-5 text-slate-500">
+            통합 검색은 준비 중입니다. 지금은 장소 목록에서 먼저 둘러볼 수
+            있습니다.
+          </p>
 
           <div className="mt-4 grid max-w-2xl grid-cols-2 gap-2 sm:grid-cols-4">
             {quickLinks.map((item) =>

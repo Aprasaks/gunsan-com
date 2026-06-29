@@ -24,7 +24,8 @@ export default function Header() {
           <input
             id="site-search"
             type="search"
-            placeholder="맛집, 병원, 카페, 행사 등 군산 정보 검색"
+            placeholder="통합 검색 준비 중 · 장소는 목록에서 둘러보세요"
+            readOnly
             className="h-11 w-full rounded-lg border border-slate-300 bg-slate-50 px-4 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-cyan-600 focus:bg-white focus:ring-4 focus:ring-cyan-100"
           />
         </div>
@@ -46,7 +47,7 @@ export default function Header() {
             href="/owners"
             className="inline-flex min-h-10 items-center justify-center rounded-md border border-cyan-200 bg-cyan-50 px-2 py-2 text-center text-cyan-800 transition hover:border-cyan-300 hover:bg-cyan-100 lg:px-3"
           >
-            사장님 등록
+            사장님 안내
           </Link>
         </nav>
       </div>

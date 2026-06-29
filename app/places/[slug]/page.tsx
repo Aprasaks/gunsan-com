@@ -83,7 +83,15 @@ export default async function PlaceDetailPage({ params }: PlaceDetailPageProps) 
 
       <section className="border-b border-slate-100 bg-white px-4 py-7 sm:px-6 lg:py-10">
         <div className="mx-auto w-full max-w-5xl">
-          <p className="text-sm font-semibold text-cyan-700">장소 상세</p>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-sm font-semibold text-cyan-700">장소 상세</p>
+            <Link
+              href="/places"
+              className="inline-flex h-10 w-full items-center justify-center rounded-lg border border-slate-200 bg-slate-50 px-3 text-sm font-semibold text-slate-600 transition hover:border-cyan-200 hover:bg-cyan-50 hover:text-cyan-800 sm:w-auto"
+            >
+              장소 목록으로 돌아가기
+            </Link>
+          </div>
 
           <p className="mt-4 text-sm font-medium text-slate-500">
             {place.category} · {place.area}
@@ -225,12 +233,20 @@ export default async function PlaceDetailPage({ params }: PlaceDetailPageProps) 
             영업시간, 휴무일, 주차, 위치가 실제와 다르다면 알려주세요.
             군산.com은 제보를 바탕으로 정보를 더 정확하게 정리합니다.
           </p>
-          <Link
-            href="/submit"
-            className="mt-4 inline-flex h-10 w-full items-center justify-center rounded-lg bg-cyan-700 px-4 text-sm font-semibold text-white transition hover:bg-cyan-800 sm:w-auto"
-          >
-            정보 차이 제보하기
-          </Link>
+          <div className="mt-4 flex flex-col gap-2 sm:flex-row">
+            <Link
+              href="/submit"
+              className="inline-flex h-10 w-full items-center justify-center rounded-lg bg-cyan-700 px-4 text-sm font-semibold text-white transition hover:bg-cyan-800 sm:w-auto"
+            >
+              정보 차이 제보하기
+            </Link>
+            <Link
+              href="/places"
+              className="inline-flex h-10 w-full items-center justify-center rounded-lg border border-slate-200 bg-slate-50 px-4 text-sm font-semibold text-slate-600 transition hover:border-cyan-200 hover:bg-cyan-50 hover:text-cyan-800 sm:w-auto"
+            >
+              다른 장소 보기
+            </Link>
+          </div>
         </div>
       </section>
     </main>
