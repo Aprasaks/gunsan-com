@@ -12,15 +12,33 @@ export default function PlacesPage() {
     <main className="min-h-screen bg-slate-50 text-slate-950">
       <Header />
 
-      <section className="bg-white px-5 py-10 sm:px-6">
+      <section className="border-b border-slate-100 bg-white px-5 py-8 sm:px-6">
         <div className="mx-auto w-full max-w-6xl">
-          <p className="text-sm font-semibold text-cyan-700">장소 탐색</p>
-          <h1 className="mt-3 text-3xl font-bold leading-tight text-slate-950 sm:text-5xl">
-            군산 장소 둘러보기
-          </h1>
-          <p className="mt-5 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
-            맛집, 카페, 병원, 생활업체까지 군산 정보를 한곳에서 확인하세요.
-          </p>
+          <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <p className="text-sm font-semibold text-cyan-700">장소 탐색</p>
+              <h1 className="mt-3 text-3xl font-bold leading-tight text-slate-950 sm:text-4xl">
+                군산 장소 둘러보기
+              </h1>
+              <p className="mt-4 max-w-3xl text-base leading-7 text-slate-600">
+                밥 먹을 곳, 쉬어갈 카페, 급하게 찾는 병원과 생활업체까지.
+                군산에서 필요한 장소를 조건별로 둘러보세요.
+              </p>
+              <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-500">
+                업체가 알려준 정보와 방문자가 확인한 정보를 나눠서
+                보여줍니다.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-2">
+              <span className="inline-flex h-10 items-center rounded-lg border border-cyan-200 bg-cyan-50 px-3 text-sm font-semibold text-cyan-800">
+                목록으로 보기
+              </span>
+              <span className="inline-flex h-10 items-center rounded-lg border border-slate-200 bg-slate-50 px-3 text-sm font-semibold text-slate-500">
+                지도에서 보기 준비 중
+              </span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -31,6 +49,16 @@ export default function PlacesPage() {
           <FilterPanel />
 
           <section aria-label="군산 장소 목록" className="space-y-4">
+            <div className="rounded-xl border border-slate-200 bg-white p-5">
+              <p className="text-sm font-semibold text-cyan-700">장소 목록</p>
+              <h2 className="mt-2 text-2xl font-bold text-slate-950">
+                조건에 맞는 군산 장소를 비교하세요
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-slate-600">
+                카테고리와 확인 상태를 보면서 장소 정보를 빠르게 비교할 수
+                있습니다. 지금은 목록 중심으로 먼저 정리하고 있습니다.
+              </p>
+            </div>
             {places.map((place) => (
               <PlaceCard key={place.id} place={place} />
             ))}
