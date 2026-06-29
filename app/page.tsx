@@ -177,6 +177,29 @@ const todayItems = [
   },
 ] as const;
 
+const eventFestivalItems = [
+  {
+    title: "군산 시간여행축제",
+    description: "근대문화와 함께 보는 군산 대표 축제 정보 정리 예정",
+    label: "공식 출처 기준 정리 예정",
+  },
+  {
+    title: "은파 공연/버스킹",
+    description: "산책과 함께 즐길 수 있는 공연 정보 정리 예정",
+    label: "여행자 정보 예정",
+  },
+  {
+    title: "가족 체험 프로그램",
+    description: "아이와 함께 갈 만한 체험 정보 정리 예정",
+    label: "가족 방문 정보 예정",
+  },
+  {
+    title: "전시/문화 행사",
+    description: "군산에서 열리는 전시와 문화 행사 정리 예정",
+    label: "준비 중",
+  },
+] as const;
+
 const neighborhoods = [
   "월명동",
   "수송동",
@@ -413,10 +436,34 @@ export default function Home() {
           </InfoPanel>
 
           <InfoPanel
-            eyebrow="행사/축제"
-            title="공식 출처 기준으로 정리할 예정입니다"
-            description="군산 행사와 축제 정보를 공식 출처 기준으로 확인해 정리하는 영역입니다. 지금은 준비 중 안내만 표시합니다."
-          />
+            eyebrow="행사·축제"
+            title="주말에 어디 갈지 고민될 때"
+            description="군산에 오기 전 확인하면 좋은 행사와 축제 정보를 공식 출처 기준으로 정리할 예정입니다."
+          >
+            <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+              {eventFestivalItems.map((item) => (
+                <article
+                  key={item.title}
+                  className="rounded-lg border border-slate-200 bg-slate-50 p-3"
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <h3 className="text-sm font-bold text-slate-900">
+                      {item.title}
+                    </h3>
+                    <span className="shrink-0 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs font-semibold text-slate-500">
+                      준비 중
+                    </span>
+                  </div>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">
+                    {item.description}
+                  </p>
+                  <p className="mt-2 text-xs font-medium text-slate-500">
+                    {item.label}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </InfoPanel>
 
           <InfoPanel
             eyebrow="지도에서 보기"
