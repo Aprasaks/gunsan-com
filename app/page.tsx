@@ -200,6 +200,19 @@ const eventFestivalItems = [
   },
 ] as const;
 
+const mapPreviewKeywords = [
+  "월명동",
+  "수송동",
+  "나운동",
+  "은파",
+  "새만금",
+  "근대거리",
+  "금강",
+  "주차장",
+  "병원/약국",
+  "카페",
+] as const;
+
 const neighborhoods = [
   "월명동",
   "수송동",
@@ -467,9 +480,51 @@ export default function Home() {
 
           <InfoPanel
             eyebrow="지도에서 보기"
-            title="군산 장소 지도 보기는 준비 중입니다"
-            description="군산 장소를 지도에서 볼 수 있도록 준비하고 있습니다. 지금은 지도 연결 없이 준비 중 상태만 보여줍니다."
-          />
+            title="군산 지도에서 보기"
+            description="월명동, 은파, 새만금, 근대거리, 수송동 주변 정보를 지도에서 볼 수 있도록 준비하고 있습니다."
+          >
+            <div className="mt-4 rounded-lg border border-slate-200 bg-slate-50 p-3">
+              <div className="relative min-h-44 overflow-hidden rounded-lg border border-slate-200 bg-white">
+                <div className="absolute inset-0 bg-[linear-gradient(90deg,#e2e8f0_1px,transparent_1px),linear-gradient(180deg,#e2e8f0_1px,transparent_1px)] bg-[size:32px_32px]" />
+                <div className="absolute left-6 top-7 h-2.5 w-2.5 rounded-full bg-cyan-600" />
+                <div className="absolute right-10 top-10 h-2.5 w-2.5 rounded-full bg-emerald-500" />
+                <div className="absolute bottom-10 left-1/3 h-2.5 w-2.5 rounded-full bg-amber-500" />
+                <div className="absolute bottom-7 right-8 h-2.5 w-2.5 rounded-full bg-slate-500" />
+                <div className="absolute left-4 top-16 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs font-semibold text-slate-600">
+                  은파 주변
+                </div>
+                <div className="absolute bottom-4 left-5 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs font-semibold text-slate-600">
+                  근대거리
+                </div>
+                <div className="absolute right-4 top-20 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs font-semibold text-slate-600">
+                  수송동
+                </div>
+              </div>
+
+              <div className="mt-3 flex flex-wrap gap-2">
+                {mapPreviewKeywords.map((keyword) => (
+                  <span
+                    key={keyword}
+                    className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs font-semibold text-slate-600"
+                  >
+                    {keyword}
+                  </span>
+                ))}
+              </div>
+
+              <div className="mt-4 flex flex-col gap-2 sm:flex-row">
+                <span className="inline-flex h-10 items-center justify-center rounded-lg border border-slate-200 bg-white px-3 text-sm font-semibold text-slate-500">
+                  지도 기능 준비 중
+                </span>
+                <Link
+                  href="/places"
+                  className="inline-flex h-10 items-center justify-center rounded-lg border border-cyan-200 bg-cyan-50 px-3 text-sm font-semibold text-cyan-800 transition hover:border-cyan-300 hover:bg-cyan-100"
+                >
+                  목록으로 먼저 둘러보기
+                </Link>
+              </div>
+            </div>
+          </InfoPanel>
         </div>
       </section>
 
