@@ -327,7 +327,7 @@ export default function Home() {
 
       <SearchHero />
 
-      <section className="border-b border-slate-100 bg-white px-4 py-7 sm:px-6 lg:py-8">
+      <section className="border-b border-slate-100 bg-white px-4 py-5 sm:px-6 lg:py-6">
         <div className="mx-auto w-full max-w-6xl">
           <SectionHeader
             eyebrow="주요 카테고리"
@@ -335,7 +335,7 @@ export default function Home() {
             description="사는 사람에게 필요한 생활 정보부터, 군산에 오는 사람이 찾는 여행 정보까지 하나씩 모으고 있습니다."
           />
 
-          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
             {homeCategories.map((category) => {
               const isActive = category.status === "active";
               const content = (
@@ -343,7 +343,7 @@ export default function Home() {
                   <div className="flex items-center justify-between gap-3">
                     <span
                       className={[
-                        "inline-flex h-8 min-w-8 items-center justify-center rounded-lg border px-2 text-xs font-bold",
+                        "inline-flex h-9 min-w-9 items-center justify-center rounded-lg border px-2 text-xs font-bold",
                         isActive
                           ? "border-cyan-100 bg-cyan-50 text-cyan-800"
                           : "border-slate-200 bg-white text-slate-500",
@@ -364,7 +364,7 @@ export default function Home() {
                   </div>
                   <h3
                     className={[
-                      "mt-3 text-base font-bold",
+                      "mt-3 text-sm font-bold",
                       isActive ? "text-slate-950" : "text-slate-500",
                     ].join(" ")}
                   >
@@ -386,7 +386,7 @@ export default function Home() {
                   <Link
                     key={category.label}
                     href={category.href}
-                    className="min-h-32 rounded-lg border border-slate-200 bg-white p-3.5 transition hover:border-cyan-300 hover:bg-cyan-50 focus:outline-none focus:ring-4 focus:ring-cyan-100"
+                    className="min-h-28 rounded-lg border border-slate-200 bg-white p-3 transition hover:border-cyan-300 hover:bg-cyan-50 focus:outline-none focus:ring-4 focus:ring-cyan-100"
                   >
                     {content}
                   </Link>
@@ -396,7 +396,7 @@ export default function Home() {
               return (
                 <div
                   key={category.label}
-                  className="min-h-32 rounded-lg border border-slate-200 bg-slate-50 p-3.5"
+                  className="min-h-28 rounded-lg border border-slate-200 bg-slate-50 p-3"
                   aria-disabled="true"
                 >
                   {content}
@@ -407,142 +407,144 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-4 py-7 sm:px-6 lg:py-8">
+      <section className="px-4 py-6 sm:px-6 lg:py-7">
         <div className="mx-auto w-full max-w-6xl">
-          <SectionHeader
-            eyebrow="지금 많이 찾는 정보"
-            title="지금 많이 찾는 군산 정보"
-            description="급하게 필요한 생활 정보부터, 군산에 오기 전에 확인하고 싶은 여행 정보까지 모으고 있습니다."
-          />
+          <div className="grid gap-4 lg:grid-cols-[minmax(0,1.25fr)_minmax(280px,0.75fr)]">
+            <section className="rounded-lg border border-slate-200 bg-white p-4">
+              <SectionHeader
+                eyebrow="지금 많이 찾는 정보"
+                title="지금 많이 찾는 군산 정보"
+                description="생활 정보와 여행 전 확인할 정보를 빠르게 훑어볼 수 있게 모으고 있습니다."
+              />
 
-          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {popularInfo.map((item) => {
-              const isActive = item.status === "active";
-              const content = (
-                <>
-                  <div className="flex items-start justify-between gap-3">
-                    <span
-                      className={[
-                        "rounded-full border px-2.5 py-1 text-xs font-semibold",
-                        isActive
-                          ? "border-cyan-100 bg-cyan-50 text-cyan-800"
-                          : "border-slate-200 bg-slate-50 text-slate-500",
-                      ].join(" ")}
+              <div className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+                {popularInfo.slice(0, 9).map((item) => {
+                  const isActive = item.status === "active";
+                  const content = (
+                    <>
+                      <div className="flex items-start justify-between gap-3">
+                        <span
+                          className={[
+                            "rounded-full border px-2.5 py-1 text-xs font-semibold",
+                            isActive
+                              ? "border-cyan-100 bg-cyan-50 text-cyan-800"
+                              : "border-slate-200 bg-slate-50 text-slate-500",
+                          ].join(" ")}
+                        >
+                          {item.group}
+                        </span>
+                        <span
+                          className={[
+                            "shrink-0 rounded-full border px-2.5 py-1 text-xs font-semibold",
+                            isActive
+                              ? "border-emerald-100 bg-emerald-50 text-emerald-700"
+                              : "border-slate-200 bg-white text-slate-500",
+                          ].join(" ")}
+                        >
+                          {isActive ? "장소 보기" : "정리 예정"}
+                        </span>
+                      </div>
+                      <h3
+                        className={[
+                          "mt-2 text-sm font-bold",
+                          isActive ? "text-slate-950" : "text-slate-500",
+                        ].join(" ")}
+                      >
+                        {item.label}
+                      </h3>
+                      <p
+                        className={[
+                          "mt-1 text-xs leading-5",
+                          isActive ? "text-slate-600" : "text-slate-500",
+                        ].join(" ")}
+                      >
+                        {item.description}
+                      </p>
+                    </>
+                  );
+
+                  if (isActive) {
+                    return (
+                      <Link
+                        key={item.label}
+                        href={item.href}
+                        className="rounded-lg border border-slate-200 bg-slate-50 p-3 transition hover:border-cyan-300 hover:bg-cyan-50 focus:outline-none focus:ring-4 focus:ring-cyan-100"
+                      >
+                        {content}
+                      </Link>
+                    );
+                  }
+
+                  return (
+                    <div
+                      key={item.label}
+                      className="rounded-lg border border-slate-200 bg-white p-3"
+                      aria-disabled="true"
                     >
-                      {item.group}
-                    </span>
-                    <span
-                      className={[
-                        "shrink-0 rounded-full border px-2.5 py-1 text-xs font-semibold",
-                        isActive
-                          ? "border-emerald-100 bg-emerald-50 text-emerald-700"
-                          : "border-slate-200 bg-white text-slate-500",
-                      ].join(" ")}
-                    >
-                      {isActive ? "장소 보기" : "곧 정리 예정"}
-                    </span>
-                  </div>
-                  <h3
-                    className={[
-                      "mt-3 text-sm font-bold",
-                      isActive ? "text-slate-950" : "text-slate-500",
-                    ].join(" ")}
-                  >
-                    {item.label}
-                  </h3>
-                  <p
-                    className={[
-                      "mt-1.5 text-sm leading-5",
-                      isActive ? "text-slate-600" : "text-slate-500",
-                    ].join(" ")}
-                  >
-                    {item.description}
-                  </p>
-                </>
-              );
+                      {content}
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
 
-              if (isActive) {
-                return (
-                  <Link
-                    key={item.label}
-                    href={item.href}
-                    className="rounded-lg border border-slate-200 bg-white p-3.5 transition hover:border-cyan-300 hover:bg-cyan-50 focus:outline-none focus:ring-4 focus:ring-cyan-100"
-                  >
-                    {content}
-                  </Link>
-                );
-              }
-
-              return (
-                <div
-                  key={item.label}
-                  className="rounded-lg border border-slate-200 bg-white/70 p-3.5"
-                  aria-disabled="true"
-                >
-                  {content}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-slate-100 bg-white px-4 py-7 sm:px-6 lg:py-8">
-        <div className="mx-auto w-full max-w-6xl">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-            <SectionHeader
-              eyebrow="군산 장소 둘러보기"
-              title="업체 제공 정보와 방문자 확인 정보를 나눠서 봅니다"
-              description="아직은 더미 데이터 기반이지만, 정보의 출처와 확인 상태를 분명히 보여주는 구조로 만듭니다."
-            />
-            <Link
-              href="/places"
-              className="inline-flex h-11 w-full items-center justify-center rounded-lg border border-cyan-200 bg-cyan-50 px-4 text-sm font-semibold text-cyan-800 transition hover:border-cyan-300 hover:bg-cyan-100 sm:w-auto"
+            <InfoPanel
+              eyebrow="오늘의 군산"
+              title="나가기 전 확인할 정보"
+              description="날씨, 행사, 산책하기 좋은 곳처럼 오늘 확인하면 좋은 정보를 모으고 있습니다."
             >
-              장소 목록 보기
-            </Link>
+              <div className="mt-4 grid gap-3">
+                {todayItems.map((item) => (
+                  <article
+                    key={item.title}
+                    className="rounded-lg border border-slate-200 bg-slate-50 p-3"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <h3 className="text-sm font-bold text-slate-900">
+                        {item.title}
+                      </h3>
+                      <span className="shrink-0 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs font-semibold text-slate-500">
+                        준비 중
+                      </span>
+                    </div>
+                    <p className="mt-2 text-sm leading-5 text-slate-600">
+                      {item.summary}
+                    </p>
+                    <p className="mt-2 text-xs font-medium text-slate-500">
+                      {item.note}
+                    </p>
+                  </article>
+                ))}
+              </div>
+            </InfoPanel>
           </div>
 
-          <div className="mt-5 grid gap-4 lg:grid-cols-3">
-            {featuredPlaces.map((place) => (
-              <PlaceCard key={place.id} place={place} />
-            ))}
-          </div>
-        </div>
-      </section>
+          <section className="mt-4 rounded-lg border border-slate-200 bg-white p-4">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <SectionHeader
+                eyebrow="군산 장소 둘러보기"
+                title="업체 제공 정보와 방문자 확인 정보를 나눠서 봅니다"
+                description="더미 데이터 기반으로 정보 출처와 확인 상태가 보이도록 정리했습니다."
+              />
+              <Link
+                href="/places"
+                className="inline-flex h-10 w-full items-center justify-center rounded-lg border border-cyan-200 bg-cyan-50 px-4 text-sm font-semibold text-cyan-800 transition hover:border-cyan-300 hover:bg-cyan-100 sm:w-auto"
+              >
+                장소 목록 보기
+              </Link>
+            </div>
 
-      <section className="px-4 py-7 sm:px-6 lg:py-8">
-        <div className="mx-auto grid w-full max-w-6xl gap-4 lg:grid-cols-3">
-          <InfoPanel
-            eyebrow="오늘의 군산"
-            title="군산에 나가기 전 확인할 정보"
-            description="날씨, 행사, 산책하기 좋은 곳처럼 오늘 확인하면 좋은 정보를 모으고 있습니다."
-          >
-            <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
-              {todayItems.map((item) => (
-                <article
-                  key={item.title}
-                  className="rounded-lg border border-slate-200 bg-slate-50 p-3"
-                >
-                  <div className="flex items-start justify-between gap-3">
-                    <h3 className="text-sm font-bold text-slate-900">
-                      {item.title}
-                    </h3>
-                    <span className="shrink-0 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs font-semibold text-slate-500">
-                      준비 중
-                    </span>
-                  </div>
-                  <p className="mt-2 text-sm leading-6 text-slate-600">
-                    {item.summary}
-                  </p>
-                  <p className="mt-2 text-xs font-medium text-slate-500">
-                    {item.note}
-                  </p>
-                </article>
+            <div className="mt-4 grid gap-4 lg:grid-cols-3">
+              {featuredPlaces.map((place) => (
+                <PlaceCard key={place.id} place={place} />
               ))}
             </div>
-          </InfoPanel>
+          </section>
+        </div>
+      </section>
 
+      <section className="border-y border-slate-100 bg-white px-4 py-6 sm:px-6 lg:py-7">
+        <div className="mx-auto grid w-full max-w-6xl gap-4 lg:grid-cols-3">
           <InfoPanel
             eyebrow="행사·축제"
             title="주말에 어디 갈지 고민될 때"
@@ -620,10 +622,52 @@ export default function Home() {
               </div>
             </div>
           </InfoPanel>
+
+          <InfoPanel
+            eyebrow="동네별 보기"
+            title="행정동과 생활권을 나눠서 보기"
+            description="공식 행정동과 여행자가 찾는 생활권/관광권역을 구분해 정리할 예정입니다."
+          >
+            <div className="mt-4">
+              <div className="flex flex-wrap gap-2">
+                {administrativeNeighborhoods.slice(0, 5).map((item) => (
+                  <span
+                    key={item.name}
+                    className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-slate-600"
+                  >
+                    {item.name}
+                  </span>
+                ))}
+              </div>
+              <div className="mt-3 grid gap-2">
+                {localAreas.slice(0, 3).map((area) => (
+                  <div
+                    key={area.name}
+                    className="rounded-lg border border-cyan-100 bg-cyan-50 px-3 py-2"
+                  >
+                    <div className="flex items-center justify-between gap-3">
+                      <p className="text-sm font-bold text-slate-900">
+                        {area.name}
+                      </p>
+                      <span className="rounded-full bg-white px-2 py-1 text-xs font-semibold text-cyan-800">
+                        {area.label}
+                      </span>
+                    </div>
+                    <p className="mt-1 text-xs leading-5 text-slate-600">
+                      {area.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-3 text-xs font-semibold text-slate-500">
+                실제 동네 필터 기능은 준비 중입니다.
+              </p>
+            </div>
+          </InfoPanel>
         </div>
       </section>
 
-      <section className="border-t border-slate-100 bg-white px-4 py-7 sm:px-6 lg:py-8">
+      <section className="border-t border-slate-100 bg-white px-4 py-6 sm:px-6 lg:py-7">
         <div className="mx-auto grid w-full max-w-6xl gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
           <div>
             <SectionHeader
