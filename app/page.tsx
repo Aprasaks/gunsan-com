@@ -327,7 +327,7 @@ export default function Home() {
 
       <SearchHero />
 
-      <section className="border-b border-slate-100 bg-white px-5 py-8 sm:px-6 lg:py-10">
+      <section className="border-b border-slate-100 bg-white px-5 py-7 sm:px-6 lg:py-8">
         <div className="mx-auto w-full max-w-6xl">
           <SectionHeader
             eyebrow="주요 카테고리"
@@ -335,7 +335,7 @@ export default function Home() {
             description="사는 사람에게 필요한 생활 정보부터, 군산에 오는 사람이 찾는 여행 정보까지 하나씩 모으고 있습니다."
           />
 
-          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
             {homeCategories.map((category) => {
               const isActive = category.status === "active";
               const content = (
@@ -343,7 +343,7 @@ export default function Home() {
                   <div className="flex items-center justify-between gap-3">
                     <span
                       className={[
-                        "inline-flex h-9 min-w-9 items-center justify-center rounded-lg border px-2 text-xs font-bold",
+                        "inline-flex h-8 min-w-8 items-center justify-center rounded-lg border px-2 text-xs font-bold",
                         isActive
                           ? "border-cyan-100 bg-cyan-50 text-cyan-800"
                           : "border-slate-200 bg-white text-slate-500",
@@ -364,7 +364,7 @@ export default function Home() {
                   </div>
                   <h3
                     className={[
-                      "mt-4 text-base font-bold",
+                      "mt-3 text-base font-bold",
                       isActive ? "text-slate-950" : "text-slate-500",
                     ].join(" ")}
                   >
@@ -372,7 +372,7 @@ export default function Home() {
                   </h3>
                   <p
                     className={[
-                      "mt-2 text-sm leading-6",
+                      "mt-1.5 text-sm leading-5",
                       isActive ? "text-slate-600" : "text-slate-500",
                     ].join(" ")}
                   >
@@ -386,7 +386,7 @@ export default function Home() {
                   <Link
                     key={category.label}
                     href={category.href}
-                    className="min-h-36 rounded-lg border border-slate-200 bg-white p-4 transition hover:border-cyan-300 hover:bg-cyan-50 focus:outline-none focus:ring-4 focus:ring-cyan-100"
+                    className="min-h-32 rounded-lg border border-slate-200 bg-white p-3.5 transition hover:border-cyan-300 hover:bg-cyan-50 focus:outline-none focus:ring-4 focus:ring-cyan-100"
                   >
                     {content}
                   </Link>
@@ -396,7 +396,7 @@ export default function Home() {
               return (
                 <div
                   key={category.label}
-                  className="min-h-36 rounded-lg border border-slate-200 bg-slate-50 p-4"
+                  className="min-h-32 rounded-lg border border-slate-200 bg-slate-50 p-3.5"
                   aria-disabled="true"
                 >
                   {content}
@@ -407,7 +407,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-5 py-8 sm:px-6 lg:py-10">
+      <section className="px-5 py-7 sm:px-6 lg:py-8">
         <div className="mx-auto w-full max-w-6xl">
           <SectionHeader
             eyebrow="지금 많이 찾는 정보"
@@ -415,7 +415,7 @@ export default function Home() {
             description="급하게 필요한 생활 정보부터, 군산에 오기 전에 확인하고 싶은 여행 정보까지 모으고 있습니다."
           />
 
-          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {popularInfo.map((item) => {
               const isActive = item.status === "active";
               const content = (
@@ -444,7 +444,7 @@ export default function Home() {
                   </div>
                   <h3
                     className={[
-                      "mt-3 text-base font-bold",
+                      "mt-3 text-sm font-bold",
                       isActive ? "text-slate-950" : "text-slate-500",
                     ].join(" ")}
                   >
@@ -452,7 +452,7 @@ export default function Home() {
                   </h3>
                   <p
                     className={[
-                      "mt-2 text-sm leading-6",
+                      "mt-1.5 text-sm leading-5",
                       isActive ? "text-slate-600" : "text-slate-500",
                     ].join(" ")}
                   >
@@ -466,7 +466,7 @@ export default function Home() {
                   <Link
                     key={item.label}
                     href={item.href}
-                    className="rounded-lg border border-slate-200 bg-white p-4 transition hover:border-cyan-300 hover:bg-cyan-50 focus:outline-none focus:ring-4 focus:ring-cyan-100"
+                    className="rounded-lg border border-slate-200 bg-white p-3.5 transition hover:border-cyan-300 hover:bg-cyan-50 focus:outline-none focus:ring-4 focus:ring-cyan-100"
                   >
                     {content}
                   </Link>
@@ -476,7 +476,7 @@ export default function Home() {
               return (
                 <div
                   key={item.label}
-                  className="rounded-lg border border-slate-200 bg-white/70 p-4"
+                  className="rounded-lg border border-slate-200 bg-white/70 p-3.5"
                   aria-disabled="true"
                 >
                   {content}
@@ -487,7 +487,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-white px-5 py-8 sm:px-6 lg:py-10">
+      <section className="border-y border-slate-100 bg-white px-5 py-7 sm:px-6 lg:py-8">
         <div className="mx-auto w-full max-w-6xl">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <SectionHeader
@@ -503,7 +503,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="mt-6 grid gap-4 lg:grid-cols-3">
+          <div className="mt-5 grid gap-4 lg:grid-cols-3">
             {featuredPlaces.map((place) => (
               <PlaceCard key={place.id} place={place} />
             ))}
@@ -511,7 +511,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-5 py-8 sm:px-6 lg:py-10">
+      <section className="px-5 py-7 sm:px-6 lg:py-8">
         <div className="mx-auto grid w-full max-w-6xl gap-4 lg:grid-cols-3">
           <InfoPanel
             eyebrow="오늘의 군산"
@@ -623,7 +623,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-white px-5 py-8 sm:px-6 lg:py-10">
+      <section className="border-t border-slate-100 bg-white px-5 py-7 sm:px-6 lg:py-8">
         <div className="mx-auto grid w-full max-w-6xl gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
           <div>
             <SectionHeader
@@ -632,14 +632,14 @@ export default function Home() {
               description="군산의 공식 행정동과 주요 생활권을 기준으로 정보를 정리할 예정입니다. 사는 곳 근처 정보부터 여행 동선 주변 정보까지, 군산을 더 정확하게 나눠볼 수 있도록 준비하고 있습니다."
             />
 
-            <div className="mt-6">
+            <div className="mt-5">
               <div className="flex items-center justify-between gap-3">
                 <h3 className="text-sm font-bold text-slate-900">행정동</h3>
                 <span className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-semibold text-slate-500">
                   공식 명칭 기준
                 </span>
               </div>
-              <div className="mt-3 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+              <div className="mt-3 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
                 {administrativeNeighborhoods.map((neighborhood) => (
                   <article
                     key={neighborhood.name}
@@ -653,7 +653,7 @@ export default function Home() {
                         행정동
                       </span>
                     </div>
-                    <p className="mt-2 text-sm leading-6 text-slate-600">
+                    <p className="mt-2 text-sm leading-5 text-slate-600">
                       {neighborhood.description}
                     </p>
                     <p className="mt-2 text-xs font-medium text-slate-500">
@@ -664,7 +664,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="mt-7">
+            <div className="mt-6">
               <div className="flex items-center justify-between gap-3">
                 <h3 className="text-sm font-bold text-slate-900">
                   세부 지역
@@ -685,7 +685,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="mt-7">
+            <div className="mt-6">
               <div className="flex items-center justify-between gap-3">
                 <h3 className="text-sm font-bold text-slate-900">
                   생활권/관광권역
@@ -708,7 +708,7 @@ export default function Home() {
                         {area.label}
                       </span>
                     </div>
-                    <p className="mt-2 text-sm leading-6 text-slate-600">
+                    <p className="mt-2 text-sm leading-5 text-slate-600">
                       {area.description}
                     </p>
                     <p className="mt-2 text-xs font-medium text-slate-500">
@@ -720,7 +720,7 @@ export default function Home() {
             </div>
           </div>
 
-          <aside className="rounded-lg border border-cyan-200 bg-cyan-50 p-5">
+          <aside className="rounded-lg border border-cyan-200 bg-cyan-50 p-4 lg:p-5">
             <p className="text-sm font-semibold text-cyan-800">
               정보가 달라졌나요?
             </p>
@@ -756,10 +756,10 @@ function SectionHeader({
   return (
     <div>
       <p className="text-sm font-semibold text-cyan-700">{eyebrow}</p>
-      <h2 className="mt-2 max-w-3xl text-2xl font-bold leading-tight text-slate-950 sm:text-3xl">
+      <h2 className="mt-2 max-w-3xl text-2xl font-bold leading-tight text-slate-950">
         {title}
       </h2>
-      <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-600 sm:text-base">
+      <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">
         {description}
       </p>
     </div>
@@ -778,12 +778,12 @@ function InfoPanel({
   children?: ReactNode;
 }) {
   return (
-    <section className="rounded-lg border border-slate-200 bg-white p-5">
+    <section className="rounded-lg border border-slate-200 bg-white p-4">
       <p className="text-sm font-semibold text-cyan-700">{eyebrow}</p>
       <h2 className="mt-2 text-xl font-bold leading-tight text-slate-950">
         {title}
       </h2>
-      <p className="mt-3 text-sm leading-6 text-slate-600">{description}</p>
+      <p className="mt-2 text-sm leading-6 text-slate-600">{description}</p>
       {children}
     </section>
   );

@@ -1,18 +1,25 @@
 import Link from "next/link";
 
+const quickLinks = [
+  { label: "장소 둘러보기", href: "/places", active: true },
+  { label: "정보 제보", href: "/submit", active: true },
+  { label: "사장님 등록", href: "/owners", active: true },
+  { label: "행사 준비 중", active: false },
+] as const;
+
 export default function SearchHero() {
   return (
-    <section className="bg-sky-50 px-5 py-9 sm:px-6 lg:py-14">
-      <div className="mx-auto grid w-full max-w-6xl gap-8 lg:grid-cols-[minmax(0,1fr)_400px] lg:items-center">
+    <section className="border-b border-sky-100 bg-sky-50 px-5 py-8 sm:px-6 lg:py-12">
+      <div className="mx-auto grid w-full max-w-6xl gap-7 lg:grid-cols-[minmax(0,1fr)_410px] lg:items-center">
         <div>
           <p className="inline-flex rounded-full border border-cyan-200 bg-white px-3 py-1.5 text-sm font-semibold text-cyan-800">
-            사는 사람도, 오는 사람도 군산.com에서 시작합니다.
+            군산 대표 정보 포털
           </p>
-          <h1 className="mt-5 max-w-3xl text-4xl font-bold leading-tight text-slate-950 sm:text-5xl">
+          <h1 className="mt-4 max-w-3xl text-4xl font-bold leading-tight text-slate-950 sm:text-5xl">
             군산의 모든 것,
             <br className="hidden sm:block" /> 군산.com에서 시작하세요
           </h1>
-          <p className="mt-5 max-w-2xl text-base leading-7 text-slate-700 sm:text-lg">
+          <p className="mt-4 max-w-2xl text-base leading-7 text-slate-700 sm:text-lg">
             밥 먹을 곳, 쉬어갈 카페, 급하게 찾는 병원, 주차 되는 곳부터
             군산 여행 정보까지. 군산에서 필요한 정보를 하나씩 모으고
             있습니다.
@@ -22,7 +29,7 @@ export default function SearchHero() {
             보여줍니다.
           </p>
 
-          <div className="mt-6 max-w-2xl rounded-xl border border-slate-200 bg-white p-2 shadow-sm">
+          <div className="mt-5 max-w-2xl rounded-xl border border-slate-200 bg-white p-2">
             <label htmlFor="home-search" className="sr-only">
               군산 정보 검색
             </label>
@@ -41,65 +48,78 @@ export default function SearchHero() {
               </Link>
             </div>
           </div>
+
+          <div className="mt-4 grid max-w-2xl gap-2 sm:grid-cols-4">
+            {quickLinks.map((item) =>
+              item.active ? (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="inline-flex h-10 items-center justify-center rounded-lg border border-cyan-200 bg-white px-3 text-sm font-semibold text-cyan-800 transition hover:border-cyan-300 hover:bg-cyan-50"
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <span
+                  key={item.label}
+                  className="inline-flex h-10 items-center justify-center rounded-lg border border-slate-200 bg-white/70 px-3 text-sm font-semibold text-slate-500"
+                >
+                  {item.label}
+                </span>
+              ),
+            )}
+          </div>
         </div>
 
-        <div className="flex flex-col gap-4">
-          <div className="overflow-hidden rounded-xl border border-sky-100 bg-white shadow-sm">
-            <div className="flex min-h-72 flex-col justify-between p-5">
-              <div>
+        <div className="overflow-hidden rounded-xl border border-sky-100 bg-white">
+          <div className="flex min-h-72 flex-col justify-between p-5">
+            <div>
+              <div className="flex items-center justify-between gap-3">
                 <p className="text-sm font-semibold text-cyan-700">
                   군산의 오늘
                 </p>
-                <div className="mt-4 grid grid-cols-2 gap-2">
-                  {["새만금", "금강", "은파", "근대거리"].map((keyword) => (
-                    <span
-                      key={keyword}
-                      className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-3 text-sm font-bold text-slate-800"
-                    >
-                      {keyword}
-                    </span>
-                  ))}
-                </div>
+                <span className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-semibold text-slate-500">
+                  준비 중 정보 포함
+                </span>
               </div>
-
-              <div>
-                <p className="text-2xl font-bold leading-tight text-slate-950">
-                  사는 사람도, 오는 사람도
-                </p>
-                <p className="mt-2 text-sm leading-6 text-slate-600">
-                  군산에서 필요한 정보를 여기서 시작합니다.
-                </p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {[
-                    "지도에서 보기 준비 중",
-                    "행사 정보 준비 중",
-                    "동네별 보기 준비 중",
-                  ].map((label) => (
-                    <span
-                      key={label}
-                      className="rounded-full border border-cyan-100 bg-cyan-50 px-3 py-1 text-xs font-semibold text-cyan-800"
-                    >
-                      {label}
-                    </span>
-                  ))}
-                </div>
+              <div className="mt-4 grid grid-cols-2 gap-2">
+                {["새만금", "금강", "은파", "근대거리"].map((keyword) => (
+                  <span
+                    key={keyword}
+                    className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-3 text-sm font-bold text-slate-800"
+                  >
+                    {keyword}
+                  </span>
+                ))}
               </div>
             </div>
-          </div>
 
-          <div className="grid gap-3 sm:grid-cols-2">
-            <Link
-              href="/places"
-              className="flex h-11 items-center justify-center rounded-lg border border-cyan-200 bg-white px-4 text-sm font-semibold text-cyan-800 transition hover:border-cyan-300 hover:bg-cyan-50"
-            >
-              장소 둘러보기
-            </Link>
-            <Link
-              href="/submit"
-              className="flex h-11 items-center justify-center rounded-lg border border-cyan-200 bg-cyan-50 px-4 text-sm font-semibold text-cyan-800 transition hover:border-cyan-300 hover:bg-cyan-100"
-            >
-              정보 제보하기
-            </Link>
+            <div className="mt-6 grid gap-3 border-t border-slate-100 pt-5 sm:grid-cols-3 lg:grid-cols-1">
+              <div>
+                <p className="text-xs font-semibold text-slate-500">
+                  생활 정보
+                </p>
+                <p className="mt-1 text-sm font-bold text-slate-900">
+                  병원 · 주차 · 생활업체
+                </p>
+              </div>
+              <div>
+                <p className="text-xs font-semibold text-slate-500">
+                  여행 정보
+                </p>
+                <p className="mt-1 text-sm font-bold text-slate-900">
+                  은파 · 새만금 · 근대거리
+                </p>
+              </div>
+              <div>
+                <p className="text-xs font-semibold text-slate-500">
+                  확장 예정
+                </p>
+                <p className="mt-1 text-sm font-bold text-slate-900">
+                  지도 · 행사 · 동네별 보기
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
