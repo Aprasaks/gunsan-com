@@ -331,7 +331,7 @@ export default function Home() {
 
       <SearchHero />
 
-      <section className="border-b border-slate-100 bg-white px-4 py-5 sm:px-6 lg:py-6">
+      <section className="border-b border-slate-100 bg-white px-4 py-3 sm:px-6 lg:py-4">
         <div className="mx-auto w-full max-w-6xl">
           <SectionHeader
             eyebrow="주요 카테고리"
@@ -339,7 +339,7 @@ export default function Home() {
             description="사는 사람에게 필요한 생활 정보부터, 군산에 오는 사람이 찾는 여행 정보까지 하나씩 모으고 있습니다."
           />
 
-          <div className="mt-4 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-3 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-5">
             {homeCategories.map((category) => {
               const isActive = category.status === "active";
               const content = (
@@ -414,7 +414,7 @@ export default function Home() {
                   <Link
                     key={category.label}
                     href={category.href}
-                    className="min-h-[7.5rem] rounded-xl border border-slate-200 bg-white p-3 transition hover:border-cyan-300 hover:bg-cyan-50 focus:outline-none focus:ring-4 focus:ring-cyan-100"
+                    className="min-h-[6.8rem] rounded-xl border border-slate-200 bg-white p-3 transition hover:border-cyan-300 hover:bg-cyan-50 focus:outline-none focus:ring-4 focus:ring-cyan-100"
                   >
                     {content}
                   </Link>
@@ -424,7 +424,7 @@ export default function Home() {
               return (
                 <div
                   key={category.label}
-                  className="min-h-[7.5rem] rounded-xl border border-slate-200 bg-slate-50 p-3 opacity-85"
+                  className="min-h-[6.8rem] rounded-xl border border-slate-200 bg-slate-50 p-3 opacity-85"
                   aria-disabled="true"
                 >
                   {content}
@@ -435,7 +435,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-4 py-6 sm:px-6 lg:py-7">
+      <section className="px-4 py-4 sm:px-6 lg:py-5">
         <div className="mx-auto w-full max-w-6xl">
           <div className="grid gap-4 lg:grid-cols-[minmax(0,1.25fr)_minmax(280px,0.75fr)]">
             <section className="rounded-lg border border-slate-200 bg-white p-4">
@@ -445,7 +445,7 @@ export default function Home() {
                 description="생활 정보와 여행 전 확인할 정보를 빠르게 훑어볼 수 있게 모으고 있습니다."
               />
 
-              <div className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+              <div className="mt-3 grid gap-2.5 sm:grid-cols-2 xl:grid-cols-3">
                 {popularInfo.slice(0, 9).map((item) => {
                   const isActive = item.status === "active";
                   const content = (
@@ -496,7 +496,7 @@ export default function Home() {
                       <Link
                         key={item.label}
                         href={item.href}
-                        className="rounded-lg border border-slate-200 bg-slate-50 p-3 transition hover:border-cyan-300 hover:bg-cyan-50 focus:outline-none focus:ring-4 focus:ring-cyan-100"
+                        className="rounded-lg border border-slate-200 bg-slate-50 p-2.5 transition hover:border-cyan-300 hover:bg-cyan-50 focus:outline-none focus:ring-4 focus:ring-cyan-100"
                       >
                         {content}
                       </Link>
@@ -506,7 +506,7 @@ export default function Home() {
                   return (
                     <div
                       key={item.label}
-                      className="rounded-lg border border-slate-200 bg-white p-3"
+                      className="rounded-lg border border-slate-200 bg-white p-2.5"
                       aria-disabled="true"
                     >
                       {content}
@@ -521,11 +521,11 @@ export default function Home() {
               title="나가기 전 확인할 정보"
               description="날씨, 행사, 산책하기 좋은 곳처럼 오늘 확인하면 좋은 정보를 모으고 있습니다."
             >
-              <div className="mt-4 grid gap-3">
+              <div className="mt-3 grid gap-2.5">
                 {todayItems.map((item) => (
                   <article
                     key={item.title}
-                    className="rounded-lg border border-slate-200 bg-slate-50 p-3"
+                    className="rounded-lg border border-slate-200 bg-slate-50 p-2.5"
                   >
                     <div className="flex items-start justify-between gap-3">
                       <h3 className="text-sm font-bold text-slate-900">
@@ -547,7 +547,7 @@ export default function Home() {
             </InfoPanel>
           </div>
 
-          <section className="mt-4 rounded-lg border border-slate-200 bg-white p-4">
+          <section className="mt-4 rounded-lg border border-slate-200 bg-white p-3.5">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
               <SectionHeader
                 eyebrow="군산 장소 둘러보기"
@@ -562,7 +562,7 @@ export default function Home() {
               </Link>
             </div>
 
-            <div className="mt-4 grid gap-4 lg:grid-cols-3">
+            <div className="mt-3 grid gap-3 lg:grid-cols-3">
               {featuredPlaces.map((place) => (
                 <PlaceCard key={place.id} place={place} />
               ))}
