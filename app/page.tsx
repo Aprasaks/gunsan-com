@@ -155,9 +155,26 @@ const popularInfo = [
 ] as const;
 
 const todayItems = [
-  "날씨 정보 준비 중",
-  "오늘의 행사 준비 중",
-  "산책하기 좋은 곳 준비 중",
+  {
+    title: "오늘 날씨",
+    summary: "군산 날씨 정보 준비 중",
+    note: "실제 날씨 연결 전입니다",
+  },
+  {
+    title: "오늘의 행사",
+    summary: "공식 출처 기준으로 정리 예정",
+    note: "행사 데이터 준비 중",
+  },
+  {
+    title: "산책하기 좋은 곳",
+    summary: "은파, 금강, 월명공원 주변 정보 준비 중",
+    note: "방문 정보 정리 예정",
+  },
+  {
+    title: "여행 전 확인",
+    summary: "주차, 숙박, 행사 정보를 함께 정리 예정",
+    note: "여행 정보 준비 중",
+  },
 ] as const;
 
 const neighborhoods = [
@@ -367,19 +384,32 @@ export default function Home() {
         <div className="mx-auto grid w-full max-w-6xl gap-4 lg:grid-cols-3">
           <InfoPanel
             eyebrow="오늘의 군산"
-            title="오늘 필요한 정보는 준비 중입니다"
-            description="날씨, 오늘의 행사, 산책하기 좋은 곳처럼 하루 단위로 확인할 정보를 담을 예정입니다."
+            title="군산에 나가기 전 확인할 정보"
+            description="날씨, 행사, 산책하기 좋은 곳처럼 오늘 확인하면 좋은 정보를 모으고 있습니다."
           >
-            <ul className="mt-4 space-y-2">
+            <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
               {todayItems.map((item) => (
-                <li
-                  key={item}
-                  className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm font-medium text-slate-600"
+                <article
+                  key={item.title}
+                  className="rounded-lg border border-slate-200 bg-slate-50 p-3"
                 >
-                  {item}
-                </li>
+                  <div className="flex items-start justify-between gap-3">
+                    <h3 className="text-sm font-bold text-slate-900">
+                      {item.title}
+                    </h3>
+                    <span className="shrink-0 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs font-semibold text-slate-500">
+                      준비 중
+                    </span>
+                  </div>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">
+                    {item.summary}
+                  </p>
+                  <p className="mt-2 text-xs font-medium text-slate-500">
+                    {item.note}
+                  </p>
+                </article>
               ))}
-            </ul>
+            </div>
           </InfoPanel>
 
           <InfoPanel
