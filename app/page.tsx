@@ -5,30 +5,8 @@ import Header from "@/components/Header";
 import HomeCategoryGrid from "@/components/HomeCategoryGrid";
 import PopularInfoSection from "@/components/PopularInfoSection";
 import SearchHero from "@/components/SearchHero";
+import TodayGunsanSection from "@/components/TodayGunsanSection";
 import { places } from "@/data/places";
-
-const todayItems = [
-  {
-    title: "날씨",
-    summary: "준비 중",
-    note: "실제 날씨 API 연결 전입니다",
-  },
-  {
-    title: "미세먼지",
-    summary: "준비 중",
-    note: "실제 미세먼지 API 연결 전입니다",
-  },
-  {
-    title: "일몰 시간",
-    summary: "정리 예정",
-    note: "확인된 시간 데이터가 없습니다",
-  },
-  {
-    title: "오늘의 행사",
-    summary: "공식 출처 기준 정리 예정",
-    note: "행사 데이터 연결 전입니다",
-  },
-] as const;
 
 const eventFestivalItems = [
   {
@@ -246,35 +224,7 @@ export default function Home() {
             </div>
           </section>
 
-            <InfoPanel
-              eyebrow="오늘의 군산"
-              title="나가기 전 확인할 정보"
-              description="날씨와 행사 정보가 들어갈 자리를 먼저 정리합니다."
-            >
-              <div className="mt-2.5 grid gap-2">
-                {todayItems.map((item) => (
-                  <article
-                    key={item.title}
-                    className="rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-2"
-                  >
-                    <div className="flex items-center justify-between gap-3">
-                      <h3 className="text-sm font-bold text-slate-900">
-                        {item.title}
-                      </h3>
-                      <span className="shrink-0 rounded-full border border-slate-200 bg-white px-2 py-0.5 text-[11px] font-semibold text-slate-500">
-                        {item.summary}
-                      </span>
-                    </div>
-                    <p className="mt-1 text-xs leading-4 text-slate-500">
-                      {item.note}
-                    </p>
-                  </article>
-                ))}
-              </div>
-              <p className="mt-2.5 rounded-lg border border-slate-200 bg-white px-2.5 py-2 text-xs font-semibold leading-4 text-slate-500">
-                실제 날씨, 미세먼지, 행사 데이터는 아직 연결하지 않았습니다.
-              </p>
-            </InfoPanel>
+            <TodayGunsanSection />
           </div>
 
           <div className="mt-3 flex items-center justify-between gap-3 border-t border-slate-100 pt-3">
