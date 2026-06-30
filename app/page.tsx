@@ -200,6 +200,7 @@ export default function Home() {
               />
               <Link
                 href="/places"
+                aria-label="군산 장소 목록 페이지로 이동"
                 className="inline-flex h-9 w-full items-center justify-center rounded-lg border border-cyan-200 bg-cyan-50 px-3 text-sm font-semibold text-cyan-800 transition hover:border-cyan-300 hover:bg-cyan-100 sm:w-auto"
               >
                 더 보기
@@ -211,6 +212,7 @@ export default function Home() {
                 <Link
                   key={place.id}
                   href={`/places/${place.slug}`}
+                  aria-label={`${place.name} 상세페이지로 이동`}
                   className="rounded-lg border border-slate-200 bg-slate-50 p-2 transition hover:border-cyan-300 hover:bg-cyan-50 focus:outline-none focus:ring-4 focus:ring-cyan-100"
                 >
                   <div className="flex gap-3">
