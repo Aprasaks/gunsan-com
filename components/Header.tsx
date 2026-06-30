@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { getGunsanCurrentWeather } from "@/lib/weather";
+
 const categoryLinks = [
   { label: "홈", href: "/" },
   { label: "정보" },
@@ -49,7 +51,9 @@ function SearchBar({ id }: { id: string }) {
   );
 }
 
-export default function Header() {
+export default async function Header() {
+  const weather = await getGunsanCurrentWeather();
+
   return (
     <header className="border-b border-slate-200 bg-white">
       <div className="border-b border-slate-100">
@@ -73,9 +77,11 @@ export default function Header() {
               className="ml-auto flex shrink-0 items-center whitespace-nowrap text-xs font-semibold text-slate-600"
               aria-label="유틸 메뉴"
             >
-              <span className="hidden items-center gap-1 px-2 py-1 text-slate-700 lg:flex">
-                <span aria-hidden="true">☀</span>
-                <span>군산 날씨</span>
+              <span className="hidden min-w-[4.75rem] items-center gap-1 px-2 py-1 text-slate-700 lg:flex">
+                <span aria-hidden="true">{weather?.icon ?? "☀"}</span>
+                <span>
+                  {weather ? `군산 ${weather.temperatureCelsius}℃` : "군산 날씨"}
+                </span>
               </span>
               <span
                 className="hidden h-3.5 w-px bg-slate-200 lg:block"
