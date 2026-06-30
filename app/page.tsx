@@ -1,133 +1,40 @@
+import Image from "next/image";
 import Link from "next/link";
-import type { ReactNode } from "react";
 
 import EventFestivalSection from "@/components/EventFestivalSection";
 import Header from "@/components/Header";
 import HomeCategoryGrid from "@/components/HomeCategoryGrid";
+import MapPreviewSection from "@/components/MapPreviewSection";
+import NeighborhoodSection from "@/components/NeighborhoodSection";
 import PopularInfoSection from "@/components/PopularInfoSection";
 import SearchHero from "@/components/SearchHero";
 import TodayGunsanSection from "@/components/TodayGunsanSection";
 import { places } from "@/data/places";
 
-const mapPreviewKeywords = [
-  "월명동",
-  "수송동",
-  "나운동",
-  "은파",
-  "새만금",
-  "근대거리",
-  "금강",
-  "주차장",
-  "병원/약국",
-  "카페",
-] as const;
-
-const administrativeNeighborhoods = [
-  {
-    name: "월명동",
-    description: "근대거리와 오래된 군산의 분위기",
-  },
-  {
-    name: "조촌동",
-    description: "시청 주변 생활 정보 정리 예정",
-  },
-  {
-    name: "구암동",
-    description: "구암동·내흥동 주변 정보 정리 예정",
-  },
-  {
-    name: "경암동",
-    description: "경암동 생활 정보 정리 예정",
-  },
-  {
-    name: "수송동",
-    description: "식당, 카페, 생활 정보가 모이는 곳",
-  },
-  {
-    name: "나운1동",
-    description: "나운1동 생활 정보 정리 예정",
-  },
-  {
-    name: "나운2동",
-    description: "나운2동 생활 정보 정리 예정",
-  },
-  {
-    name: "나운3동",
-    description: "나운3동 생활 정보 정리 예정",
-  },
-  {
-    name: "소룡동",
-    description: "생활업체와 산업단지 주변 정보 정리 예정",
-  },
-  {
-    name: "미성동",
-    description: "산북동, 내초동 주변 생활 정보 정리 예정",
-  },
-  {
-    name: "해신동",
-    description: "항만과 원도심 주변 정보 정리 예정",
-  },
-  {
-    name: "신풍동",
-    description: "신풍동 생활 정보 정리 예정",
-  },
-  {
-    name: "삼학동",
-    description: "삼학동 생활 정보 정리 예정",
-  },
-  {
-    name: "중앙동",
-    description: "중앙동 생활 정보 정리 예정",
-  },
-  {
-    name: "흥남동",
-    description: "흥남동 생활 정보 정리 예정",
-  },
-  {
-    name: "개정동",
-    description: "개정동 생활 정보 정리 예정",
-  },
-] as const;
-
-const detailNeighborhoods = [
-  "내흥동",
-  "경장동",
-  "미장동",
-  "지곡동",
-  "산북동",
-  "오식도동",
-  "비응도동",
-] as const;
-
-const localAreas = [
-  {
-    name: "은파 주변",
-    description: "산책, 카페, 주차 정보 정리 예정",
-    label: "생활권",
-  },
-  {
-    name: "근대거리 주변",
-    description: "여행 동선과 맛집 정보 정리 예정",
-    label: "관광권역",
-  },
-  {
-    name: "금강 주변",
-    description: "산책과 드라이브 정보 정리 예정",
-    label: "생활권",
-  },
-  {
-    name: "새만금 주변",
-    description: "드라이브와 여행 정보 정리 예정",
-    label: "관광권역",
-  },
-  {
-    name: "고군산군도 방향",
-    description: "섬 여행 동선 정보 정리 예정",
-    label: "관광권역",
-  },
-] as const;
-
 const featuredPlaces = places.slice(0, 5);
+
+const placeCategoryImages = {
+  맛집: {
+    src: "/images/categories/category-food.webp",
+    alt: "맛집 카테고리 이미지",
+  },
+  카페: {
+    src: "/images/categories/category-cafe.webp",
+    alt: "카페 카테고리 이미지",
+  },
+  "병원/약국": {
+    src: "/images/categories/category-medical.webp",
+    alt: "병원과 약국 카테고리 이미지",
+  },
+  생활업체: {
+    src: "/images/categories/category-service.webp",
+    alt: "생활업체 카테고리 이미지",
+  },
+  "네일/뷰티": {
+    src: "/images/categories/category-beauty.webp",
+    alt: "네일과 뷰티 카테고리 이미지",
+  },
+} as const;
 
 export default function Home() {
   return (
@@ -140,213 +47,71 @@ export default function Home() {
 
       <section className="px-4 pb-3 pt-2 sm:px-6 lg:px-8 lg:pb-4 lg:pt-2">
         <div className="mx-auto w-full max-w-[1440px] rounded-xl border border-slate-200 bg-white/80 p-2 shadow-sm shadow-slate-200/50">
-          <div className="grid gap-3 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.55fr)_minmax(0,0.8fr)]">
+          <div className="grid gap-2.5 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.6fr)_minmax(0,0.78fr)]">
             <PopularInfoSection />
 
-            <section className="rounded-lg border border-slate-200 bg-white p-3">
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-              <SectionHeader
-                eyebrow="군산 장소 둘러보기"
-                title="먼저 정리된 군산 장소"
-                description="기존 seed 장소를 기준으로 정보 출처와 확인 상태를 보여줍니다."
-              />
-              <Link
-                href="/places"
-                aria-label="군산 장소 목록 페이지로 이동"
-                className="inline-flex h-9 w-full items-center justify-center rounded-lg border border-cyan-200 bg-cyan-50 px-3 text-sm font-semibold text-cyan-800 transition hover:border-cyan-300 hover:bg-cyan-100 sm:w-auto"
-              >
-                더 보기
-              </Link>
-            </div>
-
-            <div className="mt-2.5 grid gap-2 sm:grid-cols-2">
-              {featuredPlaces.slice(0, 4).map((place) => (
+            <section className="rounded-lg border border-slate-200 bg-white p-2.5">
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+                <SectionHeader
+                  eyebrow="군산 장소 둘러보기"
+                  title="가볍게 둘러보는 군산 장소"
+                  description="방문 전 확인할 정보를 짧게 모았습니다."
+                />
                 <Link
-                  key={place.id}
-                  href={`/places/${place.slug}`}
-                  aria-label={`${place.name} 상세페이지로 이동`}
-                  className="rounded-lg border border-slate-200 bg-slate-50 p-2 transition hover:border-cyan-300 hover:bg-cyan-50 focus:outline-none focus:ring-4 focus:ring-cyan-100"
+                  href="/places"
+                  aria-label="군산 장소 목록 페이지로 이동"
+                  className="inline-flex h-8 w-full items-center justify-center rounded-lg border border-cyan-200 bg-cyan-50 px-3 text-xs font-semibold text-cyan-800 transition hover:border-cyan-300 hover:bg-cyan-100 sm:w-auto"
                 >
-                  <div className="flex gap-3">
-                    <div
-                      className="grid h-10 min-w-10 place-items-center rounded-lg border border-cyan-100 bg-white text-xs font-bold text-cyan-800"
-                      aria-hidden="true"
-                    >
-                      {place.category.slice(0, 2)}
+                  더 보기
+                </Link>
+              </div>
+
+              <div className="mt-2 grid gap-2 sm:grid-cols-2 xl:grid-cols-4">
+                {featuredPlaces.slice(0, 4).map((place) => (
+                  <Link
+                    key={place.id}
+                    href={`/places/${place.slug}`}
+                    aria-label={`${place.name} 상세페이지로 이동`}
+                    className="overflow-hidden rounded-lg border border-slate-200 bg-slate-50 transition hover:border-cyan-300 hover:bg-cyan-50 focus:outline-none focus:ring-4 focus:ring-cyan-100"
+                  >
+                    <div className="relative h-16 bg-white">
+                      <Image
+                        src={placeCategoryImages[place.category].src}
+                        alt={placeCategoryImages[place.category].alt}
+                        fill
+                        sizes="(min-width: 1280px) 150px, 50vw"
+                        className="object-cover"
+                      />
+                      <span className="absolute left-2 top-2 rounded-full bg-white/90 px-2 py-0.5 text-[10px] font-bold text-cyan-800">
+                        {place.statuses[0]}
+                      </span>
                     </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-start justify-between gap-2">
-                        <div className="min-w-0">
-                          <h3 className="truncate text-sm font-bold text-slate-950">
-                            {place.name}
-                          </h3>
-                          <p className="mt-0.5 text-xs font-semibold text-slate-500">
-                            {place.area} · {place.category}
-                          </p>
-                        </div>
-                        <span className="shrink-0 rounded-full border border-slate-200 bg-white px-2 py-0.5 text-[11px] font-semibold text-slate-500">
-                          {place.statuses[0]}
-                        </span>
-                      </div>
-                      <p className="mt-1 line-clamp-2 text-xs leading-4 text-slate-600">
+                    <div className="min-w-0 p-2">
+                      <h3 className="truncate text-sm font-bold text-slate-950">
+                        {place.name}
+                      </h3>
+                      <p className="mt-0.5 truncate text-[11px] font-semibold text-slate-500">
+                        {place.category} · {place.area}
+                      </p>
+                      <p className="mt-1 line-clamp-1 text-xs leading-4 text-slate-600">
                         {place.description}
                       </p>
                     </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </section>
+                  </Link>
+                ))}
+              </div>
+            </section>
 
             <TodayGunsanSection />
           </div>
 
-          <div className="mt-3 flex items-center justify-between gap-3 border-t border-slate-100 pt-3">
-            <p className="text-sm font-bold text-slate-900">확장 정보</p>
-            <span className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-semibold text-slate-500">
-              준비 중 영역
-            </span>
-          </div>
-
-          <div className="mt-2 grid gap-3 lg:grid-cols-3">
+          <div className="mt-2 grid gap-2.5 lg:grid-cols-3">
             <EventFestivalSection />
-
-            <InfoPanel
-              eyebrow="지도에서 보기"
-              title="지도에서 한눈에 보기"
-              description="원하는 장소를 지도에서 확인할 수 있도록 준비 중입니다."
-            >
-              <div className="mt-2.5 rounded-lg border border-slate-200 bg-slate-50 p-2">
-                <div className="relative min-h-36 overflow-hidden rounded-lg border border-cyan-100 bg-white">
-                  <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(148,163,184,0.22)_1px,transparent_1px),linear-gradient(180deg,rgba(148,163,184,0.22)_1px,transparent_1px)] bg-[size:30px_30px]" />
-                  <div className="absolute -left-5 top-12 h-8 w-11/12 rotate-[-8deg] rounded-[999px] border border-cyan-200/70" />
-                  <div className="absolute bottom-8 left-8 right-6 h-8 rotate-[6deg] rounded-[999px] border border-teal-200/70" />
-                  <span className="absolute right-3 top-3 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs font-semibold text-slate-500">
-                    준비 중
-                  </span>
-                  <div className="absolute left-7 top-8 h-3 w-3 rounded-full border-2 border-white bg-cyan-600" />
-                  <div className="absolute right-12 top-14 h-3 w-3 rounded-full border-2 border-white bg-emerald-500" />
-                  <div className="absolute bottom-10 left-1/3 h-3 w-3 rounded-full border-2 border-white bg-sky-500" />
-                  <div className="absolute bottom-8 right-9 h-3 w-3 rounded-full border-2 border-white bg-slate-500" />
-                  <div className="absolute left-4 top-14 rounded-full border border-slate-200 bg-white/95 px-2 py-0.5 text-[11px] font-semibold text-slate-600">
-                    월명동
-                  </div>
-                  <div className="absolute bottom-4 left-5 rounded-full border border-slate-200 bg-white/95 px-2 py-0.5 text-[11px] font-semibold text-slate-600">
-                    은파
-                  </div>
-                  <div className="absolute right-4 top-20 rounded-full border border-slate-200 bg-white/95 px-2 py-0.5 text-[11px] font-semibold text-slate-600">
-                    수송동
-                  </div>
-                  <div className="absolute bottom-11 right-6 rounded-full border border-slate-200 bg-white/95 px-2 py-0.5 text-[11px] font-semibold text-slate-600">
-                    근대거리
-                  </div>
-                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg border border-cyan-200 bg-cyan-50 px-2.5 py-1.5 text-center">
-                    <p className="text-[11px] font-bold text-cyan-800">
-                      지도 preview
-                    </p>
-                    <p className="mt-0.5 text-[10px] font-semibold text-slate-500">
-                      실제 위치 데이터 없음
-                    </p>
-                  </div>
-                </div>
-
-                <div className="mt-2 flex flex-wrap gap-1.5">
-                  {mapPreviewKeywords.slice(0, 5).map((keyword) => (
-                    <span
-                      key={keyword}
-                      className="rounded-full border border-slate-200 bg-white px-2 py-0.5 text-[11px] font-semibold text-slate-600"
-                    >
-                      {keyword}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="mt-2 grid gap-2 sm:grid-cols-2">
-                  <span className="inline-flex h-8 items-center justify-center rounded-lg border border-slate-200 bg-white px-3 text-xs font-semibold text-slate-500">
-                    지도 보기 준비 중
-                  </span>
-                  <Link
-                    href="/places"
-                    className="inline-flex h-8 items-center justify-center rounded-lg border border-cyan-200 bg-cyan-50 px-3 text-xs font-semibold text-cyan-800 transition hover:border-cyan-300 hover:bg-cyan-100"
-                  >
-                    목록으로 보기
-                  </Link>
-                </div>
-              </div>
-            </InfoPanel>
-
-            <InfoPanel
-              eyebrow="동네별 보기"
-              title="동네별로 보기"
-              description="생활권과 여행 동선을 나눠볼 수 있도록 준비 중입니다."
-            >
-              <div className="mt-2.5 space-y-2">
-                <div className="rounded-lg border border-slate-200 bg-slate-50 p-2.5">
-                  <div className="flex items-center justify-between gap-3">
-                    <h3 className="text-xs font-bold text-slate-900">행정동</h3>
-                    <span className="rounded-full border border-slate-200 bg-white px-2 py-0.5 text-[11px] font-semibold text-slate-500">
-                      공식 명칭 기준
-                    </span>
-                  </div>
-                  <div className="mt-2 flex flex-wrap gap-1.5">
-                    {administrativeNeighborhoods.slice(0, 5).map((item) => (
-                      <span
-                        key={item.name}
-                        className="rounded-full border border-slate-200 bg-white px-2 py-0.5 text-xs font-semibold text-slate-600"
-                      >
-                        {item.name}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="grid gap-2">
-                  <div className="rounded-lg border border-cyan-100 bg-cyan-50 p-2.5">
-                    <div className="flex items-center justify-between gap-3">
-                      <h3 className="text-xs font-bold text-slate-900">
-                        생활권/관광권역
-                      </h3>
-                      <span className="rounded-full bg-white px-2 py-0.5 text-[11px] font-semibold text-cyan-800">
-                        행정동과 별도
-                      </span>
-                    </div>
-                    <div className="mt-2 flex flex-wrap gap-1.5">
-                      {localAreas.slice(0, 5).map((area) => (
-                        <span
-                          key={area.name}
-                          className="rounded-full bg-white/85 px-2 py-0.5 text-xs font-semibold text-slate-700"
-                        >
-                          {area.name}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="rounded-lg border border-slate-200 bg-white p-2.5">
-                    <p className="text-xs font-bold text-slate-900">
-                      세부 지역 정리 예정
-                    </p>
-                    <div className="mt-2 flex flex-wrap gap-1.5">
-                      {detailNeighborhoods.slice(0, 7).map((item) => (
-                        <span
-                          key={item}
-                          className="rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-xs font-semibold text-slate-500"
-                        >
-                          {item}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                <p className="text-xs font-semibold text-slate-500">
-                  실제 동네 필터 기능은 준비 중입니다.
-                </p>
-              </div>
-            </InfoPanel>
+            <MapPreviewSection />
+            <NeighborhoodSection />
           </div>
         </div>
       </section>
-
     </main>
   );
 }
@@ -363,35 +128,12 @@ function SectionHeader({
   return (
     <div>
       <p className="text-xs font-semibold text-cyan-700">{eyebrow}</p>
-      <h2 className="mt-1 max-w-3xl text-lg font-bold leading-tight text-slate-950 sm:text-xl">
+      <h2 className="mt-0.5 max-w-3xl text-base font-bold leading-tight text-slate-950 sm:text-lg">
         {title}
       </h2>
-      <p className="mt-1 max-w-3xl text-sm leading-5 text-slate-600">
+      <p className="mt-0.5 max-w-3xl text-xs leading-5 text-slate-600">
         {description}
       </p>
     </div>
-  );
-}
-
-function InfoPanel({
-  eyebrow,
-  title,
-  description,
-  children,
-}: {
-  eyebrow: string;
-  title: string;
-  description: string;
-  children?: ReactNode;
-}) {
-  return (
-    <section className="rounded-lg border border-slate-200 bg-white p-3">
-      <p className="text-xs font-semibold text-cyan-700">{eyebrow}</p>
-      <h2 className="mt-1 text-lg font-bold leading-tight text-slate-950">
-        {title}
-      </h2>
-      <p className="mt-1 text-sm leading-5 text-slate-600">{description}</p>
-      {children}
-    </section>
   );
 }

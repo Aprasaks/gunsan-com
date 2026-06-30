@@ -13,21 +13,21 @@ const popularItems = [
 
 export default function PopularInfoSection() {
   return (
-    <section className="rounded-lg border border-slate-200 bg-white p-3">
+    <section className="rounded-lg border border-slate-200 bg-white p-2.5">
       <div>
         <p className="text-xs font-semibold text-cyan-700">군산 정보</p>
-        <h2 className="mt-1 text-lg font-bold leading-tight text-slate-950">
+        <h2 className="mt-0.5 text-base font-bold leading-tight text-slate-950 sm:text-lg">
           지금 많이 찾는 정보 🔥
         </h2>
       </div>
 
-      <div className="mt-2.5 grid grid-cols-2 gap-1.5">
+      <div className="mt-2 grid grid-cols-2 gap-1.5">
         {popularItems.map((item) => (
           <button
             key={item.key}
             type="button"
             aria-disabled="true"
-            className="h-8 truncate rounded-full border border-cyan-100 bg-cyan-50/70 px-2.5 text-left text-xs font-bold text-slate-700"
+            className="h-7 truncate rounded-full border border-cyan-100 bg-cyan-50/70 px-2 text-left text-[11px] font-bold text-slate-700"
           >
             {item.label}
           </button>

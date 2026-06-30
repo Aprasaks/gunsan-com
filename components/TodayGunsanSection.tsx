@@ -34,20 +34,20 @@ export default async function TodayGunsanSection() {
   ];
 
   return (
-    <section className="rounded-lg border border-slate-200 bg-white p-3">
+    <section className="rounded-lg border border-slate-200 bg-white p-2.5">
       <p className="text-xs font-semibold text-cyan-700">오늘의 군산</p>
-      <h2 className="mt-1 text-lg font-bold leading-tight text-slate-950">
+      <h2 className="mt-0.5 text-base font-bold leading-tight text-slate-950 sm:text-lg">
         나가기 전 확인
       </h2>
 
-      <div className="mt-2.5 grid gap-2">
+      <div className="mt-2 grid gap-1.5">
         {todayItems.map((item) => (
           <article
             key={item.key}
-            className="flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-2"
+            className="flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-2 py-1.5"
           >
             <span
-              className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-white text-sm font-bold text-cyan-800"
+              className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-white text-xs font-bold text-cyan-800"
               aria-hidden="true"
             >
               {item.icon}
@@ -64,8 +64,8 @@ export default async function TodayGunsanSection() {
         ))}
       </div>
 
-      <p className="mt-2.5 rounded-lg border border-cyan-100 bg-cyan-50 px-2.5 py-2 text-xs font-semibold leading-4 text-cyan-900">
-        행사와 이동 정보는 공식 출처를 확인해 주세요.
+      <p className="mt-2 rounded-lg border border-cyan-100 bg-cyan-50 px-2 py-1.5 text-xs font-semibold leading-4 text-cyan-900">
+        방문 전 최신 정보를 한 번 더 확인해 주세요.
       </p>
     </section>
   );
