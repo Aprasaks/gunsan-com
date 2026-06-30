@@ -2,19 +2,9 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 
 import Header from "@/components/Header";
+import HomeCategoryGrid from "@/components/HomeCategoryGrid";
 import SearchHero from "@/components/SearchHero";
 import { places } from "@/data/places";
-
-const homeCategories = [
-  { label: "맛집", kind: "food", status: "active", href: "/places" },
-  { label: "카페", kind: "cafe", status: "active", href: "/places" },
-  { label: "병원/약국", kind: "medical", status: "active", href: "/places" },
-  { label: "생활업체", kind: "service", status: "active", href: "/places" },
-  { label: "네일/뷰티", kind: "beauty", status: "active", href: "/places" },
-  { label: "숙박", kind: "stay", status: "coming-soon" },
-  { label: "관광/여행", kind: "travel", status: "coming-soon" },
-  { label: "행사/축제", kind: "event", status: "coming-soon" },
-] as const;
 
 const popularInfo = [
   {
@@ -229,95 +219,6 @@ const localAreas = [
 
 const featuredPlaces = places.slice(0, 5);
 
-
-function CategoryIcon({ kind }: { kind: (typeof homeCategories)[number]["kind"] }) {
-  if (kind === "food") return (
-    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-full w-full">
-      <rect width="40" height="40" rx="12" fill="#fff7ed"/>
-      <line x1="17" y1="8" x2="15" y2="21" stroke="#92400e" strokeWidth="2" strokeLinecap="round"/>
-      <line x1="23" y1="7" x2="21" y2="21" stroke="#92400e" strokeWidth="2" strokeLinecap="round"/>
-      <path d="M7 21C7 21 7 34 20 34C33 34 33 21 33 21H7Z" fill="#fed7aa"/>
-      <ellipse cx="20" cy="21" rx="13" ry="4" fill="#fb923c"/>
-      <path d="M12 24Q14 22 16 24Q18 26 20 24Q22 22 24 24Q26 26 28 24" stroke="#ea580c" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-    </svg>
-  );
-  if (kind === "cafe") return (
-    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-full w-full">
-      <rect width="40" height="40" rx="12" fill="#fffbeb"/>
-      <path d="M14 17C13.5 14 15 12 14 9" stroke="#d97706" strokeWidth="1.5" strokeLinecap="round"/>
-      <path d="M20 16C19.5 13 21 11 20 8" stroke="#d97706" strokeWidth="1.5" strokeLinecap="round"/>
-      <path d="M10 20H28L26 32H12L10 20Z" fill="#b45309"/>
-      <rect x="10" y="20" width="18" height="5" rx="1" fill="#d97706"/>
-      <path d="M28 23Q36 23 36 27Q36 31 28 31" stroke="#92400e" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
-      <ellipse cx="19" cy="32" rx="11" ry="2.5" fill="#fbbf24"/>
-    </svg>
-  );
-  if (kind === "medical") return (
-    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-full w-full">
-      <rect width="40" height="40" rx="12" fill="#fff1f2"/>
-      <circle cx="20" cy="20" r="14" fill="#fecdd3"/>
-      <rect x="17" y="10" width="6" height="20" rx="2" fill="#ef4444"/>
-      <rect x="10" y="17" width="20" height="6" rx="2" fill="#ef4444"/>
-    </svg>
-  );
-  if (kind === "service") return (
-    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-full w-full">
-      <rect width="40" height="40" rx="12" fill="#f0f9ff"/>
-      <path d="M28 6C24.5 6 22 9 22 12C22 13.2 22.4 14.3 23 15.2L12 27.5C11 28.5 11 30 12 31C13 32 14.5 32 15.5 31L26.8 20C27.8 20.7 28.9 21 30 21C33 21 36 18.5 36 15C36 14.2 35.8 13.4 35.5 12.7L32 16L28 12L31.5 8.5C30.5 7 29.3 6 28 6Z" fill="#0ea5e9"/>
-      <path d="M8 8L15 15L13 17L6 10L8 8Z" fill="#38bdf8"/>
-      <line x1="15" y1="15" x2="30" y2="30" stroke="#0284c7" strokeWidth="2.5" strokeLinecap="round"/>
-    </svg>
-  );
-  if (kind === "beauty") return (
-    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-full w-full">
-      <rect width="40" height="40" rx="12" fill="#fdf2f8"/>
-      <rect x="15" y="22" width="12" height="13" rx="3" fill="#f472b6"/>
-      <rect x="16" y="16" width="10" height="7" rx="2" fill="#ec4899"/>
-      <rect x="18" y="11" width="6" height="6" rx="1.5" fill="#db2777"/>
-      <line x1="18" y1="25" x2="18" y2="30" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.6"/>
-      <path d="M9 14L10 11L11 14L14 15L11 16L10 19L9 16L6 15Z" fill="#fda4af"/>
-      <path d="M30 10L31 8L32 10L34 11L32 12L31 14L30 12L28 11Z" fill="#fda4af"/>
-    </svg>
-  );
-  if (kind === "stay") return (
-    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-full w-full">
-      <rect width="40" height="40" rx="12" fill="#f5f3ff"/>
-      <rect x="5" y="23" width="30" height="12" rx="3" fill="#7c3aed"/>
-      <rect x="5" y="16" width="9" height="11" rx="2" fill="#6d28d9"/>
-      <rect x="15" y="20" width="12" height="8" rx="3" fill="#ede9fe"/>
-      <rect x="5" y="28" width="30" height="7" rx="2" fill="#a78bfa"/>
-      <rect x="8" y="35" width="3" height="4" rx="1" fill="#5b21b6"/>
-      <rect x="29" y="35" width="3" height="4" rx="1" fill="#5b21b6"/>
-    </svg>
-  );
-  if (kind === "travel") return (
-    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-full w-full">
-      <rect width="40" height="40" rx="12" fill="#f0fdfa"/>
-      <rect x="6" y="15" width="28" height="19" rx="4" fill="#0d9488"/>
-      <rect x="14" y="10" width="10" height="7" rx="2" fill="#0f766e"/>
-      <circle cx="20" cy="24" r="8" fill="#134e4a"/>
-      <circle cx="20" cy="24" r="6" fill="#0d9488"/>
-      <circle cx="20" cy="24" r="3.5" fill="#042f2e"/>
-      <rect x="27" y="17" width="4" height="3" rx="1" fill="#99f6e4"/>
-      <circle cx="22" cy="22" r="1.5" fill="white" fillOpacity="0.5"/>
-    </svg>
-  );
-  return (
-    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-full w-full">
-      <rect width="40" height="40" rx="12" fill="#fffbeb"/>
-      <circle cx="20" cy="20" r="5" fill="#f59e0b"/>
-      <line x1="20" y1="6" x2="20" y2="12" stroke="#f59e0b" strokeWidth="2.5" strokeLinecap="round"/>
-      <line x1="20" y1="28" x2="20" y2="34" stroke="#f59e0b" strokeWidth="2.5" strokeLinecap="round"/>
-      <line x1="6" y1="20" x2="12" y2="20" stroke="#f59e0b" strokeWidth="2.5" strokeLinecap="round"/>
-      <line x1="28" y1="20" x2="34" y2="20" stroke="#f59e0b" strokeWidth="2.5" strokeLinecap="round"/>
-      <line x1="10.1" y1="10.1" x2="14.4" y2="14.4" stroke="#fcd34d" strokeWidth="2" strokeLinecap="round"/>
-      <line x1="25.6" y1="25.6" x2="29.9" y2="29.9" stroke="#fcd34d" strokeWidth="2" strokeLinecap="round"/>
-      <line x1="29.9" y1="10.1" x2="25.6" y2="14.4" stroke="#fcd34d" strokeWidth="2" strokeLinecap="round"/>
-      <line x1="14.4" y1="25.6" x2="10.1" y2="29.9" stroke="#fcd34d" strokeWidth="2" strokeLinecap="round"/>
-    </svg>
-  );
-}
-
 export default function Home() {
   return (
     <main className="min-h-screen overflow-x-hidden bg-slate-50 text-slate-950">
@@ -325,48 +226,7 @@ export default function Home() {
 
       <SearchHero />
 
-      <section className="border-b border-slate-100 bg-white px-4 py-4 sm:px-6 lg:px-8">
-        <div className="mx-auto w-full max-w-[1440px]">
-          <div className="flex gap-1 overflow-x-auto pb-1 lg:justify-between">
-            {homeCategories.map((category) => {
-              const isActive = category.status === "active";
-              const tile = (
-                <div className="flex shrink-0 flex-col items-center gap-1.5 px-3 py-1">
-                  <div className={["h-12 w-12 overflow-hidden rounded-2xl", isActive ? "" : "opacity-50"].join(" ")}>
-                    <CategoryIcon kind={category.kind} />
-                  </div>
-                  <span
-                    className={[
-                      "whitespace-nowrap text-xs font-semibold",
-                      isActive ? "text-slate-700" : "text-slate-400",
-                    ].join(" ")}
-                  >
-                    {category.label}
-                  </span>
-                </div>
-              );
-
-              if ("href" in category) {
-                return (
-                  <Link
-                    key={category.label}
-                    href={category.href}
-                    className="transition hover:opacity-75"
-                  >
-                    {tile}
-                  </Link>
-                );
-              }
-
-              return (
-                <div key={category.label} className="opacity-50">
-                  {tile}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+      <HomeCategoryGrid />
 
       <section className="px-4 pb-3 pt-2 sm:px-6 lg:px-8 lg:pb-4 lg:pt-2">
         <div className="mx-auto w-full max-w-[1440px] rounded-xl border border-slate-200 bg-white/80 p-2 shadow-sm shadow-slate-200/50">
