@@ -12,6 +12,12 @@ type PlaceDetailPageProps = {
   }>;
 };
 
+type InfoRow = {
+  key: string;
+  label: string;
+  value: string;
+};
+
 const ownerInfoFields: {
   key: keyof PlaceOwnerInfo;
   label: string;
@@ -35,12 +41,6 @@ const visitorInfoFields: {
   { key: "photoNote", label: "사진 참고 정보" },
 ];
 
-type InfoRow = {
-  key: string;
-  label: string;
-  value: string;
-};
-
 function getOwnerRows(ownerInfo: PlaceOwnerInfo): InfoRow[] {
   return ownerInfoFields.flatMap(({ key, label }) => {
     const value = ownerInfo[key];
@@ -55,6 +55,30 @@ function getVisitorRows(visitorInfo: PlaceVisitorInfo): InfoRow[] {
 
     return value ? [{ key, label, value }] : [];
   });
+}
+
+function getBasicRows({
+  area,
+  address,
+  phone,
+  openingHours,
+  lastVerifiedAt,
+}: {
+  area: string;
+  address?: string;
+  phone?: string;
+  openingHours?: string;
+  lastVerifiedAt: string;
+}): InfoRow[] {
+  return [
+    { key: "area", label: "지역", value: area },
+    openingHours
+      ? { key: "openingHours", label: "영업시간", value: openingHours }
+      : null,
+    address ? { key: "address", label: "주소", value: address } : null,
+    phone ? { key: "phone", label: "전화", value: phone } : null,
+    { key: "lastVerifiedAt", label: "정보 기준일", value: lastVerifiedAt },
+  ].filter((row): row is InfoRow => row !== null);
 }
 
 export function generateStaticParams() {
@@ -73,6 +97,13 @@ export default async function PlaceDetailPage({ params }: PlaceDetailPageProps) 
 
   const ownerRows = getOwnerRows(place.ownerInfo);
   const visitorRows = getVisitorRows(place.visitorInfo);
+  const basicRows = getBasicRows({
+    area: place.area,
+    address: place.address,
+    phone: place.phone,
+    openingHours: place.ownerInfo.openingHours,
+    lastVerifiedAt: place.lastVerifiedAt,
+  });
   const needsVerification = place.statuses.some(
     (status) => status === "확인 필요" || status === "폐업/이전 확인 필요",
   );
@@ -81,174 +112,157 @@ export default async function PlaceDetailPage({ params }: PlaceDetailPageProps) 
     <main className="min-h-screen overflow-x-hidden bg-slate-50 text-slate-950">
       <Header />
 
-      <section className="border-b border-slate-100 bg-white px-4 py-7 sm:px-6 lg:py-10">
-        <div className="mx-auto w-full max-w-5xl">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-sm font-semibold text-cyan-700">장소 상세</p>
+      <section className="px-4 py-4 sm:px-6 lg:px-8">
+        <div className="mx-auto w-full max-w-[1200px]">
+          <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
             <Link
               href="/places"
-              className="inline-flex h-10 w-full items-center justify-center rounded-lg border border-slate-200 bg-slate-50 px-3 text-sm font-semibold text-slate-600 transition hover:border-cyan-200 hover:bg-cyan-50 hover:text-cyan-800 sm:w-auto"
+              className="inline-flex h-9 w-full items-center justify-center rounded-lg border border-slate-200 bg-white px-3 text-sm font-semibold text-slate-600 transition hover:border-cyan-200 hover:bg-cyan-50 hover:text-cyan-800 sm:w-auto"
             >
               장소 목록으로 돌아가기
             </Link>
-          </div>
-
-          <p className="mt-4 text-sm font-medium text-slate-500">
-            {place.category} · {place.area}
-          </p>
-          <h1 className="mt-2 text-2xl font-bold leading-tight text-slate-950 sm:text-5xl">
-            {place.name}
-          </h1>
-          <p className="mt-4 max-w-3xl text-base leading-7 text-slate-600 sm:text-lg">
-            {place.description}
-          </p>
-          <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-500">
-            방문 전 참고할 수 있도록 업체가 알려준 정보와 방문자가 확인한
-            정보를 나눠서 보여줍니다.
-          </p>
-
-          <div className="mt-5 flex flex-wrap gap-2">
-            {place.statuses.map((status) => (
-              <StatusBadge key={status} status={status} />
-            ))}
-          </div>
-
-          <div className="mt-5 flex flex-wrap gap-2">
-            {place.tags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-
-          <dl className="mt-6 grid gap-3 text-sm text-slate-600 sm:grid-cols-2">
-            <div className="rounded-lg border border-slate-200 bg-slate-50 p-3 sm:p-4">
-              <dt className="font-semibold text-slate-800">후기 수</dt>
-              <dd className="mt-1">{place.reviewCount}개</dd>
-            </div>
-            <div className="rounded-lg border border-slate-200 bg-slate-50 p-3 sm:p-4">
-              <dt className="font-semibold text-slate-800">최근 확인일</dt>
-              <dd className="mt-1">{place.lastVerifiedAt}</dd>
-            </div>
-            {place.address ? (
-              <div className="rounded-lg border border-slate-200 bg-slate-50 p-3 sm:p-4">
-                <dt className="font-semibold text-slate-800">주소</dt>
-                <dd className="mt-1">{place.address}</dd>
-              </div>
-            ) : null}
-            {place.phone ? (
-              <div className="rounded-lg border border-slate-200 bg-slate-50 p-3 sm:p-4">
-                <dt className="font-semibold text-slate-800">전화</dt>
-                <dd className="mt-1">{place.phone}</dd>
-              </div>
-            ) : null}
-          </dl>
-
-          {needsVerification ? (
-            <div className="mt-6 rounded-xl border border-yellow-200 bg-yellow-50 p-4">
-              <h2 className="text-sm font-bold text-yellow-900">
-                확인이 필요한 정보가 있습니다
-              </h2>
-              <p className="mt-2 text-sm leading-6 text-yellow-900/80">
-                아직 최신 정보 확인이 필요한 항목이 있습니다. 방문 전 영업
-                여부나 휴무일은 한 번 더 확인해주세요.
-              </p>
-            </div>
-          ) : null}
-        </div>
-      </section>
-
-      <section className="px-4 py-7 sm:px-6 lg:py-10">
-        <div className="mx-auto grid w-full max-w-5xl gap-6 lg:grid-cols-2">
-          <section className="rounded-xl border border-sky-200 bg-sky-50 p-4 sm:p-5">
-            <div className="border-b border-sky-100 pb-4">
-              <p className="text-sm font-semibold text-sky-700">
-                사장님 또는 업체가 알려준 정보
-              </p>
-              <h2 className="mt-1 text-xl font-bold text-slate-950">
-                업체 제공 정보
-              </h2>
-            </div>
-            <p className="mt-4 text-sm leading-6 text-slate-600">
-              사장님 또는 업체가 제공한 정보입니다. 방문 전 변동 가능성이 있는
-              정보는 한 번 더 확인하는 것이 좋습니다.
-            </p>
-            <dl className="mt-5 space-y-4">
-              {ownerRows.map((row) => (
-                <div
-                  key={row.key}
-                  className="rounded-lg border border-sky-100 bg-white p-3 sm:p-4"
-                >
-                  <dt className="text-sm font-semibold text-slate-800">
-                    {row.label}
-                  </dt>
-                  <dd className="mt-1 text-sm leading-6 text-slate-600">
-                    {row.value}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </section>
-
-          <section className="rounded-xl border border-emerald-200 bg-emerald-50 p-4 sm:p-5">
-            <div className="border-b border-emerald-100 pb-4">
-              <p className="text-sm font-semibold text-emerald-700">
-                실제 방문 기준으로 확인하는 정보
-              </p>
-              <h2 className="mt-1 text-xl font-bold text-slate-950">
-                방문자 확인 정보
-              </h2>
-            </div>
-            <p className="mt-4 text-sm leading-6 text-slate-600">
-              실제 방문자 제보나 확인 내용을 기준으로 정리하는 영역입니다.
-            </p>
-            <dl className="mt-5 space-y-4">
-              {visitorRows.map((row) => (
-                <div
-                  key={row.key}
-                  className="rounded-lg border border-emerald-100 bg-white p-3 sm:p-4"
-                >
-                  <dt className="text-sm font-semibold text-slate-800">
-                    {row.label}
-                  </dt>
-                  <dd className="mt-1 text-sm leading-6 text-slate-600">
-                    {row.value}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </section>
-        </div>
-      </section>
-
-      <section className="px-4 pb-10 sm:px-6 sm:pb-12">
-        <div className="mx-auto max-w-5xl rounded-xl border border-cyan-200 bg-white p-4 sm:p-5">
-          <h2 className="text-lg font-bold text-slate-950">
-            정보가 달라졌나요?
-          </h2>
-          <p className="mt-2 text-sm leading-6 text-slate-600">
-            영업시간, 휴무일, 주차, 위치가 실제와 다르다면 알려주세요.
-            군산.com은 제보를 바탕으로 정보를 더 정확하게 정리합니다.
-          </p>
-          <div className="mt-4 flex flex-col gap-2 sm:flex-row">
             <Link
               href="/submit"
-              className="inline-flex h-10 w-full items-center justify-center rounded-lg bg-cyan-700 px-4 text-sm font-semibold text-white transition hover:bg-cyan-800 sm:w-auto"
+              className="inline-flex h-9 w-full items-center justify-center rounded-lg border border-cyan-200 bg-cyan-50 px-3 text-sm font-semibold text-cyan-800 transition hover:border-cyan-300 hover:bg-cyan-100 sm:w-auto"
             >
-              정보 차이 제보하기
-            </Link>
-            <Link
-              href="/places"
-              className="inline-flex h-10 w-full items-center justify-center rounded-lg border border-slate-200 bg-slate-50 px-4 text-sm font-semibold text-slate-600 transition hover:border-cyan-200 hover:bg-cyan-50 hover:text-cyan-800 sm:w-auto"
-            >
-              다른 장소 보기
+              정보가 다르면 제보해주세요
             </Link>
           </div>
+
+          <section className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm shadow-slate-200/50 sm:p-5">
+            <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+              <div className="min-w-0">
+                <p className="text-sm font-bold text-cyan-700">
+                  {place.category} · {place.area}
+                </p>
+                <h1 className="mt-1 text-2xl font-bold leading-tight text-slate-950 sm:text-4xl">
+                  {place.name}
+                </h1>
+                <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600 sm:text-base">
+                  {place.description}
+                </p>
+              </div>
+
+              <div className="flex shrink-0 flex-wrap gap-2 lg:max-w-xs lg:justify-end">
+                {place.statuses.map((status) => (
+                  <StatusBadge key={status} status={status} />
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-4 flex flex-wrap gap-1.5">
+              {place.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-semibold text-slate-600"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </section>
+
+          <section className="mt-3 grid gap-3 lg:grid-cols-[0.9fr_1.1fr_1.1fr]">
+            <InfoCard
+              title="기본 정보"
+              description="방문 전에 먼저 확인할 항목입니다."
+              rows={basicRows}
+              tone="slate"
+            />
+            <InfoCard
+              title="업체 제공 정보"
+              description="사장님 또는 업체가 제공한 정보입니다."
+              rows={ownerRows}
+              tone="sky"
+            />
+            <InfoCard
+              title="방문자 확인 정보"
+              description="방문자 제보나 확인 내용을 따로 정리합니다."
+              rows={visitorRows}
+              tone="emerald"
+            />
+          </section>
+
+          {needsVerification ? (
+            <section className="mt-3 rounded-xl border border-yellow-200 bg-yellow-50 p-4">
+              <h2 className="text-sm font-bold text-yellow-950">
+                확인이 필요한 정보가 있습니다
+              </h2>
+              <p className="mt-1 text-sm leading-6 text-yellow-900/85">
+                영업 여부, 휴무일, 주차처럼 변동 가능성이 있는 항목은 방문 전
+                한 번 더 확인하는 것이 좋습니다.
+              </p>
+            </section>
+          ) : null}
+
+          <section className="mt-3 rounded-xl border border-cyan-200 bg-white p-4">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <h2 className="text-lg font-bold text-slate-950">
+                  정보가 다르다면 제보해주세요
+                </h2>
+                <p className="mt-1 text-sm leading-6 text-slate-600">
+                  영업시간, 휴무일, 주차, 위치가 실제와 다르면 알려주세요.
+                </p>
+              </div>
+              <Link
+                href="/submit"
+                className="inline-flex h-10 w-full items-center justify-center rounded-lg bg-cyan-700 px-4 text-sm font-semibold text-white transition hover:bg-cyan-800 sm:w-auto"
+              >
+                정보 차이 제보하기
+              </Link>
+            </div>
+          </section>
         </div>
       </section>
     </main>
+  );
+}
+
+function InfoCard({
+  title,
+  description,
+  rows,
+  tone,
+}: {
+  title: string;
+  description: string;
+  rows: InfoRow[];
+  tone: "slate" | "sky" | "emerald";
+}) {
+  const toneClass = {
+    slate: "border-slate-200 bg-white",
+    sky: "border-sky-200 bg-sky-50",
+    emerald: "border-emerald-200 bg-emerald-50",
+  }[tone];
+
+  const rowClass = {
+    slate: "border-slate-200 bg-slate-50",
+    sky: "border-sky-100 bg-white",
+    emerald: "border-emerald-100 bg-white",
+  }[tone];
+
+  return (
+    <section className={["rounded-xl border p-4", toneClass].join(" ")}>
+      <h2 className="text-lg font-bold text-slate-950">{title}</h2>
+      <p className="mt-1 text-sm leading-5 text-slate-600">{description}</p>
+
+      <dl className="mt-3 grid gap-2">
+        {rows.length > 0 ? (
+          rows.map((row) => (
+            <div key={row.key} className={["rounded-lg border p-3", rowClass].join(" ")}>
+              <dt className="text-xs font-bold text-slate-700">{row.label}</dt>
+              <dd className="mt-1 text-sm leading-5 text-slate-700">{row.value}</dd>
+            </div>
+          ))
+        ) : (
+          <div className={["rounded-lg border p-3", rowClass].join(" ")}>
+            <p className="text-sm leading-5 text-slate-600">
+              아직 표시할 정보가 없습니다.
+            </p>
+          </div>
+        )}
+      </dl>
+    </section>
   );
 }
