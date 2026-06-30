@@ -287,7 +287,7 @@ function CategoryVisual({
 
   if (kind === "food") {
     return (
-      <div className="relative h-12 w-16">
+      <div className="relative h-10 w-14">
         <div className={`absolute bottom-1 left-2 h-8 w-10 rounded-full ${softColor}`} />
         <div className={`absolute bottom-3 left-4 h-4 w-6 rounded-full ${baseColor}`} />
         <div className={`absolute right-2 top-2 h-8 w-1.5 rounded-full ${lineColor}`} />
@@ -297,7 +297,7 @@ function CategoryVisual({
 
   if (kind === "cafe") {
     return (
-      <div className="relative h-12 w-16">
+      <div className="relative h-10 w-14">
         <div className={`absolute bottom-2 left-3 h-7 w-8 rounded-b-lg rounded-t-sm ${baseColor}`} />
         <div className={`absolute bottom-4 right-3 h-4 w-4 rounded-full border-2 ${active ? "border-cyan-600" : "border-slate-300"}`} />
         <div className={`absolute left-3 top-1 h-1 w-8 rounded-full ${lineColor}`} />
@@ -307,8 +307,8 @@ function CategoryVisual({
 
   if (kind === "medical") {
     return (
-      <div className="relative grid h-12 w-16 place-items-center">
-        <div className={`h-10 w-10 rounded-full ${softColor}`} />
+      <div className="relative grid h-10 w-14 place-items-center">
+        <div className={`h-9 w-9 rounded-full ${softColor}`} />
         <div className={`absolute h-6 w-2 rounded-full ${baseColor}`} />
         <div className={`absolute h-2 w-6 rounded-full ${baseColor}`} />
       </div>
@@ -317,7 +317,7 @@ function CategoryVisual({
 
   if (kind === "service") {
     return (
-      <div className="relative h-12 w-16">
+      <div className="relative h-10 w-14">
         <div className={`absolute bottom-2 left-2 h-8 w-11 rounded-lg ${softColor}`} />
         <div className={`absolute bottom-6 left-6 h-2 w-5 rounded-full ${baseColor}`} />
         <div className={`absolute bottom-3 right-3 h-6 w-2 rotate-45 rounded-full ${lineColor}`} />
@@ -327,7 +327,7 @@ function CategoryVisual({
 
   if (kind === "beauty") {
     return (
-      <div className="relative h-12 w-16">
+      <div className="relative h-10 w-14">
         <div className={`absolute bottom-2 left-2 h-7 w-5 rounded-full ${softColor}`} />
         <div className={`absolute bottom-3 left-8 h-8 w-2 rotate-45 rounded-full ${baseColor}`} />
         <div className={`absolute bottom-2 right-4 h-3 w-3 rounded-full ${lineColor}`} />
@@ -337,7 +337,7 @@ function CategoryVisual({
 
   if (kind === "stay") {
     return (
-      <div className="relative h-12 w-16">
+      <div className="relative h-10 w-14">
         <div className={`absolute bottom-2 left-2 h-7 w-12 rounded-lg ${softColor}`} />
         <div className={`absolute bottom-3 left-4 h-3 w-4 rounded ${baseColor}`} />
         <div className={`absolute bottom-3 right-3 h-3 w-4 rounded ${lineColor}`} />
@@ -347,7 +347,7 @@ function CategoryVisual({
 
   if (kind === "travel") {
     return (
-      <div className="relative h-12 w-16">
+      <div className="relative h-10 w-14">
         <div className={`absolute bottom-2 left-2 h-7 w-12 rounded-lg ${softColor}`} />
         <div className={`absolute bottom-4 left-4 h-4 w-6 rounded-t-full ${baseColor}`} />
         <div className={`absolute bottom-3 right-3 h-2 w-2 rounded-full ${lineColor}`} />
@@ -357,7 +357,7 @@ function CategoryVisual({
   }
 
   return (
-    <div className="relative h-12 w-16">
+    <div className="relative h-10 w-14">
       <div className={`absolute left-3 top-2 h-3 w-3 rounded-full ${baseColor}`} />
       <div className={`absolute right-4 top-4 h-2.5 w-2.5 rounded-full ${lineColor}`} />
       <div className={`absolute bottom-2 left-5 h-4 w-4 rounded-full ${softColor}`} />
@@ -378,8 +378,8 @@ export default function Home() {
           <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <SectionHeader
               eyebrow="주요 카테고리"
-              title="군산에서 무엇을 찾고 있나요?"
-              description="생활 정보와 여행 정보를 빠르게 들어갈 수 있게 정리하고 있습니다."
+              title="군산 정보 바로가기"
+              description="생활 정보와 여행 정보를 빠르게 둘러보세요."
             />
             <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-500">
               준비 중 항목은 실제 기능 연결 전입니다
@@ -435,7 +435,7 @@ export default function Home() {
                   <Link
                     key={category.label}
                     href={category.href}
-                    className="min-h-[5.9rem] rounded-lg border border-slate-200 bg-white p-2.5 transition hover:border-cyan-300 hover:bg-cyan-50 focus:outline-none focus:ring-4 focus:ring-cyan-100"
+                    className="min-h-[5.4rem] rounded-lg border border-slate-200 bg-white p-2 transition hover:border-cyan-300 hover:bg-cyan-50 focus:outline-none focus:ring-4 focus:ring-cyan-100"
                   >
                     {content}
                   </Link>
@@ -445,7 +445,7 @@ export default function Home() {
               return (
                 <div
                   key={category.label}
-                  className="min-h-[5.9rem] rounded-lg border border-slate-200 bg-slate-50 p-2.5 opacity-85"
+                  className="min-h-[5.4rem] rounded-lg border border-slate-200 bg-slate-50 p-2 opacity-85"
                   aria-disabled="true"
                 >
                   {content}
