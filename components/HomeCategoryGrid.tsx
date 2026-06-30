@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 type CategoryKind =
@@ -20,7 +21,7 @@ type HomeCategory = {
 const homeCategories = [
   {
     label: "맛집",
-    description: "군산 맛집 총정리",
+    description: "맛집 정리",
     kind: "food",
     href: "/places",
   },
@@ -65,42 +66,53 @@ const homeCategories = [
   },
 ] as const satisfies readonly HomeCategory[];
 
-function CategoryVisual({ kind }: { kind: CategoryKind }) {
-  const colorMap: Record<CategoryKind, string> = {
-    food: "bg-orange-50 border-orange-100 text-orange-700",
-    cafe: "bg-amber-50 border-amber-100 text-amber-700",
-    medical: "bg-rose-50 border-rose-100 text-rose-700",
-    service: "bg-sky-50 border-sky-100 text-sky-700",
-    stay: "bg-violet-50 border-violet-100 text-violet-700",
-    travel: "bg-teal-50 border-teal-100 text-teal-700",
-    event: "bg-yellow-50 border-yellow-100 text-yellow-700",
-    beauty: "bg-pink-50 border-pink-100 text-pink-700",
-  };
+const categoryImageMap: Record<CategoryKind, { src: string; alt: string }> = {
+  food: {
+    src: "/images/categories/category-food.webp",
+    alt: "맛집 카테고리 이미지",
+  },
+  cafe: {
+    src: "/images/categories/category-cafe.webp",
+    alt: "카페 카테고리 이미지",
+  },
+  medical: {
+    src: "/images/categories/category-medical.webp",
+    alt: "병원과 약국 카테고리 이미지",
+  },
+  service: {
+    src: "/images/categories/category-service.webp",
+    alt: "생활업체 카테고리 이미지",
+  },
+  stay: {
+    src: "/images/categories/category-stay.webp",
+    alt: "숙박 카테고리 이미지",
+  },
+  travel: {
+    src: "/images/categories/category-travel.webp",
+    alt: "관광과 여행 카테고리 이미지",
+  },
+  event: {
+    src: "/images/categories/category-event.webp",
+    alt: "행사와 축제 카테고리 이미지",
+  },
+  beauty: {
+    src: "/images/categories/category-beauty.webp",
+    alt: "네일과 뷰티 카테고리 이미지",
+  },
+};
 
-  const labelMap: Record<CategoryKind, string> = {
-    food: "밥",
-    cafe: "컵",
-    medical: "+",
-    service: "공구",
-    stay: "침대",
-    travel: "길",
-    event: "빛",
-    beauty: "케어",
-  };
+function CategoryVisual({ kind }: { kind: CategoryKind }) {
+  const image = categoryImageMap[kind];
 
   return (
-    <div
-      className={[
-        "relative h-11 w-11 shrink-0 overflow-hidden rounded-xl border",
-        colorMap[kind],
-      ].join(" ")}
-      aria-hidden="true"
-    >
-      <span className="absolute -right-2 -top-2 h-7 w-7 rounded-full bg-white/65" />
-      <span className="absolute bottom-1.5 right-1.5 h-3 w-3 rounded-full bg-current opacity-20" />
-      <span className="grid h-full place-items-center text-[11px] font-black">
-        {labelMap[kind]}
-      </span>
+    <div className="relative -mb-1 -mr-1 h-11 w-11 shrink-0 self-end overflow-hidden rounded-[1rem] bg-slate-50">
+      <Image
+        src={image.src}
+        alt={image.alt}
+        fill
+        sizes="44px"
+        className="object-cover"
+      />
     </div>
   );
 }
@@ -148,7 +160,7 @@ function CategoryCard({ category }: { category: HomeCategory }) {
 
 export default function HomeCategoryGrid() {
   return (
-    <section className="border-b border-slate-100 bg-white px-4 py-3 sm:px-6 lg:px-8">
+    <section className="bg-white px-4 py-3 sm:px-6 lg:px-8">
       <div className="mx-auto w-full max-w-[1440px]">
         <div className="flex gap-2 overflow-x-auto pb-1 lg:grid lg:grid-cols-8 lg:overflow-visible lg:pb-0">
           {homeCategories.map((category) => (
