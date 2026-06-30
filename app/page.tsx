@@ -2,7 +2,6 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 
 import Header from "@/components/Header";
-import PlaceCard from "@/components/PlaceCard";
 import SearchHero from "@/components/SearchHero";
 import { places } from "@/data/places";
 
@@ -64,104 +63,67 @@ const homeCategories = [
 
 const popularInfo = [
   {
-    label: "오늘 여는 병원",
-    description: "급하게 병원이나 약국을 찾아야 할 때",
-    group: "생활",
-    status: "active",
-    href: "/places",
-  },
-  {
-    label: "주차 편한 카페",
-    description: "차로 이동할 때 먼저 확인하고 싶은 정보",
-    group: "생활",
-    status: "active",
-    href: "/places",
-  },
-  {
-    label: "아이랑 가기 좋은 식당",
-    description: "가족과 함께 가기 좋은 곳",
-    group: "생활",
-    status: "active",
-    href: "/places",
-  },
-  {
-    label: "혼밥 가능한 곳",
-    description: "혼자 조용히 먹기 좋은 곳",
-    group: "생활",
-    status: "active",
-    href: "/places",
-  },
-  {
-    label: "남자 네일 가능한 곳",
-    description: "처음 가기 전 확인하고 싶은 뷰티 정보",
-    group: "생활",
-    status: "active",
-    href: "/places",
-  },
-  {
     label: "군산사랑상품권",
-    description: "사용할 수 있는 곳 정리 예정",
-    group: "생활",
+    description: "사용처와 안내 정보 정리 예정",
+    status: "coming-soon",
+  },
+  {
+    label: "여객선터미널",
+    description: "이용 전 확인 정보 정리 예정",
     status: "coming-soon",
   },
   {
     label: "은파호수공원",
-    description: "산책과 카페 정보를 함께 정리 예정",
-    group: "여행",
+    description: "산책과 주변 정보 정리 예정",
+    status: "coming-soon",
+  },
+  {
+    label: "군산시간여행축제",
+    description: "공식 출처 기준 정리 예정",
     status: "coming-soon",
   },
   {
     label: "새만금방조제",
-    description: "드라이브와 주변 정보를 정리 예정",
-    group: "여행",
+    description: "드라이브 정보 정리 예정",
     status: "coming-soon",
   },
   {
-    label: "근대거리 코스",
-    description: "군산 여행 동선을 정리 예정",
-    group: "여행",
+    label: "초원사진관",
+    description: "방문 정보 정리 예정",
     status: "coming-soon",
   },
   {
-    label: "이번 주말 행사",
-    description: "공식 출처 기준으로 정리 예정",
-    group: "여행",
+    label: "주차장 정보",
+    description: "주차 가능 장소 정리 예정",
     status: "coming-soon",
   },
   {
-    label: "군산 여행 숙소",
-    description: "숙박 정보 준비 중",
-    group: "여행",
-    status: "coming-soon",
-  },
-  {
-    label: "비 오는 날 갈 만한 곳",
-    description: "날씨별 추천 정보 준비 중",
-    group: "여행",
+    label: "공영주차장",
+    description: "공식 정보 기준 정리 예정",
     status: "coming-soon",
   },
 ] as const;
 
 const todayItems = [
   {
-    title: "오늘 날씨",
-    summary: "군산 날씨 정보 준비 중",
-    note: "실제 날씨 연결 전입니다",
+    title: "날씨",
+    summary: "준비 중",
+    note: "실제 날씨 API 연결 전입니다",
+  },
+  {
+    title: "미세먼지",
+    summary: "준비 중",
+    note: "실제 미세먼지 API 연결 전입니다",
+  },
+  {
+    title: "일몰 시간",
+    summary: "정리 예정",
+    note: "확인된 시간 데이터가 없습니다",
   },
   {
     title: "오늘의 행사",
-    summary: "공식 출처 기준으로 정리 예정",
-    note: "행사 데이터 준비 중",
-  },
-  {
-    title: "산책하기 좋은 곳",
-    summary: "은파, 금강, 월명공원 주변 정보 준비 중",
-    note: "방문 정보 정리 예정",
-  },
-  {
-    title: "여행 전 확인",
-    summary: "주차, 숙박, 행사 정보를 함께 정리 예정",
-    note: "여행 정보 준비 중",
+    summary: "공식 출처 기준 정리 예정",
+    note: "행사 데이터 연결 전입니다",
   },
 ] as const;
 
@@ -310,7 +272,7 @@ const localAreas = [
   },
 ] as const;
 
-const featuredPlaces = places.slice(0, 3);
+const featuredPlaces = places.slice(0, 5);
 
 function CategoryVisual({
   kind,
@@ -494,91 +456,98 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-4 py-4 sm:px-6 lg:py-5">
+      <section className="px-4 py-3 sm:px-6 lg:py-4">
         <div className="mx-auto w-full max-w-6xl">
-          <div className="grid gap-4 lg:grid-cols-[minmax(0,1.25fr)_minmax(280px,0.75fr)]">
-            <section className="rounded-lg border border-slate-200 bg-white p-4">
+          <div className="grid gap-3 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.55fr)_minmax(0,0.8fr)]">
+            <section className="rounded-lg border border-slate-200 bg-white p-3.5">
               <SectionHeader
                 eyebrow="지금 많이 찾는 정보"
-                title="지금 많이 찾는 군산 정보"
-                description="생활 정보와 여행 전 확인할 정보를 빠르게 훑어볼 수 있게 모으고 있습니다."
+                title="자주 확인하는 군산 정보"
+                description="생활 정보와 여행 전 확인할 내용을 정리하고 있습니다."
               />
 
-              <div className="mt-3 grid gap-2.5 sm:grid-cols-2 xl:grid-cols-3">
-                {popularInfo.slice(0, 9).map((item) => {
-                  const isActive = item.status === "active";
-                  const content = (
-                    <>
-                      <div className="flex items-start justify-between gap-3">
-                        <span
-                          className={[
-                            "rounded-full border px-2.5 py-1 text-xs font-semibold",
-                            isActive
-                              ? "border-cyan-100 bg-cyan-50 text-cyan-800"
-                              : "border-slate-200 bg-slate-50 text-slate-500",
-                          ].join(" ")}
-                        >
-                          {item.group}
-                        </span>
-                        <span
-                          className={[
-                            "shrink-0 rounded-full border px-2.5 py-1 text-xs font-semibold",
-                            isActive
-                              ? "border-emerald-100 bg-emerald-50 text-emerald-700"
-                              : "border-slate-200 bg-white text-slate-500",
-                          ].join(" ")}
-                        >
-                          {isActive ? "장소 보기" : "정리 예정"}
-                        </span>
+              <div className="mt-3 grid gap-2">
+                {popularInfo.map((item) => (
+                  <div
+                    key={item.label}
+                    className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2"
+                    aria-disabled="true"
+                  >
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="min-w-0">
+                        <h3 className="truncate text-sm font-bold text-slate-900">
+                          {item.label}
+                        </h3>
+                        <p className="mt-0.5 line-clamp-2 text-xs leading-4 text-slate-500">
+                          {item.description}
+                        </p>
                       </div>
-                      <h3
-                        className={[
-                          "mt-2 text-sm font-bold",
-                          isActive ? "text-slate-950" : "text-slate-500",
-                        ].join(" ")}
-                      >
-                        {item.label}
-                      </h3>
-                      <p
-                        className={[
-                          "mt-1 text-xs leading-5",
-                          isActive ? "text-slate-600" : "text-slate-500",
-                        ].join(" ")}
-                      >
-                        {item.description}
-                      </p>
-                    </>
-                  );
-
-                  if (isActive) {
-                    return (
-                      <Link
-                        key={item.label}
-                        href={item.href}
-                        className="rounded-lg border border-slate-200 bg-slate-50 p-2.5 transition hover:border-cyan-300 hover:bg-cyan-50 focus:outline-none focus:ring-4 focus:ring-cyan-100"
-                      >
-                        {content}
-                      </Link>
-                    );
-                  }
-
-                  return (
-                    <div
-                      key={item.label}
-                      className="rounded-lg border border-slate-200 bg-white p-2.5"
-                      aria-disabled="true"
-                    >
-                      {content}
+                      <span className="shrink-0 rounded-full border border-slate-200 bg-white px-2 py-0.5 text-[11px] font-semibold text-slate-500">
+                        정리 예정
+                      </span>
                     </div>
-                  );
-                })}
+                  </div>
+                ))}
               </div>
             </section>
+
+            <section className="rounded-lg border border-slate-200 bg-white p-3.5">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+              <SectionHeader
+                eyebrow="군산 장소 둘러보기"
+                title="먼저 정리된 군산 장소"
+                description="기존 seed 장소를 기준으로 정보 출처와 확인 상태를 보여줍니다."
+              />
+              <Link
+                href="/places"
+                className="inline-flex h-9 w-full items-center justify-center rounded-lg border border-cyan-200 bg-cyan-50 px-3 text-sm font-semibold text-cyan-800 transition hover:border-cyan-300 hover:bg-cyan-100 sm:w-auto"
+              >
+                더 보기
+              </Link>
+            </div>
+
+            <div className="mt-3 grid gap-2.5">
+              {featuredPlaces.map((place) => (
+                <Link
+                  key={place.id}
+                  href={`/places/${place.slug}`}
+                  className="rounded-lg border border-slate-200 bg-slate-50 p-2.5 transition hover:border-cyan-300 hover:bg-cyan-50 focus:outline-none focus:ring-4 focus:ring-cyan-100"
+                >
+                  <div className="flex gap-3">
+                    <div
+                      className="grid h-12 min-w-12 place-items-center rounded-lg border border-cyan-100 bg-white text-xs font-bold text-cyan-800"
+                      aria-hidden="true"
+                    >
+                      {place.category.slice(0, 2)}
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-start justify-between gap-2">
+                        <div className="min-w-0">
+                          <h3 className="truncate text-sm font-bold text-slate-950">
+                            {place.name}
+                          </h3>
+                          <p className="mt-0.5 text-xs font-semibold text-slate-500">
+                            {place.area} · {place.category}
+                          </p>
+                        </div>
+                        <span className="shrink-0 rounded-full border border-slate-200 bg-white px-2 py-0.5 text-[11px] font-semibold text-slate-500">
+                          {place.statuses[0]}
+                        </span>
+                      </div>
+                      <p className="mt-1 line-clamp-2 text-xs leading-4 text-slate-600">
+                        {place.description}
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
 
             <InfoPanel
               eyebrow="오늘의 군산"
               title="나가기 전 확인할 정보"
-              description="날씨, 행사, 산책하기 좋은 곳처럼 오늘 확인하면 좋은 정보를 모으고 있습니다."
+              description="날씨와 행사 정보가 들어갈 자리를 먼저 정리합니다."
             >
               <div className="mt-3 grid gap-2.5">
                 {todayItems.map((item) => (
@@ -590,43 +559,21 @@ export default function Home() {
                       <h3 className="text-sm font-bold text-slate-900">
                         {item.title}
                       </h3>
-                      <span className="shrink-0 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs font-semibold text-slate-500">
-                        준비 중
+                      <span className="shrink-0 rounded-full border border-slate-200 bg-white px-2 py-0.5 text-[11px] font-semibold text-slate-500">
+                        {item.summary}
                       </span>
                     </div>
-                    <p className="mt-2 text-sm leading-5 text-slate-600">
-                      {item.summary}
-                    </p>
-                    <p className="mt-2 text-xs font-medium text-slate-500">
+                    <p className="mt-2 text-xs leading-5 text-slate-500">
                       {item.note}
                     </p>
                   </article>
                 ))}
               </div>
+              <p className="mt-3 rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold leading-5 text-slate-500">
+                실제 날씨, 미세먼지, 행사 데이터는 아직 연결하지 않았습니다.
+              </p>
             </InfoPanel>
           </div>
-
-          <section className="mt-4 rounded-lg border border-slate-200 bg-white p-3.5">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-              <SectionHeader
-                eyebrow="군산 장소 둘러보기"
-                title="업체 제공 정보와 방문자 확인 정보를 나눠서 봅니다"
-                description="더미 데이터 기반으로 정보 출처와 확인 상태가 보이도록 정리했습니다."
-              />
-              <Link
-                href="/places"
-                className="inline-flex h-10 w-full items-center justify-center rounded-lg border border-cyan-200 bg-cyan-50 px-4 text-sm font-semibold text-cyan-800 transition hover:border-cyan-300 hover:bg-cyan-100 sm:w-auto"
-              >
-                장소 목록 보기
-              </Link>
-            </div>
-
-            <div className="mt-3 grid gap-3 lg:grid-cols-3">
-              {featuredPlaces.map((place) => (
-                <PlaceCard key={place.id} place={place} />
-              ))}
-            </div>
-          </section>
         </div>
       </section>
 
