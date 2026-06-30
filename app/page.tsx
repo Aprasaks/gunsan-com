@@ -10,66 +10,54 @@ const homeCategories = [
   {
     label: "맛집",
     description: "군산에서 밥 먹을 곳",
-    icon: "식",
+    visual: "food",
     status: "active",
     href: "/places",
   },
   {
     label: "카페",
     description: "쉬어갈 카페와 디저트",
-    icon: "컵",
+    visual: "cafe",
     status: "active",
     href: "/places",
   },
   {
     label: "병원/약국",
     description: "급하게 찾는 의료 정보",
-    icon: "+",
+    visual: "medical",
     status: "active",
     href: "/places",
   },
   {
     label: "생활업체",
     description: "수리, 세탁, 생활 서비스",
-    icon: "도구",
+    visual: "service",
     status: "active",
     href: "/places",
   },
   {
     label: "네일/뷰티",
     description: "네일, 미용, 관리 정보",
-    icon: "관리",
+    visual: "beauty",
     status: "active",
     href: "/places",
   },
   {
     label: "숙박",
     description: "군산 여행 숙소 준비 중",
-    icon: "숙소",
+    visual: "stay",
     status: "coming-soon",
   },
   {
     label: "관광/여행",
-    description: "여행 코스 정리 예정",
-    icon: "길",
+    description: "명소와 여행 코스 준비 중",
+    visual: "travel",
     status: "coming-soon",
   },
   {
     label: "행사·축제",
-    description: "행사와 축제 정보 준비 중",
-    icon: "티켓",
-    status: "coming-soon",
-  },
-  {
-    label: "주차",
-    description: "주차 정보 정리 예정",
-    icon: "P",
-    status: "coming-soon",
-  },
-  {
-    label: "문화/여가",
-    description: "전시, 공연, 체험 준비 중",
-    icon: "문화",
+    description: "이벤트 행사 확인 준비 중",
+    visual: "event",
     status: "coming-soon",
   },
 ] as const;
@@ -324,6 +312,98 @@ const localAreas = [
 
 const featuredPlaces = places.slice(0, 3);
 
+function CategoryVisual({
+  kind,
+  active,
+}: {
+  kind: (typeof homeCategories)[number]["visual"];
+  active: boolean;
+}) {
+  const baseColor = active ? "bg-cyan-600" : "bg-slate-300";
+  const softColor = active ? "bg-cyan-100" : "bg-slate-100";
+  const lineColor = active ? "bg-teal-300" : "bg-slate-200";
+
+  if (kind === "food") {
+    return (
+      <div className="relative h-12 w-16">
+        <div className={`absolute bottom-1 left-2 h-8 w-10 rounded-full ${softColor}`} />
+        <div className={`absolute bottom-3 left-4 h-4 w-6 rounded-full ${baseColor}`} />
+        <div className={`absolute right-2 top-2 h-8 w-1.5 rounded-full ${lineColor}`} />
+      </div>
+    );
+  }
+
+  if (kind === "cafe") {
+    return (
+      <div className="relative h-12 w-16">
+        <div className={`absolute bottom-2 left-3 h-7 w-8 rounded-b-lg rounded-t-sm ${baseColor}`} />
+        <div className={`absolute bottom-4 right-3 h-4 w-4 rounded-full border-2 ${active ? "border-cyan-600" : "border-slate-300"}`} />
+        <div className={`absolute left-3 top-1 h-1 w-8 rounded-full ${lineColor}`} />
+      </div>
+    );
+  }
+
+  if (kind === "medical") {
+    return (
+      <div className="relative grid h-12 w-16 place-items-center">
+        <div className={`h-10 w-10 rounded-full ${softColor}`} />
+        <div className={`absolute h-6 w-2 rounded-full ${baseColor}`} />
+        <div className={`absolute h-2 w-6 rounded-full ${baseColor}`} />
+      </div>
+    );
+  }
+
+  if (kind === "service") {
+    return (
+      <div className="relative h-12 w-16">
+        <div className={`absolute bottom-2 left-2 h-8 w-11 rounded-lg ${softColor}`} />
+        <div className={`absolute bottom-6 left-6 h-2 w-5 rounded-full ${baseColor}`} />
+        <div className={`absolute bottom-3 right-3 h-6 w-2 rotate-45 rounded-full ${lineColor}`} />
+      </div>
+    );
+  }
+
+  if (kind === "beauty") {
+    return (
+      <div className="relative h-12 w-16">
+        <div className={`absolute bottom-2 left-2 h-7 w-5 rounded-full ${softColor}`} />
+        <div className={`absolute bottom-3 left-8 h-8 w-2 rotate-45 rounded-full ${baseColor}`} />
+        <div className={`absolute bottom-2 right-4 h-3 w-3 rounded-full ${lineColor}`} />
+      </div>
+    );
+  }
+
+  if (kind === "stay") {
+    return (
+      <div className="relative h-12 w-16">
+        <div className={`absolute bottom-2 left-2 h-7 w-12 rounded-lg ${softColor}`} />
+        <div className={`absolute bottom-3 left-4 h-3 w-4 rounded ${baseColor}`} />
+        <div className={`absolute bottom-3 right-3 h-3 w-4 rounded ${lineColor}`} />
+      </div>
+    );
+  }
+
+  if (kind === "travel") {
+    return (
+      <div className="relative h-12 w-16">
+        <div className={`absolute bottom-2 left-2 h-7 w-12 rounded-lg ${softColor}`} />
+        <div className={`absolute bottom-4 left-4 h-4 w-6 rounded-t-full ${baseColor}`} />
+        <div className={`absolute bottom-3 right-3 h-2 w-2 rounded-full ${lineColor}`} />
+        <div className={`absolute left-3 top-2 h-1 w-10 rounded-full ${lineColor}`} />
+      </div>
+    );
+  }
+
+  return (
+    <div className="relative h-12 w-16">
+      <div className={`absolute left-3 top-2 h-3 w-3 rounded-full ${baseColor}`} />
+      <div className={`absolute right-4 top-4 h-2.5 w-2.5 rounded-full ${lineColor}`} />
+      <div className={`absolute bottom-2 left-5 h-4 w-4 rounded-full ${softColor}`} />
+      <div className={`absolute bottom-3 right-2 h-3 w-3 rounded-full ${baseColor}`} />
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <main className="min-h-screen overflow-x-hidden bg-slate-50 text-slate-950">
@@ -331,81 +411,60 @@ export default function Home() {
 
       <SearchHero />
 
-      <section className="border-b border-slate-100 bg-white px-4 py-3 sm:px-6 lg:py-4">
+      <section className="border-b border-slate-100 bg-white px-4 py-3 sm:px-6 lg:py-3">
         <div className="mx-auto w-full max-w-6xl">
-          <SectionHeader
-            eyebrow="주요 카테고리"
-            title="군산에서 무엇을 찾고 있나요?"
-            description="사는 사람에게 필요한 생활 정보부터, 군산에 오는 사람이 찾는 여행 정보까지 하나씩 모으고 있습니다."
-          />
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+            <SectionHeader
+              eyebrow="주요 카테고리"
+              title="군산에서 무엇을 찾고 있나요?"
+              description="생활 정보와 여행 정보를 빠르게 들어갈 수 있게 정리하고 있습니다."
+            />
+            <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-500">
+              준비 중 항목은 실제 기능 연결 전입니다
+            </span>
+          </div>
 
-          <div className="mt-3 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-8">
             {homeCategories.map((category) => {
               const isActive = category.status === "active";
               const content = (
                 <>
                   <div className="flex items-start justify-between gap-2">
-                    <div
+                    <span
                       className={[
-                        "grid h-10 min-w-10 place-items-center rounded-xl border text-xs font-bold",
+                        "rounded-full border px-2 py-0.5 text-[11px] font-semibold",
                         isActive
-                          ? "border-cyan-200 bg-cyan-50 text-cyan-800"
-                          : "border-slate-200 bg-white text-slate-400",
+                          ? "border-emerald-100 bg-emerald-50 text-emerald-700"
+                          : "border-slate-200 bg-white text-slate-500",
                       ].join(" ")}
                     >
-                      {category.icon}
-                    </div>
-                    <div
-                      className={[
-                        "h-10 w-14 rounded-xl border",
-                        isActive
-                          ? "border-cyan-100 bg-[linear-gradient(135deg,#ecfeff,#f0f9ff)]"
-                          : "border-slate-200 bg-[linear-gradient(135deg,#f8fafc,#ffffff)]",
-                      ].join(" ")}
-                      aria-hidden="true"
-                    >
-                      <div
-                        className={[
-                          "ml-auto mt-2 h-3 w-7 rounded-full",
-                          isActive ? "bg-cyan-200/70" : "bg-slate-200",
-                        ].join(" ")}
-                      />
-                      <div
-                        className={[
-                          "ml-2 mt-1 h-2 w-8 rounded-full",
-                          isActive ? "bg-teal-100" : "bg-slate-100",
-                        ].join(" ")}
+                      {isActive ? "바로 보기" : "준비 중"}
+                    </span>
+                    <div aria-hidden="true" className="-mr-2 -mt-2">
+                      <CategoryVisual
+                        kind={category.visual}
+                        active={isActive}
                       />
                     </div>
                   </div>
-                  <div className="mt-3 flex items-center justify-between gap-2">
+                  <div className="mt-1.5">
                     <h3
                       className={[
-                        "text-sm font-bold",
+                        "text-sm font-bold leading-5",
                         isActive ? "text-slate-950" : "text-slate-500",
                       ].join(" ")}
                     >
                       {category.label}
                     </h3>
-                    <span
+                    <p
                       className={[
-                        "shrink-0 rounded-full border px-2 py-0.5 text-[11px] font-semibold",
-                        isActive
-                          ? "border-emerald-100 bg-emerald-50 text-emerald-700"
-                          : "border-slate-200 bg-slate-50 text-slate-500",
+                        "mt-1 text-xs leading-4",
+                        isActive ? "text-slate-600" : "text-slate-500",
                       ].join(" ")}
                     >
-                      {isActive ? "바로 보기" : "준비 중"}
-                    </span>
+                      {category.description}
+                    </p>
                   </div>
-                  <p
-                    className={[
-                      "mt-1.5 text-xs leading-5",
-                      isActive ? "text-slate-600" : "text-slate-500",
-                    ].join(" ")}
-                  >
-                    {category.description}
-                  </p>
                 </>
               );
 
@@ -414,7 +473,7 @@ export default function Home() {
                   <Link
                     key={category.label}
                     href={category.href}
-                    className="min-h-[6.8rem] rounded-xl border border-slate-200 bg-white p-3 transition hover:border-cyan-300 hover:bg-cyan-50 focus:outline-none focus:ring-4 focus:ring-cyan-100"
+                    className="min-h-[6.2rem] rounded-lg border border-slate-200 bg-white p-2.5 transition hover:border-cyan-300 hover:bg-cyan-50 focus:outline-none focus:ring-4 focus:ring-cyan-100"
                   >
                     {content}
                   </Link>
@@ -424,7 +483,7 @@ export default function Home() {
               return (
                 <div
                   key={category.label}
-                  className="min-h-[6.8rem] rounded-xl border border-slate-200 bg-slate-50 p-3 opacity-85"
+                  className="min-h-[6.2rem] rounded-lg border border-slate-200 bg-slate-50 p-2.5 opacity-85"
                   aria-disabled="true"
                 >
                   {content}
