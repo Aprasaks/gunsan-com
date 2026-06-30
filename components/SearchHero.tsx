@@ -16,13 +16,13 @@ const floatingCards = [
 export default function SearchHero() {
   return (
     <section className="border-b border-slate-200">
-      <div className="relative mx-auto min-h-[20rem] w-full max-w-6xl overflow-hidden bg-slate-900 sm:min-h-[20.5rem] lg:min-h-[17rem]">
+      <div className="relative mx-auto min-h-[20rem] w-full max-w-[1440px] overflow-hidden bg-slate-900 sm:min-h-[20.5rem] lg:min-h-[17rem]">
         <Image
           src="/images/gunsan-hero-banner.webp"
           alt="군산의 주요 풍경을 담은 대표 배너 이미지"
           fill
           priority
-          sizes="(max-width: 768px) 100vw, 1152px"
+          sizes="(max-width: 768px) 100vw, 1440px"
           className="object-cover object-[58%_center]"
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.96)_0%,rgba(255,255,255,0.88)_34%,rgba(255,255,255,0.34)_64%,rgba(15,23,42,0.12)_100%)]" />

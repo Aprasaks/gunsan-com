@@ -325,8 +325,8 @@ export default function Home() {
 
       <SearchHero />
 
-      <section className="border-b border-slate-100 bg-white px-4 py-4 sm:px-6">
-        <div className="mx-auto w-full max-w-6xl">
+      <section className="border-b border-slate-100 bg-white px-4 py-4 sm:px-6 lg:px-8">
+        <div className="mx-auto w-full max-w-[1440px]">
           <div className="flex gap-1 overflow-x-auto pb-1 lg:justify-between">
             {homeCategories.map((category) => {
               const isActive = category.status === "active";
@@ -368,8 +368,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-4 pb-3 pt-2 sm:px-6 lg:pb-4 lg:pt-2">
-        <div className="mx-auto w-full max-w-6xl rounded-xl border border-slate-200 bg-white/80 p-2 shadow-sm shadow-slate-200/50">
+      <section className="px-4 pb-3 pt-2 sm:px-6 lg:px-8 lg:pb-4 lg:pt-2">
+        <div className="mx-auto w-full max-w-[1440px] rounded-xl border border-slate-200 bg-white/80 p-2 shadow-sm shadow-slate-200/50">
           <div className="grid gap-3 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.55fr)_minmax(0,0.8fr)]">
             <section className="rounded-lg border border-slate-200 bg-white p-3">
               <SectionHeader

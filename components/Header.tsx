@@ -57,7 +57,7 @@ export default async function Header() {
   return (
     <header className="border-b border-slate-200 bg-white">
       <div className="border-b border-slate-100">
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+        <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3 py-2">
             <Link href="/" className="shrink-0" aria-label="군산.com 홈">
               <span
@@ -130,7 +130,7 @@ export default async function Header() {
         </div>
       </div>
 
-      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
         <nav
           className="flex overflow-x-auto"
           aria-label="군산 정보 카테고리"
