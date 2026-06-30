@@ -1,39 +1,13 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
+import EventFestivalSection from "@/components/EventFestivalSection";
 import Header from "@/components/Header";
 import HomeCategoryGrid from "@/components/HomeCategoryGrid";
 import PopularInfoSection from "@/components/PopularInfoSection";
 import SearchHero from "@/components/SearchHero";
 import TodayGunsanSection from "@/components/TodayGunsanSection";
 import { places } from "@/data/places";
-
-const eventFestivalItems = [
-  {
-    title: "군산 시간여행축제",
-    description: "공식 출처 기준 정리 예정",
-    label: "공식 출처 기준 정리 예정",
-    visual: "축제",
-  },
-  {
-    title: "은파 공연·버스킹",
-    description: "일정 정보 준비 중",
-    label: "일정 정보 준비 중",
-    visual: "공연",
-  },
-  {
-    title: "가족 체험 프로그램",
-    description: "아이와 함께 갈 만한 정보 예정",
-    label: "가족 방문 정보 예정",
-    visual: "체험",
-  },
-  {
-    title: "전시·문화 행사",
-    description: "문화 행사 정보 정리 예정",
-    label: "문화 정보 예정",
-    visual: "전시",
-  },
-] as const;
 
 const mapPreviewKeywords = [
   "월명동",
@@ -235,42 +209,7 @@ export default function Home() {
           </div>
 
           <div className="mt-2 grid gap-3 lg:grid-cols-3">
-            <InfoPanel
-              eyebrow="행사·축제"
-              title="공식 출처 기준 정리 예정"
-              description="군산 행사와 축제 정보를 확인할 수 있도록 준비 중입니다."
-            >
-              <div className="mt-2.5 grid gap-2 sm:grid-cols-2 lg:grid-cols-1">
-              {eventFestivalItems.map((item) => (
-                <article
-                  key={item.title}
-                  className="rounded-lg border border-slate-200 bg-slate-50 p-2"
-                >
-                  <div className="flex gap-3">
-                    <div className="grid h-10 min-w-10 place-items-center rounded-lg border border-cyan-100 bg-white text-xs font-bold text-cyan-800">
-                      {item.visual}
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-start justify-between gap-2">
-                        <h3 className="line-clamp-1 text-sm font-bold text-slate-900">
-                          {item.title}
-                        </h3>
-                        <span className="shrink-0 rounded-full border border-slate-200 bg-white px-2 py-0.5 text-[11px] font-semibold text-slate-500">
-                          준비 중
-                        </span>
-                      </div>
-                      <p className="mt-1 text-xs leading-4 text-slate-600">
-                        {item.description}
-                      </p>
-                      <p className="mt-1 text-[11px] font-semibold text-slate-500">
-                        {item.label}
-                      </p>
-                    </div>
-                  </div>
-                </article>
-              ))}
-              </div>
-            </InfoPanel>
+            <EventFestivalSection />
 
             <InfoPanel
               eyebrow="지도에서 보기"
