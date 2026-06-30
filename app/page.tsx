@@ -3,51 +3,9 @@ import type { ReactNode } from "react";
 
 import Header from "@/components/Header";
 import HomeCategoryGrid from "@/components/HomeCategoryGrid";
+import PopularInfoSection from "@/components/PopularInfoSection";
 import SearchHero from "@/components/SearchHero";
 import { places } from "@/data/places";
-
-const popularInfo = [
-  {
-    label: "군산사랑상품권",
-    description: "사용처와 안내 정보 정리 예정",
-    status: "coming-soon",
-  },
-  {
-    label: "여객선터미널",
-    description: "이용 전 확인 정보 정리 예정",
-    status: "coming-soon",
-  },
-  {
-    label: "은파호수공원",
-    description: "산책과 주변 정보 정리 예정",
-    status: "coming-soon",
-  },
-  {
-    label: "군산시간여행축제",
-    description: "공식 출처 기준 정리 예정",
-    status: "coming-soon",
-  },
-  {
-    label: "새만금방조제",
-    description: "드라이브 정보 정리 예정",
-    status: "coming-soon",
-  },
-  {
-    label: "초원사진관",
-    description: "방문 정보 정리 예정",
-    status: "coming-soon",
-  },
-  {
-    label: "주차장 정보",
-    description: "주차 가능 장소 정리 예정",
-    status: "coming-soon",
-  },
-  {
-    label: "공영주차장",
-    description: "공식 정보 기준 정리 예정",
-    status: "coming-soon",
-  },
-] as const;
 
 const todayItems = [
   {
@@ -231,30 +189,7 @@ export default function Home() {
       <section className="px-4 pb-3 pt-2 sm:px-6 lg:px-8 lg:pb-4 lg:pt-2">
         <div className="mx-auto w-full max-w-[1440px] rounded-xl border border-slate-200 bg-white/80 p-2 shadow-sm shadow-slate-200/50">
           <div className="grid gap-3 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.55fr)_minmax(0,0.8fr)]">
-            <section className="rounded-lg border border-slate-200 bg-white p-3">
-              <SectionHeader
-                eyebrow="지금 많이 찾는 정보"
-                title="자주 확인하는 군산 정보"
-                description="생활 정보와 여행 전 확인할 내용을 정리하고 있습니다."
-              />
-
-              <div className="mt-2.5 grid grid-cols-2 gap-2">
-                {popularInfo.map((item) => (
-                  <div
-                    key={item.label}
-                    className="rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-2"
-                    aria-disabled="true"
-                  >
-                    <h3 className="truncate text-sm font-bold text-slate-900">
-                      {item.label}
-                    </h3>
-                    <p className="mt-1 line-clamp-1 text-[11px] font-semibold leading-4 text-slate-500">
-                      {item.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </section>
+            <PopularInfoSection />
 
             <section className="rounded-lg border border-slate-200 bg-white p-3">
               <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
