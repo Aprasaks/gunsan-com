@@ -13,7 +13,6 @@ type CategoryKind =
 
 type HomeCategory = {
   label: string;
-  description: string;
   kind: CategoryKind;
   href?: string;
 };
@@ -21,46 +20,38 @@ type HomeCategory = {
 const homeCategories = [
   {
     label: "맛집",
-    description: "맛집 정리",
     kind: "food",
     href: "/places",
   },
   {
     label: "카페",
-    description: "분위기 좋은 카페",
     kind: "cafe",
     href: "/places",
   },
   {
     label: "병원/약국",
-    description: "진료·처방 정보",
     kind: "medical",
     href: "/places",
   },
   {
     label: "생활업체",
-    description: "우리동네 업체",
     kind: "service",
     href: "/places",
   },
   {
     label: "숙박",
-    description: "호텔·펜션·게스트하우스",
     kind: "stay",
   },
   {
     label: "관광/여행",
-    description: "명소·추천코스",
     kind: "travel",
   },
   {
     label: "행사·축제",
-    description: "이벤트 행사 확인",
     kind: "event",
   },
   {
     label: "네일/뷰티",
-    description: "뷰티 & 케어샵",
     kind: "beauty",
     href: "/places",
   },
@@ -118,23 +109,12 @@ function CategoryVisual({ kind }: { kind: CategoryKind }) {
 }
 
 function CategoryCard({ category }: { category: HomeCategory }) {
-  const isActive = Boolean(category.href);
   const content = (
-    <div className="flex min-h-[4.6rem] items-center justify-between gap-3 rounded-lg border border-slate-200 bg-white px-3 py-2.5 shadow-sm shadow-slate-200/30">
-      <div className="min-w-0">
-        <div className="flex items-center gap-1.5">
-          <h3 className="truncate text-sm font-bold text-slate-950">
-            {category.label}
-          </h3>
-          {!isActive ? (
-            <span className="rounded-full border border-slate-200 bg-slate-50 px-1.5 py-0.5 text-[10px] font-bold text-slate-500">
-              예정
-            </span>
-          ) : null}
-        </div>
-        <p className="mt-1 line-clamp-1 text-xs font-semibold text-slate-500">
-          {category.description}
-        </p>
+    <div className="flex h-[4.2rem] items-center justify-between gap-3 rounded-lg border border-slate-200 bg-white px-3 py-2 shadow-sm shadow-slate-200/30">
+      <div className="min-w-0 flex-1">
+        <h3 className="truncate text-left text-sm font-bold text-slate-950">
+          {category.label}
+        </h3>
       </div>
       <CategoryVisual kind={category.kind} />
     </div>
