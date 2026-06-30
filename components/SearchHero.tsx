@@ -15,19 +15,19 @@ const floatingCards = [
 
 export default function SearchHero() {
   return (
-    <section className="border-b border-slate-200">
-      <div className="relative mx-auto min-h-[20rem] w-full max-w-[1440px] overflow-hidden bg-slate-900 sm:min-h-[20.5rem] lg:min-h-[17rem]">
-        <Image
-          src="/images/gunsan-hero-banner.webp"
-          alt="군산의 주요 풍경을 담은 대표 배너 이미지"
-          fill
-          priority
-          sizes="(max-width: 768px) 100vw, 1440px"
-          className="object-cover object-[58%_center]"
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.96)_0%,rgba(255,255,255,0.88)_34%,rgba(255,255,255,0.34)_64%,rgba(15,23,42,0.12)_100%)]" />
+    <section className="relative min-h-[20rem] w-full overflow-hidden border-b border-slate-200 bg-slate-900 sm:min-h-[20.5rem] lg:min-h-[17rem]">
+      <Image
+        src="/images/gunsan-hero-banner.webp"
+        alt="군산의 주요 풍경을 담은 대표 배너 이미지"
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-[58%_center]"
+      />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.96)_0%,rgba(255,255,255,0.88)_34%,rgba(255,255,255,0.34)_64%,rgba(15,23,42,0.12)_100%)]" />
 
-        <div className="relative grid min-h-[20rem] gap-3 p-4 sm:min-h-[20.5rem] sm:p-5 lg:min-h-[17rem] lg:grid-cols-[minmax(0,1fr)_260px] lg:p-5">
+      <div className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
+        <div className="grid min-h-[20rem] gap-3 py-4 sm:min-h-[20.5rem] sm:py-5 lg:min-h-[17rem] lg:grid-cols-[minmax(0,1fr)_260px] lg:py-5">
           {/* 좌측: 타이틀 + 부제 */}
           <div className="flex min-w-0 flex-col justify-center">
             <h1 className="max-w-2xl text-3xl font-bold leading-tight text-slate-950 sm:text-4xl lg:text-[2.3rem]">
