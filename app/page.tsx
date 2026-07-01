@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import EventFestivalSection from "@/components/EventFestivalSection";
+import FeaturedPlaceCard from "@/components/FeaturedPlaceCard";
 import Header from "@/components/Header";
 import HomeCategoryGrid from "@/components/HomeCategoryGrid";
 import MapPreviewSection from "@/components/MapPreviewSection";
@@ -9,32 +9,7 @@ import NeighborhoodSection from "@/components/NeighborhoodSection";
 import PopularInfoSection from "@/components/PopularInfoSection";
 import SearchHero from "@/components/SearchHero";
 import TodayGunsanSection from "@/components/TodayGunsanSection";
-import { places } from "@/data/places";
-
-const featuredPlaces = places.slice(0, 5);
-
-const placeCategoryImages = {
-  맛집: {
-    src: "/images/categories/category-food.webp",
-    alt: "맛집 카테고리 이미지",
-  },
-  카페: {
-    src: "/images/categories/category-cafe.webp",
-    alt: "카페 카테고리 이미지",
-  },
-  "병원/약국": {
-    src: "/images/categories/category-medical.webp",
-    alt: "병원과 약국 카테고리 이미지",
-  },
-  생활업체: {
-    src: "/images/categories/category-service.webp",
-    alt: "생활업체 카테고리 이미지",
-  },
-  "네일/뷰티": {
-    src: "/images/categories/category-beauty.webp",
-    alt: "네일과 뷰티 카테고리 이미지",
-  },
-} as const;
+import { featuredPlaces } from "@/data/featuredPlaces";
 
 export default function Home() {
   return (
@@ -66,38 +41,9 @@ export default function Home() {
                 </Link>
               </div>
 
-              <div className="mt-2 grid gap-2 sm:grid-cols-2 xl:grid-cols-4">
-                {featuredPlaces.slice(0, 4).map((place) => (
-                  <Link
-                    key={place.id}
-                    href={`/places/${place.slug}`}
-                    aria-label={`${place.name} 상세페이지로 이동`}
-                    className="overflow-hidden rounded-lg border border-slate-200 bg-slate-50 transition hover:border-cyan-300 hover:bg-cyan-50 focus:outline-none focus:ring-4 focus:ring-cyan-100"
-                  >
-                    <div className="relative h-16 bg-white">
-                      <Image
-                        src={placeCategoryImages[place.category].src}
-                        alt={placeCategoryImages[place.category].alt}
-                        fill
-                        sizes="(min-width: 1280px) 150px, 50vw"
-                        className="object-cover"
-                      />
-                      <span className="absolute left-2 top-2 rounded-full bg-white/90 px-2 py-0.5 text-[10px] font-bold text-cyan-800">
-                        {place.statuses[0]}
-                      </span>
-                    </div>
-                    <div className="min-w-0 p-2">
-                      <h3 className="truncate text-sm font-bold text-slate-950">
-                        {place.name}
-                      </h3>
-                      <p className="mt-0.5 truncate text-[11px] font-semibold text-slate-500">
-                        {place.category} · {place.area}
-                      </p>
-                      <p className="mt-1 line-clamp-1 text-xs leading-4 text-slate-600">
-                        {place.description}
-                      </p>
-                    </div>
-                  </Link>
+              <div className="mt-2 grid gap-2 sm:grid-cols-2 xl:grid-cols-5">
+                {featuredPlaces.map((place) => (
+                  <FeaturedPlaceCard key={place.slug} place={place} />
                 ))}
               </div>
             </section>
