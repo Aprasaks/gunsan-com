@@ -22,15 +22,14 @@ export default function Home() {
 
       <section className="px-4 pb-3 pt-2 sm:px-6 lg:px-8 lg:pb-4 lg:pt-2">
         <div className="mx-auto w-full max-w-[1440px] rounded-xl border border-slate-200 bg-white/80 p-2 shadow-sm shadow-slate-200/50">
-          <div className="grid gap-2.5 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.6fr)_minmax(0,0.78fr)]">
+          <div className="grid gap-2.5 lg:grid-cols-[minmax(0,0.56fr)_minmax(0,2.3fr)_minmax(0,0.56fr)]">
             <PopularInfoSection />
 
             <section className="rounded-lg border border-slate-200 bg-white p-2.5">
               <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
                 <SectionHeader
-                  eyebrow="군산 장소 둘러보기"
-                  title="가볍게 둘러보는 군산 장소"
-                  description="방문 전 확인할 정보를 짧게 모았습니다."
+                  title="군산 장소 둘러보기"
+                  description="대표 장소를 짧게 모았습니다."
                 />
                 <Link
                   href="/places"
@@ -67,13 +66,15 @@ function SectionHeader({
   title,
   description,
 }: {
-  eyebrow: string;
+  eyebrow?: string;
   title: string;
   description: string;
 }) {
   return (
     <div>
-      <p className="text-xs font-semibold text-cyan-700">{eyebrow}</p>
+      {eyebrow ? (
+        <p className="text-xs font-semibold text-cyan-700">{eyebrow}</p>
+      ) : null}
       <h2 className="mt-0.5 max-w-3xl text-base font-bold leading-tight text-slate-950 sm:text-lg">
         {title}
       </h2>
