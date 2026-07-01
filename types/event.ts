@@ -17,6 +17,7 @@ export type EventItem = {
   image?: string;
   sourceName: string;
   sourceUrl: string;
+  additionalSourceUrl?: string;
   sourceType: EventSourceType;
   verificationStatus: EventVerificationStatus;
 };

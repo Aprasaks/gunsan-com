@@ -1,4 +1,4 @@
-import { eventItems } from "@/data/eventItems";
+import { eventItems, officialEventListUrl } from "@/data/eventItems";
 
 const mainEventItems = eventItems.slice(0, 3);
 
@@ -22,12 +22,15 @@ export default function EventFestivalSection() {
           </p>
         </div>
 
-        <button
-          type="button"
+        <a
+          href={officialEventListUrl}
+          target="_blank"
+          rel="noopener noreferrer"
           className="mt-0.5 shrink-0 text-xs font-bold text-cyan-700"
+          aria-label="군산문화관광 행사 목록 새 창에서 보기"
         >
           더보기
-        </button>
+        </a>
       </div>
 
       <div className="mt-2 grid gap-2 sm:grid-cols-3">
