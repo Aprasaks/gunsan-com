@@ -1,0 +1,48 @@
+import type { EventItem } from "@/types/event";
+
+export const eventItems: EventItem[] = [
+  {
+    id: "gunsan-time-travel-festival",
+    title: "군산시간여행축제",
+    category: "축제",
+    location: "시간여행마을 일원",
+    periodLabel: "2026.10.02~10.05",
+    description: "근대 군산을 주제로 한 군산 대표 축제",
+    sourceName: "군산시간여행축제 공식 사이트",
+    sourceUrl: "https://festival.gunsan.go.kr/",
+    sourceType: "festival-site",
+    verificationStatus: "official-source",
+  },
+  {
+    id: "gunsan-jjamppong-festival",
+    title: "군산짬뽕페스티벌",
+    category: "축제",
+    location: "백년광장 일원",
+    description: "군산 짬뽕 문화를 다루는 지역 축제",
+    sourceName: "군산문화관광",
+    sourceUrl: "https://www.gunsan.go.kr/tour/m2101/view/5235377",
+    sourceType: "official-gunsan",
+    verificationStatus: "official-source",
+  },
+  {
+    id: "gunsan-time-travel-programs",
+    title: "시간여행축제 프로그램",
+    category: "프로그램",
+    location: "구.시청광장 및 시간여행마을 일원",
+    description: "공연, 체험, 전시 프로그램을 공식 사이트에서 확인",
+    sourceName: "군산시간여행축제 공식 사이트",
+    sourceUrl: "https://festival.gunsan.go.kr/contents.htm?code=3_1_1",
+    sourceType: "festival-site",
+    verificationStatus: "official-source",
+  },
+  {
+    id: "gunsan-culture-tour-event-list",
+    title: "군산 축제·행사 정보",
+    category: "행사",
+    description: "군산문화관광에서 제공하는 축제·행사 목록",
+    sourceName: "군산문화관광",
+    sourceUrl: "https://www.gunsan.go.kr/tour/m2101",
+    sourceType: "official-gunsan",
+    verificationStatus: "official-source",
+  },
+];
