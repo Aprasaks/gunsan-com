@@ -1,3 +1,4 @@
+import { getGunsanAirQuality } from "@/lib/api/airQuality";
 import { getGunsanCurrentWeather } from "@/lib/weather";
 
 type TodayInfoItem = {
@@ -8,7 +9,10 @@ type TodayInfoItem = {
 };
 
 export default async function TodayGunsanSection() {
-  const weather = await getGunsanCurrentWeather();
+  const [weather, airQuality] = await Promise.all([
+    getGunsanCurrentWeather(),
+    getGunsanAirQuality(),
+  ]);
 
   const todayItems: TodayInfoItem[] = [
     {
@@ -20,16 +24,19 @@ export default async function TodayGunsanSection() {
       icon: weather?.icon ?? "☀",
     },
     {
+      key: "air-quality",
+      label: "대기질",
+      value:
+        airQuality.grade === "unknown"
+          ? "확인 중"
+          : `미세먼지 ${airQuality.label}`,
+      icon: "≋",
+    },
+    {
       key: "local-check",
       label: "생활 체크",
       value: "방문 전 영업시간 확인",
       icon: "✓",
-    },
-    {
-      key: "trip-check",
-      label: "여행 체크",
-      value: "선유도·근대거리 이동 전 확인",
-      icon: "→",
     },
   ];
 
