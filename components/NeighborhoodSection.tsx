@@ -1,11 +1,11 @@
 import Link from "next/link";
 
 const neighborhoodItems = [
-  { key: "wolmyeong", label: "월명동", tone: "bg-cyan-50 text-cyan-800" },
-  { key: "susong", label: "수송동", tone: "bg-sky-50 text-sky-800" },
-  { key: "naun", label: "나운동", tone: "bg-teal-50 text-teal-800" },
-  { key: "mijang", label: "미장동", tone: "bg-slate-100 text-slate-700" },
-  { key: "soryong", label: "소룡동", tone: "bg-blue-50 text-blue-800" },
+  { key: "wolmyeong", label: "월명동", tone: "from-cyan-100 via-white to-sky-100" },
+  { key: "susong", label: "수송동", tone: "from-sky-100 via-white to-slate-100" },
+  { key: "naun", label: "나운동", tone: "from-teal-100 via-white to-cyan-50" },
+  { key: "mijang", label: "미장동", tone: "from-slate-200 via-white to-sky-50" },
+  { key: "soryong", label: "소룡동", tone: "from-blue-100 via-white to-cyan-100" },
 ] as const;
 
 export default function NeighborhoodSection() {
@@ -16,26 +16,29 @@ export default function NeighborhoodSection() {
         군산 동네별 보기
       </h2>
       <p className="mt-0.5 text-xs leading-5 text-slate-600">
-        군산의 동네와 주요 생활권을 가볍게 둘러보세요.
+        동네와 주요 생활권을 가볍게 둘러보세요.
       </p>
 
-      <div className="mt-2 flex gap-2 overflow-x-auto pb-1">
+      <div className="mt-2 grid grid-cols-5 gap-1.5">
         {neighborhoodItems.map((item) => (
           <button
             key={item.key}
             type="button"
-            className="flex w-14 shrink-0 flex-col items-center gap-1 text-xs font-bold text-slate-700"
+            className="min-w-0 text-xs font-bold text-slate-700"
           >
             <span
               className={[
-                "grid h-11 w-11 place-items-center rounded-full border border-slate-200 text-sm font-black",
+                "relative mx-auto block h-11 w-11 overflow-hidden rounded-full border border-slate-200 bg-gradient-to-br",
                 item.tone,
               ].join(" ")}
               aria-hidden="true"
             >
-              {item.label.slice(0, 1)}
+              <span className="absolute bottom-[-10px] left-1/2 h-7 w-10 -translate-x-1/2 rounded-full bg-white/75" />
+              <span className="absolute right-1.5 top-2 h-2 w-2 rounded-full bg-cyan-500/40" />
             </span>
-            <span className="w-full truncate text-center">{item.label}</span>
+            <span className="mt-1 block w-full truncate text-center text-[11px]">
+              {item.label}
+            </span>
           </button>
         ))}
       </div>

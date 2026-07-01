@@ -1,8 +1,32 @@
 const eventCategories = [
-  { key: "festival", label: "축제", note: "공식 출처 기준 확인" },
-  { key: "performance", label: "공연", note: "공연 정보 확인" },
-  { key: "exhibition", label: "전시", note: "전시 정보 확인" },
-  { key: "experience", label: "체험", note: "가족 나들이 확인" },
+  {
+    key: "festival",
+    badge: "확인",
+    title: "축제 소식",
+    note: "공식 출처 기준",
+    tone: "from-cyan-100 via-white to-sky-100",
+  },
+  {
+    key: "performance",
+    badge: "공연",
+    title: "공연·버스킹",
+    note: "공연 정보 확인",
+    tone: "from-sky-100 via-white to-slate-100",
+  },
+  {
+    key: "exhibition",
+    badge: "전시",
+    title: "전시·문화",
+    note: "문화 행사 확인",
+    tone: "from-slate-200 via-white to-cyan-50",
+  },
+  {
+    key: "experience",
+    badge: "체험",
+    title: "가족 체험",
+    note: "나들이 정보 확인",
+    tone: "from-teal-100 via-white to-cyan-100",
+  },
 ] as const;
 
 export default function EventFestivalSection() {
@@ -20,17 +44,24 @@ export default function EventFestivalSection() {
         {eventCategories.map((item) => (
           <article
             key={item.key}
-            className="flex min-h-12 items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 p-1.5"
+            className="overflow-hidden rounded-lg border border-slate-200 bg-white"
           >
             <span
-              className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-white text-xs font-black text-cyan-800"
+              className={[
+                "relative block h-10 overflow-hidden bg-gradient-to-br",
+                item.tone,
+              ].join(" ")}
               aria-hidden="true"
             >
-              {item.label.slice(0, 1)}
+              <span className="absolute bottom-[-12px] right-[-8px] h-10 w-10 rounded-full bg-white/70" />
+              <span className="absolute left-2 top-2 h-2 w-12 rounded-full bg-white/80" />
             </span>
-            <span className="min-w-0">
-              <span className="block truncate text-xs font-bold text-slate-900">
-                {item.label}
+            <span className="block min-w-0 px-2 py-1.5">
+              <span className="mb-0.5 inline-flex h-4 items-center rounded-full bg-cyan-50 px-1.5 text-[9px] font-bold text-cyan-700">
+                {item.badge}
+              </span>
+              <span className="block truncate text-xs font-bold text-slate-950">
+                {item.title}
               </span>
               <span className="block truncate text-[10px] font-semibold text-slate-500">
                 {item.note}

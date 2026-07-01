@@ -1,12 +1,3 @@
-const mapKeywords = [
-  { key: "modern-street", label: "근대거리" },
-  { key: "eunpa-area", label: "은파 주변" },
-  { key: "seonyudo", label: "선유도" },
-  { key: "saemangeum", label: "새만금" },
-  { key: "wolmyeong", label: "월명동" },
-  { key: "susong", label: "수송동" },
-] as const;
-
 export default function MapPreviewSection() {
   return (
     <section className="rounded-lg border border-slate-200 bg-white p-2.5">
@@ -15,32 +6,22 @@ export default function MapPreviewSection() {
         지도에서 한눈에 보기
       </h2>
       <p className="mt-0.5 text-xs leading-5 text-slate-600">
-        군산의 장소와 동선을 한눈에 볼 수 있는 구조로 확장합니다.
+        장소와 동선을 한눈에 보는 구조로 확장합니다.
       </p>
 
       <div className="mt-2 rounded-lg border border-slate-200 bg-slate-50 p-1.5">
         <div
-          className="relative h-20 overflow-hidden rounded-lg border border-cyan-100 bg-white"
+          className="relative h-[132px] overflow-hidden rounded-lg border border-cyan-100 bg-gradient-to-br from-sky-50 via-white to-cyan-50"
           aria-hidden="true"
         >
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(148,163,184,0.18)_1px,transparent_1px),linear-gradient(180deg,rgba(148,163,184,0.18)_1px,transparent_1px)] bg-[size:28px_28px]" />
-          <div className="absolute -left-6 top-9 h-7 w-11/12 rotate-[-8deg] rounded-full border border-cyan-200/80" />
-          <div className="absolute bottom-5 left-8 right-5 h-7 rotate-[6deg] rounded-full border border-teal-200/80" />
-          <span className="absolute left-8 top-7 h-2.5 w-2.5 rounded-full border-2 border-white bg-cyan-600" />
-          <span className="absolute right-14 top-11 h-2.5 w-2.5 rounded-full border-2 border-white bg-emerald-500" />
-          <span className="absolute bottom-7 left-1/3 h-2.5 w-2.5 rounded-full border-2 border-white bg-sky-500" />
-          <span className="absolute bottom-5 right-9 h-2.5 w-2.5 rounded-full border-2 border-white bg-slate-500" />
-        </div>
-
-        <div className="mt-1.5 grid grid-cols-3 gap-1">
-          {mapKeywords.slice(0, 6).map((keyword) => (
-            <span
-              key={keyword.key}
-              className="inline-flex h-6 items-center justify-center rounded-full border border-slate-200 bg-white px-1.5 text-[10px] font-bold text-slate-700"
-            >
-              {keyword.label}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_25%,rgba(14,165,233,0.12),transparent_26%),radial-gradient(circle_at_78%_78%,rgba(20,184,166,0.16),transparent_28%)]" />
+          <div className="absolute left-[-18px] top-10 h-7 w-[72%] rotate-[-10deg] rounded-full border border-sky-200/80" />
+          <div className="absolute bottom-6 right-[-24px] h-8 w-[82%] rotate-[8deg] rounded-full border border-cyan-200/80" />
+          <div className="absolute left-1/2 top-1/2 grid h-16 w-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-cyan-600/10">
+            <span className="relative h-9 w-9 rounded-full bg-cyan-700 shadow-sm">
+              <span className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white" />
             </span>
-          ))}
+          </div>
         </div>
       </div>
 
