@@ -22,6 +22,8 @@ type AirKoreaResponse = {
   };
 };
 
+type AirKoreaRequestMode = "search-params" | "raw-service-key";
+
 const AIRKOREA_API_BASE_URL =
   "https://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty";
 
@@ -85,6 +87,68 @@ function getGunsanStationItem(items: AirKoreaItem[]): AirKoreaItem | null {
   );
 }
 
+function createAirKoreaUrl(serviceKey: string, mode: AirKoreaRequestMode): string {
+  if (mode === "search-params") {
+    const params = new URLSearchParams({
+      serviceKey,
+      returnType: "json",
+      numOfRows: "100",
+      pageNo: "1",
+      sidoName: "전북",
+      ver: "1.0",
+    });
+
+    return `${AIRKOREA_API_BASE_URL}?${params.toString()}`;
+  }
+
+  return (
+    `${AIRKOREA_API_BASE_URL}?serviceKey=${serviceKey}` +
+    "&returnType=json&numOfRows=100&pageNo=1&sidoName=%EC%A0%84%EB%B6%81&ver=1.0"
+  );
+}
+
+async function requestAirKoreaItems(
+  serviceKey: string,
+  mode: AirKoreaRequestMode,
+): Promise<AirKoreaItem[]> {
+  try {
+    const response = await fetch(createAirKoreaUrl(serviceKey, mode), {
+      next: { revalidate: 600 },
+    });
+
+    if (!response.ok) {
+      return [];
+    }
+
+    return parseAirKoreaResponse(await response.json());
+  } catch {
+    return [];
+  }
+}
+
+function createAirQualitySummary(stationItem: AirKoreaItem): AirQualitySummary {
+  const gradeValue =
+    typeof stationItem.pm10Grade1h === "string"
+      ? stationItem.pm10Grade1h
+      : stationItem.pm10Grade;
+
+  if (typeof gradeValue !== "string") {
+    return AIR_QUALITY_FALLBACK;
+  }
+
+  const summary = getGradeLabel(gradeValue);
+
+  return {
+    ...summary,
+    stationName:
+      typeof stationItem.stationName === "string"
+        ? stationItem.stationName
+        : undefined,
+    measuredAt:
+      typeof stationItem.dataTime === "string" ? stationItem.dataTime : undefined,
+  };
+}
+
 export async function getGunsanAirQuality(): Promise<AirQualitySummary> {
   const serviceKey = process.env.AIRKOREA_SERVICE_KEY;
 
@@ -92,47 +156,16 @@ export async function getGunsanAirQuality(): Promise<AirQualitySummary> {
     return AIR_QUALITY_FALLBACK;
   }
 
-  const apiUrl =
-    `${AIRKOREA_API_BASE_URL}?serviceKey=${serviceKey}` +
-    "&returnType=json&numOfRows=100&pageNo=1&sidoName=%EC%A0%84%EB%B6%81&ver=1.0";
+  const requestModes: AirKoreaRequestMode[] = ["search-params", "raw-service-key"];
 
-  try {
-    const response = await fetch(apiUrl, {
-      next: { revalidate: 600 },
-    });
-
-    if (!response.ok) {
-      return AIR_QUALITY_FALLBACK;
-    }
-
-    const items = parseAirKoreaResponse(await response.json());
+  for (const mode of requestModes) {
+    const items = await requestAirKoreaItems(serviceKey, mode);
     const stationItem = getGunsanStationItem(items);
 
-    if (!stationItem) {
-      return AIR_QUALITY_FALLBACK;
+    if (stationItem) {
+      return createAirQualitySummary(stationItem);
     }
-
-    const gradeValue =
-      typeof stationItem.pm10Grade1h === "string"
-        ? stationItem.pm10Grade1h
-        : stationItem.pm10Grade;
-
-    if (typeof gradeValue !== "string") {
-      return AIR_QUALITY_FALLBACK;
-    }
-
-    const summary = getGradeLabel(gradeValue);
-
-    return {
-      ...summary,
-      stationName:
-        typeof stationItem.stationName === "string"
-          ? stationItem.stationName
-          : undefined,
-      measuredAt:
-        typeof stationItem.dataTime === "string" ? stationItem.dataTime : undefined,
-    };
-  } catch {
-    return AIR_QUALITY_FALLBACK;
   }
+
+  return AIR_QUALITY_FALLBACK;
 }

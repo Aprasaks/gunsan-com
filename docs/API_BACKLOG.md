@@ -24,11 +24,11 @@ API는 사용자가 확인해야 하는 정보를 보조하는 수단입니다. 
 | 기능 | 필요한 키 이름 | 필수 여부 | 현재 연결 여부 | 없을 때 fallback | 적용 시점 |
 | --- | --- | --- | --- | --- | --- |
 | 날씨 | 없음 | 불필요 | Open-Meteo 연결됨 | 군산 날씨 확인 중 | 현재 사용 |
-| 기상청 날씨 | DATA_GO_KR_SERVICE_KEY | 공식 전환 시 필요 | 미연결 | 군산 날씨 확인 중 | 나중에 검토 |
-| 미세먼지/대기질 | AIRKOREA_SERVICE_KEY 또는 DATA_GO_KR_SERVICE_KEY | 실제 값 표시 시 필요 | 연결 준비됨 | 대기질 확인 중 | 키 발급 후 |
-| 주차장 | DATA_GO_KR_SERVICE_KEY 또는 CSV 수동 데이터 | 방식에 따라 다름 | 미연결 | 정보명만 표시 | 구조 먼저 검토 |
+| 기상청 날씨 | 별도 공공데이터 ServiceKey | 공식 전환 시 필요 | 미연결 | 군산 날씨 확인 중 | 나중에 검토 |
+| 미세먼지/대기질 | AIRKOREA_SERVICE_KEY | 실제 값 표시 시 필요 | 연결 준비됨 | 대기질 확인 중 | 키 발급 후 |
+| 주차장 | 별도 공공데이터 키 또는 CSV 수동 데이터 | 방식에 따라 다름 | 미연결 | 정보명만 표시 | 구조 먼저 검토 |
 | 지도 | NEXT_PUBLIC_KAKAO_MAP_APP_KEY 또는 NEXT_PUBLIC_NAVER_MAP_CLIENT_ID | 지도 SDK 사용 시 필요 | 미연결 | 지도 preview만 표시 | 별도 지도 작업 |
-| 관광/행사 | TOUR_API_SERVICE_KEY 또는 DATA_GO_KR_SERVICE_KEY | 실제 데이터 연결 시 필요 | 미연결 | 유형/진입 UI만 표시 | 장소 DB 구조 후 |
+| 관광/행사 | TourAPI 키 또는 별도 공공데이터 키 | 실제 데이터 연결 시 필요 | 미연결 | 유형/진입 UI만 표시 | 장소 DB 구조 후 |
 
 ## 1단계: 오늘의 군산
 
