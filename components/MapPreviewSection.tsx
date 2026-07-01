@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function MapPreviewSection() {
   return (
     <section className="rounded-lg border border-slate-200 bg-white p-2.5">
@@ -25,12 +27,12 @@ export default function MapPreviewSection() {
         </div>
       </div>
 
-      <button
-        type="button"
-        className="mt-2 inline-flex h-8 w-full items-center justify-center rounded-lg border border-cyan-200 bg-cyan-50 px-3 text-xs font-semibold text-cyan-800"
+      <Link
+        href="/map"
+        className="mt-2 inline-flex h-8 w-full items-center justify-center rounded-lg border border-cyan-200 bg-cyan-50 px-3 text-xs font-semibold text-cyan-800 transition hover:border-cyan-300 hover:bg-cyan-100"
       >
         지도 보기
-      </button>
+      </Link>
     </section>
   );
 }
