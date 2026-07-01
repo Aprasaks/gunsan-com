@@ -1,11 +1,36 @@
 import Link from "next/link";
 
 const neighborhoodItems = [
-  { key: "wolmyeong", label: "월명동", tone: "from-cyan-100 via-white to-sky-100" },
-  { key: "susong", label: "수송동", tone: "from-sky-100 via-white to-slate-100" },
-  { key: "naun", label: "나운동", tone: "from-teal-100 via-white to-cyan-50" },
-  { key: "mijang", label: "미장동", tone: "from-slate-200 via-white to-sky-50" },
-  { key: "soryong", label: "소룡동", tone: "from-blue-100 via-white to-cyan-100" },
+  {
+    key: "wolmyeong",
+    label: "월명동",
+    tone: "from-sky-100 via-white to-cyan-100",
+    accent: "bg-cyan-600/70",
+  },
+  {
+    key: "susong",
+    label: "수송동",
+    tone: "from-slate-100 via-white to-sky-100",
+    accent: "bg-sky-600/65",
+  },
+  {
+    key: "naun",
+    label: "나운동",
+    tone: "from-teal-100 via-white to-cyan-50",
+    accent: "bg-teal-600/65",
+  },
+  {
+    key: "mijang",
+    label: "미장동",
+    tone: "from-blue-100 via-white to-slate-100",
+    accent: "bg-blue-600/60",
+  },
+  {
+    key: "soryong",
+    label: "소룡동",
+    tone: "from-cyan-100 via-white to-sky-50",
+    accent: "bg-cyan-700/65",
+  },
 ] as const;
 
 export default function NeighborhoodSection() {
@@ -24,17 +49,27 @@ export default function NeighborhoodSection() {
           <button
             key={item.key}
             type="button"
-            className="min-w-0 text-xs font-bold text-slate-700"
+            className="group min-w-0 rounded-lg px-1 py-1 text-xs font-bold text-slate-700 transition hover:bg-slate-50"
           >
             <span
               className={[
-                "relative mx-auto block h-11 w-11 overflow-hidden rounded-full border border-slate-200 bg-gradient-to-br",
+                "relative mx-auto block h-12 w-12 overflow-hidden rounded-full border border-slate-200 bg-gradient-to-br shadow-sm shadow-slate-200/70 transition group-hover:border-cyan-200",
                 item.tone,
               ].join(" ")}
               aria-hidden="true"
             >
-              <span className="absolute bottom-[-10px] left-1/2 h-7 w-10 -translate-x-1/2 rounded-full bg-white/75" />
-              <span className="absolute right-1.5 top-2 h-2 w-2 rounded-full bg-cyan-500/40" />
+              <span className="absolute inset-x-0 bottom-0 h-5 bg-gradient-to-t from-slate-300/70 to-transparent" />
+              <span
+                className={[
+                  "absolute bottom-2 left-1/2 h-4 w-12 -translate-x-1/2 rounded-[50%] opacity-80",
+                  item.accent,
+                ].join(" ")}
+              />
+              <span className="absolute bottom-1.5 left-1 h-2 w-8 rounded-full bg-white/75" />
+              <span className="absolute bottom-1.5 right-1 h-2 w-5 rounded-full bg-white/70" />
+              <span className="absolute left-2 top-3 h-5 w-2 rounded-sm bg-white/80" />
+              <span className="absolute left-4 top-2.5 h-5 w-2 rounded-sm bg-white/70" />
+              <span className="absolute right-2 top-2 h-2.5 w-2.5 rounded-full bg-amber-300/80" />
             </span>
             <span className="mt-1 block w-full truncate text-center text-[11px]">
               {item.label}
