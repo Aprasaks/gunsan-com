@@ -1,5 +1,5 @@
 import { getGunsanAirQuality } from "@/lib/api/airQuality";
-import { getGunsanCurrentWeather } from "@/lib/weather";
+import { getGunsanCurrentWeather } from "@/lib/api/weather";
 
 type TodayInfoItem = {
   key: string;

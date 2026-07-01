@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { getGunsanCurrentWeather } from "@/lib/weather";
+import { getGunsanCurrentWeather } from "@/lib/api/weather";
 
 const categoryLinks = [
   { label: "홈", href: "/" },
