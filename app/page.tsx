@@ -50,10 +50,16 @@ export default function Home() {
             <TodayGunsanSection />
           </div>
 
-          <div className="mt-2 grid gap-2.5 lg:grid-cols-3">
-            <EventFestivalSection />
-            <MapPreviewSection />
-            <NeighborhoodSection />
+          <div className="mt-2 grid items-stretch gap-2.5 lg:grid-cols-12">
+            <div className="lg:col-span-6">
+              <EventFestivalSection />
+            </div>
+            <div className="lg:col-span-3">
+              <MapPreviewSection />
+            </div>
+            <div className="lg:col-span-3">
+              <NeighborhoodSection />
+            </div>
           </div>
         </div>
       </section>

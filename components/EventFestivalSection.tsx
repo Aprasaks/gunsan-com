@@ -6,19 +6,25 @@ import EventDetailModal from "@/components/EventDetailModal";
 import { eventItems, officialEventListUrl } from "@/data/eventItems";
 import type { EventItem } from "@/types/event";
 
-const mainEventItems = eventItems.slice(0, 3);
+const EVENT_CARD_COUNT = 4;
+const mainEventItems = eventItems.slice(0, EVENT_CARD_COUNT);
+const pendingEventCards = Array.from(
+  { length: Math.max(0, EVENT_CARD_COUNT - mainEventItems.length) },
+  (_, index) => index,
+);
 
 const thumbnailTones = [
   "from-cyan-100 via-white to-sky-100",
   "from-slate-100 via-white to-sky-100",
   "from-teal-100 via-white to-cyan-50",
+  "from-blue-100 via-white to-slate-100",
 ] as const;
 
 export default function EventFestivalSection() {
   const [selectedEvent, setSelectedEvent] = useState<EventItem | null>(null);
 
   return (
-    <section className="rounded-lg border border-slate-200 bg-white p-2.5">
+    <section className="h-full w-full rounded-lg border border-slate-200 bg-white p-2.5 shadow-sm shadow-slate-200/40">
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0">
           <p className="text-xs font-semibold text-cyan-700">행사·축제</p>
@@ -41,7 +47,7 @@ export default function EventFestivalSection() {
         </a>
       </div>
 
-      <div className="mt-2 grid gap-2 sm:grid-cols-3">
+      <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4">
         {mainEventItems.map((item, index) => (
           <article
             key={item.id}
@@ -49,7 +55,7 @@ export default function EventFestivalSection() {
           >
             <button
               type="button"
-              className="block h-full w-full text-left transition hover:bg-slate-50"
+              className="flex h-full w-full flex-col text-left transition hover:bg-slate-50"
               onClick={() => {
                 setSelectedEvent(item);
               }}
@@ -83,6 +89,38 @@ export default function EventFestivalSection() {
                 </span>
               </span>
             </button>
+          </article>
+        ))}
+
+        {pendingEventCards.map((slot) => (
+          <article
+            key={`pending-event-${slot}`}
+            className="min-w-0 overflow-hidden rounded-lg border border-dashed border-slate-200 bg-slate-50/80"
+          >
+            <div className="flex h-full flex-col">
+              <span
+                className="relative block h-14 overflow-hidden bg-gradient-to-br from-slate-100 via-white to-sky-50"
+                aria-hidden="true"
+              >
+                <span className="absolute inset-x-3 top-2 h-2 rounded-full bg-white/85" />
+                <span className="absolute bottom-[-18px] right-[-12px] h-16 w-16 rounded-full bg-white/75" />
+                <span className="absolute bottom-3 left-2 h-2 w-10 rounded-full bg-slate-200/75" />
+              </span>
+              <span className="block min-w-0 px-2 pb-1 pt-1.5">
+                <span className="mb-0.5 inline-flex h-4 items-center rounded-full bg-slate-100 px-1.5 text-[9px] font-bold text-slate-600">
+                  확인 중
+                </span>
+                <span className="block truncate text-xs font-bold text-slate-700">
+                  행사 정보 확인 중
+                </span>
+                <span className="block truncate text-[10px] font-semibold text-slate-500">
+                  공식 출처 확인 후 업데이트됩니다.
+                </span>
+                <span className="mt-1 inline-flex h-4 max-w-full items-center rounded-full bg-white px-1.5 text-[9px] font-bold text-slate-500">
+                  공식 출처 기준
+                </span>
+              </span>
+            </div>
           </article>
         ))}
       </div>

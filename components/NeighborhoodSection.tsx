@@ -35,7 +35,7 @@ const neighborhoodItems = [
 
 export default function NeighborhoodSection() {
   return (
-    <section className="rounded-lg border border-slate-200 bg-white p-2.5">
+    <section className="h-full w-full rounded-lg border border-slate-200 bg-white p-2.5 shadow-sm shadow-slate-200/40">
       <p className="text-xs font-semibold text-cyan-700">동네별 보기</p>
       <h2 className="mt-0.5 text-base font-bold leading-tight text-slate-950 sm:text-lg">
         군산 동네별 보기
