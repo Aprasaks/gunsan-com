@@ -54,10 +54,10 @@ export default function Home() {
             <div className="lg:col-span-6">
               <EventFestivalSection />
             </div>
-            <div className="lg:col-span-3">
+            <div className="lg:col-span-2">
               <MapPreviewSection />
             </div>
-            <div className="lg:col-span-3">
+            <div className="lg:col-span-4">
               <NeighborhoodSection />
             </div>
           </div>

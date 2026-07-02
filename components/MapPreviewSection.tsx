@@ -10,16 +10,16 @@ export default function MapPreviewSection() {
           지도에서 한눈에 보기
         </h2>
         <p className="mt-0.5 text-xs leading-5 text-slate-600">
-          원하는 장소를 지도로 검색하고 길찾기까지 한번에!
+          지도 기준으로 군산 정보를 살펴봅니다.
         </p>
       </div>
 
-      <div className="relative mt-2 h-[98px] overflow-hidden rounded-lg border border-slate-200 bg-slate-50">
+      <div className="relative mt-2 h-[88px] overflow-hidden rounded-lg border border-slate-200 bg-slate-50 sm:h-[96px] lg:h-[88px]">
         <Image
           src="/images/ui/map-preview.webp"
           alt="군산 지도 미리보기"
           fill
-          sizes="(min-width: 1024px) 320px, (min-width: 640px) 45vw, 100vw"
+          sizes="(min-width: 1024px) 240px, (min-width: 640px) 45vw, 100vw"
           className="object-cover"
         />
       </div>

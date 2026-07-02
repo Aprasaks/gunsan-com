@@ -35,25 +35,28 @@ const neighborhoodItems = [
 
 export default function NeighborhoodSection() {
   return (
-    <section className="h-full w-full rounded-lg border border-slate-200 bg-white p-2.5 shadow-sm shadow-slate-200/40">
-      <p className="text-xs font-semibold text-cyan-700">동네별 보기</p>
-      <h2 className="mt-0.5 text-base font-bold leading-tight text-slate-950 sm:text-lg">
-        군산 동네별 보기
-      </h2>
-      <p className="mt-0.5 text-xs leading-5 text-slate-600">
-        동네와 주요 생활권을 가볍게 둘러보세요.
-      </p>
+    <section className="flex h-full w-full flex-col rounded-lg border border-slate-200 bg-white p-2.5 shadow-sm shadow-slate-200/40">
+      <div className="min-w-0">
+        <p className="text-xs font-semibold text-cyan-700">동네별 보기</p>
+        <h2 className="mt-0.5 text-base font-bold leading-tight text-slate-950 sm:text-lg">
+          군산 동네별 보기
+        </h2>
+        <p className="mt-0.5 text-xs leading-5 text-slate-600">
+          동네를 골라 군산 정보를 살펴보세요.
+        </p>
+      </div>
 
-      <div className="mt-2 grid grid-cols-5 gap-1.5">
+      <div className="mt-2 grid grid-cols-3 gap-1.5 sm:grid-cols-5">
         {neighborhoodItems.map((item) => (
           <button
             key={item.key}
             type="button"
-            className="group min-w-0 rounded-lg px-1 py-1 text-xs font-bold text-slate-700 transition hover:bg-slate-50"
+            className="group min-w-0 rounded-lg border border-slate-100 bg-slate-50/60 px-1.5 py-1.5 text-xs font-bold text-slate-700 transition hover:border-cyan-100 hover:bg-cyan-50/60"
+            aria-label={`${item.label} 동네 보기`}
           >
             <span
               className={[
-                "relative mx-auto block h-12 w-12 overflow-hidden rounded-full border border-slate-200 bg-gradient-to-br shadow-sm shadow-slate-200/70 transition group-hover:border-cyan-200",
+                "relative mx-auto block h-12 w-12 overflow-hidden rounded-full border border-slate-200 bg-gradient-to-br shadow-sm shadow-slate-200/70 transition group-hover:border-cyan-200 sm:h-14 sm:w-14",
                 item.tone,
               ].join(" ")}
               aria-hidden="true"
@@ -78,12 +81,14 @@ export default function NeighborhoodSection() {
         ))}
       </div>
 
-      <Link
-        href="/places"
-        className="mt-2 inline-flex h-8 w-full items-center justify-center rounded-lg border border-cyan-200 bg-cyan-50 px-3 text-xs font-semibold text-cyan-800 transition hover:border-cyan-300 hover:bg-cyan-100"
-      >
-        장소 둘러보기
-      </Link>
+      <div className="mt-auto pt-2">
+        <Link
+          href="/places"
+          className="inline-flex h-8 w-full items-center justify-center rounded-lg border border-cyan-200 bg-cyan-50 px-3 text-xs font-semibold text-cyan-800 transition hover:border-cyan-300 hover:bg-cyan-100"
+        >
+          동네 둘러보기
+        </Link>
+      </div>
     </section>
   );
 }
