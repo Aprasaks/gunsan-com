@@ -9,11 +9,14 @@ export type EventVerificationStatus = "official-source" | "needs-check";
 
 export type EventItem = {
   id: string;
+  slug: string;
   title: string;
   category: string;
   location?: string;
   periodLabel?: string;
   description: string;
+  summary?: string;
+  highlights?: string[];
   image?: string;
   sourceName: string;
   sourceUrl: string;

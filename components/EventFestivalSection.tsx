@@ -1,4 +1,10 @@
+"use client";
+
+import { useState } from "react";
+
+import EventDetailModal from "@/components/EventDetailModal";
 import { eventItems, officialEventListUrl } from "@/data/eventItems";
+import type { EventItem } from "@/types/event";
 
 const mainEventItems = eventItems.slice(0, 3);
 
@@ -9,6 +15,8 @@ const thumbnailTones = [
 ] as const;
 
 export default function EventFestivalSection() {
+  const [selectedEvent, setSelectedEvent] = useState<EventItem | null>(null);
+
   return (
     <section className="rounded-lg border border-slate-200 bg-white p-2.5">
       <div className="flex items-start justify-between gap-2">
@@ -39,40 +47,52 @@ export default function EventFestivalSection() {
             key={item.id}
             className="min-w-0 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm shadow-slate-200/40"
           >
-            <span
-              className={[
-                "relative block h-14 overflow-hidden bg-gradient-to-br",
-                thumbnailTones[index % thumbnailTones.length],
-              ].join(" ")}
-              aria-hidden="true"
+            <button
+              type="button"
+              className="block h-full w-full text-left transition hover:bg-slate-50"
+              onClick={() => {
+                setSelectedEvent(item);
+              }}
             >
-              <span className="absolute bottom-[-16px] right-[-10px] h-14 w-14 rounded-full bg-white/70" />
-              <span className="absolute left-2 top-2 h-2 w-14 rounded-full bg-white/80" />
-              <span className="absolute bottom-3 left-2 h-2 w-9 rounded-full bg-white/70" />
-            </span>
-            <div className="min-w-0 px-2 py-1.5">
-              <span className="mb-0.5 inline-flex h-4 items-center rounded-full bg-cyan-50 px-1.5 text-[9px] font-bold text-cyan-700">
-                {item.category}
-              </span>
-              <span className="block truncate text-xs font-bold text-slate-950">
-                {item.title}
-              </span>
-              <span className="block truncate text-[10px] font-semibold text-slate-500">
-                {item.location ?? item.description}
-              </span>
-              <a
-                href={item.sourceUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-1 block truncate text-[10px] font-bold text-cyan-700"
-                aria-label={`${item.title} 공식 출처 새 창에서 보기`}
+              <span
+                className={[
+                  "relative block h-14 overflow-hidden bg-gradient-to-br",
+                  thumbnailTones[index % thumbnailTones.length],
+                ].join(" ")}
+                aria-hidden="true"
               >
-                {item.sourceName}
-              </a>
-            </div>
+                <span className="absolute bottom-[-16px] right-[-10px] h-14 w-14 rounded-full bg-white/70" />
+                <span className="absolute left-2 top-2 h-2 w-14 rounded-full bg-white/80" />
+                <span className="absolute bottom-3 left-2 h-2 w-9 rounded-full bg-white/70" />
+              </span>
+              <span className="block min-w-0 px-2 pb-1 pt-1.5">
+                <span className="mb-0.5 inline-flex h-4 items-center rounded-full bg-cyan-50 px-1.5 text-[9px] font-bold text-cyan-700">
+                  {item.category}
+                </span>
+                <span className="block truncate text-xs font-bold text-slate-950">
+                  {item.title}
+                </span>
+                <span className="block truncate text-[10px] font-semibold text-slate-500">
+                  {item.location ?? item.description}
+                </span>
+                <span className="mt-1 inline-flex h-4 max-w-full items-center rounded-full bg-cyan-50 px-1.5 text-[9px] font-bold text-cyan-700">
+                  공식 출처 기준
+                </span>
+                <span className="mt-0.5 block truncate text-[10px] font-bold text-cyan-700">
+                  {item.sourceName}
+                </span>
+              </span>
+            </button>
           </article>
         ))}
       </div>
+
+      <EventDetailModal
+        event={selectedEvent}
+        onClose={() => {
+          setSelectedEvent(null);
+        }}
+      />
     </section>
   );
 }
