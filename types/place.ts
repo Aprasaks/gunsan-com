@@ -32,6 +32,14 @@ export type PlaceVisitorInfo = {
   photoNote?: string;
 };
 
+export type PlaceTravelGuide = {
+  recommendedFor?: string[];
+  stayDuration?: string;
+  nearbyPlaces?: string[];
+  rainyDaySuitability?: string;
+  officialUrl?: string;
+};
+
 export type Place = {
   id: string;
   slug: string;
@@ -45,6 +53,7 @@ export type Place = {
   lastVerifiedAt: string;
   ownerInfo: PlaceOwnerInfo;
   visitorInfo: PlaceVisitorInfo;
+  travelGuide?: PlaceTravelGuide;
   address?: string;
   phone?: string;
   latitude?: number;

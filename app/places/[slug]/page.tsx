@@ -81,6 +81,47 @@ function getBasicRows({
   ].filter((row): row is InfoRow => row !== null);
 }
 
+function getTravelRows({
+  description,
+  area,
+  tags,
+  parking,
+  openingHours,
+  kidFriendlyNote,
+  lastVerifiedAt,
+  stayDuration,
+  nearbyPlaces,
+  rainyDaySuitability,
+}: {
+  description: string;
+  area: string;
+  tags: string[];
+  parking?: string;
+  openingHours?: string;
+  kidFriendlyNote?: string;
+  lastVerifiedAt: string;
+  stayDuration?: string;
+  nearbyPlaces?: string[];
+  rainyDaySuitability?: string;
+}): InfoRow[] {
+  return [
+    { key: "summary", label: "한 줄 요약", value: description },
+    { key: "recommendedFor", label: "추천 상황", value: tags.slice(0, 3).join(" · ") },
+    { key: "area", label: "위치/지역", value: area },
+    stayDuration ? { key: "stayDuration", label: "체류 시간", value: stayDuration } : null,
+    nearbyPlaces?.length
+      ? { key: "nearbyPlaces", label: "같이 가기 좋은 곳", value: nearbyPlaces.join(" · ") }
+      : null,
+    parking ? { key: "parking", label: "주차 정보", value: parking } : null,
+    openingHours ? { key: "openingHours", label: "운영시간", value: openingHours } : null,
+    kidFriendlyNote ? { key: "kidFriendly", label: "아이 동반", value: kidFriendlyNote } : null,
+    rainyDaySuitability
+      ? { key: "rainyDay", label: "비 오는 날", value: rainyDaySuitability }
+      : null,
+    { key: "lastVerifiedAt", label: "마지막 확인 날짜", value: lastVerifiedAt },
+  ].filter((row): row is InfoRow => row !== null);
+}
+
 export function generateStaticParams() {
   return places.map((place) => ({
     slug: place.slug,
@@ -103,6 +144,18 @@ export default async function PlaceDetailPage({ params }: PlaceDetailPageProps) 
     phone: place.phone,
     openingHours: place.ownerInfo.openingHours,
     lastVerifiedAt: place.lastVerifiedAt,
+  });
+  const travelRows = getTravelRows({
+    description: place.description,
+    area: place.area,
+    tags: place.travelGuide?.recommendedFor ?? place.tags,
+    parking: place.visitorInfo.parkingNote ?? place.ownerInfo.parking,
+    openingHours: place.ownerInfo.openingHours,
+    kidFriendlyNote: place.visitorInfo.kidFriendlyNote,
+    lastVerifiedAt: place.lastVerifiedAt,
+    stayDuration: place.travelGuide?.stayDuration,
+    nearbyPlaces: place.travelGuide?.nearbyPlaces,
+    rainyDaySuitability: place.travelGuide?.rainyDaySuitability,
   });
   const needsVerification = place.statuses.some(
     (status) => status === "확인 필요" || status === "폐업/이전 확인 필요",
@@ -160,6 +213,33 @@ export default async function PlaceDetailPage({ params }: PlaceDetailPageProps) 
                 </span>
               ))}
             </div>
+          </section>
+
+          <section className="mt-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm shadow-slate-200/40 sm:p-5">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="text-sm font-bold text-cyan-700">방문자 관점으로 다시 정리</p>
+                <h2 className="mt-1 text-xl font-black text-slate-950">가기 전에 한눈에 확인하세요</h2>
+              </div>
+              {place.travelGuide?.officialUrl ? (
+                <a
+                  href={place.travelGuide.officialUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-bold text-cyan-800 underline underline-offset-4"
+                >
+                  공식 정보 확인 ↗
+                </a>
+              ) : null}
+            </div>
+            <dl className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+              {travelRows.map((row) => (
+                <div key={row.key} className="rounded-xl border border-slate-200 bg-[#fbfaf7] p-3">
+                  <dt className="text-xs font-extrabold text-slate-500">{row.label}</dt>
+                  <dd className="mt-1 text-sm font-semibold leading-5 text-slate-800">{row.value}</dd>
+                </div>
+              ))}
+            </dl>
           </section>
 
           <section className="mt-3 grid gap-3 lg:grid-cols-[0.9fr_1.1fr_1.1fr]">

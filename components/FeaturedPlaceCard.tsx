@@ -12,9 +12,9 @@ export default function FeaturedPlaceCard({ place }: FeaturedPlaceCardProps) {
     <Link
       href="/places"
       aria-label={`${place.name} 관련 장소 목록으로 이동`}
-      className="group block min-w-0 focus:outline-none"
+      className="group block min-w-0 rounded-xl bg-white focus:outline-none"
     >
-      <div className="relative h-[84px] overflow-hidden rounded-lg border border-slate-200 bg-slate-100 transition group-hover:border-cyan-300 group-focus:ring-4 group-focus:ring-cyan-100">
+      <div className="relative h-[92px] overflow-hidden rounded-t-xl border border-slate-200 bg-slate-100 transition group-hover:border-cyan-300 group-focus:ring-4 group-focus:ring-cyan-100 sm:h-[108px]">
         {place.image ? (
           <Image
             src={place.image}
@@ -44,14 +44,14 @@ export default function FeaturedPlaceCard({ place }: FeaturedPlaceCardProps) {
         </span>
       </div>
 
-      <div className="mt-1.5 min-h-[58px] rounded-lg border border-slate-200 bg-white px-2 py-1.5 transition group-hover:border-cyan-200 group-hover:bg-cyan-50">
-        <h3 className="truncate text-[13px] font-bold leading-4 text-slate-950 transition group-hover:text-cyan-800">
+      <div className="min-h-[68px] rounded-b-xl border border-t-0 border-slate-200 bg-white px-2.5 py-2 transition group-hover:border-cyan-200 group-hover:bg-cyan-50">
+        <h3 className="truncate text-sm font-black leading-5 text-slate-950 transition group-hover:text-cyan-800">
           {place.name}
         </h3>
-        <p className="mt-0.5 truncate text-[10px] font-semibold text-slate-500">
+        <p className="mt-0.5 truncate text-[11px] font-semibold text-slate-500">
           {place.meta}
         </p>
-        <p className="mt-0.5 line-clamp-1 text-[10px] leading-4 text-slate-600">
+        <p className="mt-0.5 hidden line-clamp-1 text-[11px] leading-4 text-slate-600 sm:block">
           {place.description}
         </p>
       </div>
