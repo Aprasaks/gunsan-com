@@ -5,55 +5,40 @@ import type { FeaturedPlace } from "@/data/featuredPlaces";
 
 type FeaturedPlaceCardProps = {
   place: FeaturedPlace;
+  whyHere: string;
+  courseLabel: string;
 };
 
-export default function FeaturedPlaceCard({ place }: FeaturedPlaceCardProps) {
+export default function FeaturedPlaceCard({ place, whyHere, courseLabel }: FeaturedPlaceCardProps) {
   return (
     <Link
       href="/places"
-      aria-label={`${place.name} 관련 장소 목록으로 이동`}
-      className="group block min-w-0 rounded-xl bg-white focus:outline-none"
+      aria-label={`${place.name}가 포함된 장소 목록으로 이동`}
+      className="group relative block min-w-0 overflow-hidden rounded-[1.4rem] bg-slate-800 shadow-md shadow-slate-900/10 focus:outline-none focus:ring-4 focus:ring-cyan-200"
     >
-      <div className="relative h-[92px] overflow-hidden rounded-t-xl border border-slate-200 bg-slate-100 transition group-hover:border-cyan-300 group-focus:ring-4 group-focus:ring-cyan-100 sm:h-[108px]">
+      <div className="relative h-[230px] sm:h-[290px]">
         {place.image ? (
           <Image
             src={place.image}
             alt={place.imageAlt}
             fill
-            sizes="(min-width: 1280px) 140px, (min-width: 640px) 50vw, 100vw"
-            className="object-cover transition duration-200 group-hover:scale-[1.03]"
+            sizes="(min-width: 1024px) 32vw, (min-width: 640px) 50vw, 100vw"
+            className="object-cover transition duration-500 group-hover:scale-105"
           />
-        ) : (
-          <div className="relative h-full bg-gradient-to-br from-slate-100 via-sky-50 to-white">
-            <span
-              className="absolute bottom-[-18px] right-[-10px] h-16 w-16 rounded-full bg-cyan-100/55"
-              aria-hidden="true"
-            />
-            <span
-              className="absolute bottom-3 left-3 h-2 w-12 rounded-full bg-white/80"
-              aria-hidden="true"
-            />
-            <span
-              className="absolute bottom-6 left-3 h-2 w-20 rounded-full bg-white/70"
-              aria-hidden="true"
-            />
-          </div>
-        )}
-        <span className="absolute bottom-2 left-2 rounded-full bg-cyan-700/90 px-2 py-0.5 text-[10px] font-bold text-white ring-1 ring-white/40">
-          {place.badge}
+        ) : null}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/25 to-transparent" />
+        <span className="absolute left-3 top-3 rounded-full bg-[#b64b31] px-2.5 py-1 text-[11px] font-black text-white shadow-sm">
+          군산 필수
         </span>
-      </div>
-
-      <div className="min-h-[68px] rounded-b-xl border border-t-0 border-slate-200 bg-white px-2.5 py-2 transition group-hover:border-cyan-200 group-hover:bg-cyan-50">
-        <h3 className="truncate text-sm font-black leading-5 text-slate-950 transition group-hover:text-cyan-800">
-          {place.name}
-        </h3>
-        <p className="mt-0.5 truncate text-[11px] font-semibold text-slate-500">
-          {place.meta}
-        </p>
-        <p className="mt-0.5 hidden line-clamp-1 text-[11px] leading-4 text-slate-600 sm:block">
-          {place.description}
-        </p>
+        <div className="absolute inset-x-0 bottom-0 p-4 text-white sm:p-5">
+          <p className="text-[11px] font-bold text-cyan-100">{courseLabel}</p>
+          <h3 className="mt-1 text-xl font-black tracking-[-0.03em] sm:text-2xl">{place.name}</h3>
+          <p className="mt-2 line-clamp-2 text-xs font-medium leading-5 text-white/82 sm:text-sm">{whyHere}</p>
+          <div className="mt-3 flex items-center justify-between gap-3 border-t border-white/20 pt-3">
+            <span className="text-xs font-bold text-white/68">방문 전 공식 운영 정보 확인</span>
+            <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white text-base font-black text-[#123f67] transition group-hover:translate-x-1" aria-hidden="true">→</span>
+          </div>
+        </div>
       </div>
     </Link>
   );

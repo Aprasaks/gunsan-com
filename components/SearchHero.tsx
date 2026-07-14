@@ -1,89 +1,79 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const popularTerms = ["이성당", "초원사진관", "선유도", "군산역", "아이랑 갈 곳"];
-
-const quickChoices = [
-  { label: "군산 처음이에요", icon: "01" },
-  { label: "아이랑 왔어요", icon: "02" },
-  { label: "오늘 문 연 곳", icon: "03" },
-  { label: "주차 편한 곳", icon: "04" },
-  { label: "비 오는 날 갈 곳", icon: "05" },
-  { label: "군산역 근처", icon: "06" },
+const heroCourseLinks = [
+  { label: "반나절", href: "#course-half-day" },
+  { label: "1박 2일", href: "#course-one-night-two-days" },
+  { label: "아이랑", href: "#course-family" },
+  { label: "비 오는 날", href: "#course-rainy-day" },
+  { label: "선유도", href: "#course-seonyudo" },
 ] as const;
 
 export default function SearchHero() {
   return (
-    <section className="relative overflow-hidden border-b border-slate-200 bg-[#f7f3ea]">
-      <div className="absolute inset-y-0 right-0 hidden w-[46%] lg:block">
-        <Image
-          src="/images/gunsan-hero-banner.webp"
-          alt="군산의 바다와 도심 풍경"
-          fill
-          priority
-          sizes="46vw"
-          className="object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#f7f3ea] via-[#f7f3ea]/60 to-transparent" />
-      </div>
+    <section className="relative isolate min-h-[660px] overflow-hidden bg-[#30566b] sm:min-h-[720px] lg:min-h-[820px]">
+      <Image
+        src="/images/gunsan-hero-banner.webp"
+        alt="군산 바다와 도시 풍경"
+        fill
+        preload
+        sizes="100vw"
+        className="-z-30 object-cover object-center"
+      />
+      <div className="absolute inset-0 -z-20 bg-black/18" />
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(8,31,48,0.78)_0%,rgba(8,31,48,0.4)_48%,rgba(8,31,48,0.06)_78%)]" />
+      <div className="absolute inset-x-0 bottom-0 -z-10 h-[64%] bg-gradient-to-t from-black/78 via-black/25 to-transparent" />
 
-      <div className="relative mx-auto w-full max-w-[1280px] px-4 py-7 sm:px-6 sm:py-9 lg:px-8 lg:py-14">
-        <div className="max-w-[760px]">
-          <p className="text-sm font-extrabold text-cyan-800">군산 여행과 생활 정보의 시작</p>
-          <h1 className="mt-2 text-[1.75rem] font-black leading-[1.2] tracking-[-0.035em] text-slate-950 sm:text-4xl lg:text-[2.75rem]">
-            군산에서 어디 갈지 찾고 있나요?
+      <div className="mx-auto flex min-h-[660px] w-full max-w-[1540px] items-end px-4 pb-12 pt-28 sm:min-h-[720px] sm:px-6 sm:pb-16 lg:min-h-[820px] lg:px-10 lg:pb-20 lg:pt-44">
+        <div className="w-full max-w-[1040px] text-white">
+          <p className="text-sm font-black tracking-[0.12em] text-orange-200 sm:text-base">FIRST VISIT TO GUNSAN</p>
+          <h1 className="mt-3 text-[2.45rem] font-black leading-[1.08] tracking-[-0.06em] drop-shadow-md sm:text-[3.8rem] lg:text-[4.8rem]">
+            군산 처음이면,
+            <br />이 코스 그대로 가보세요
           </h1>
-          <p className="mt-2 max-w-2xl text-sm font-medium leading-6 text-slate-700 sm:text-base">
-            밥집, 카페, 관광지, 주차, 오늘 영업 정보까지 한 번에 찾으세요.
+          <p className="mt-4 max-w-[760px] text-base font-semibold leading-7 text-white/90 sm:text-xl sm:leading-8 lg:text-2xl">
+            맛집, 카페, 관광지를 따로 찾느라 헤매지 않도록 군산에서 먼저 가볼 흐름을 정리했습니다.
           </p>
+
+          <nav className="mt-7 flex flex-wrap gap-2.5 sm:mt-9" aria-label="대표 코스 바로가기">
+            {heroCourseLinks.map((course, index) => (
+              <Link
+                key={course.label}
+                href={course.href}
+                className={[
+                  "rounded-full border px-4 py-2.5 text-sm font-black transition hover:-translate-y-0.5 sm:px-5 sm:py-3 sm:text-base",
+                  index === 0
+                    ? "border-[#f08a27] bg-[#f08a27] text-white hover:bg-[#df7617]"
+                    : "border-white/55 bg-black/15 text-white backdrop-blur-sm hover:bg-white hover:text-slate-950",
+                ].join(" ")}
+              >
+                {course.label} 코스
+              </Link>
+            ))}
+          </nav>
 
           <Link
             id="main-search"
             href="/places"
-            aria-label="군산 장소 검색 페이지로 이동"
-            className="mt-5 flex h-14 items-center rounded-2xl border-2 border-[#123f67] bg-white pl-4 pr-1.5 shadow-lg shadow-slate-900/10 transition hover:border-cyan-700 sm:h-16 sm:pl-6"
+            aria-label="군산 전체 장소 검색 페이지로 이동"
+            className="mt-8 flex h-12 max-w-[560px] items-center rounded-full border border-white/40 bg-white/92 px-5 text-slate-800 shadow-lg backdrop-blur transition hover:bg-white sm:h-14 sm:px-6"
           >
-            <span className="min-w-0 flex-1 truncate text-sm font-semibold text-slate-500 sm:text-base">
-              예: 주차 되는 카페, 아이랑 갈 곳, 군산역 맛집
+            <span className="min-w-0 flex-1 truncate text-sm font-bold text-slate-500 sm:text-base">
+              이성당 다음 코스 · 아이랑 군산 · 선유도 가는 길
             </span>
-            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-[#123f67] text-white sm:h-12 sm:w-12" aria-hidden="true">
-              <svg viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5">
-                <path fillRule="evenodd" d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.45 4.39l3.33 3.33a.75.75 0 0 1-1.06 1.06l-3.33-3.33A7 7 0 0 1 2 9Z" clipRule="evenodd" />
-              </svg>
-            </span>
+            <SearchIcon />
           </Link>
-
-          <div className="mt-3 hidden flex-wrap items-center gap-x-3 gap-y-2 sm:flex">
-            <span className="text-xs font-bold text-slate-500">인기 검색어</span>
-            {popularTerms.map((term) => (
-              <Link key={term} href="/places" className="text-xs font-bold text-slate-700 underline decoration-slate-300 underline-offset-4 hover:text-cyan-800">
-                {term}
-              </Link>
-            ))}
-          </div>
-
-          <div className="mt-6">
-            <div className="mb-2.5 flex items-end justify-between">
-              <h2 className="text-base font-black text-slate-950 sm:text-lg">관광객 빠른 선택</h2>
-              <span className="text-xs font-semibold text-slate-500">상황에 맞게 바로 찾기</span>
-            </div>
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
-              {quickChoices.map((choice) => (
-                <Link
-                  key={choice.label}
-                  href="/places"
-                  className="flex min-h-12 items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm font-extrabold text-slate-800 shadow-sm transition hover:-translate-y-0.5 hover:border-cyan-300 hover:text-cyan-800"
-                >
-                  <span className="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-cyan-50 text-[10px] font-black text-cyan-800" aria-hidden="true">
-                    {choice.icon}
-                  </span>
-                  {choice.label}
-                </Link>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function SearchIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-6 w-6 shrink-0" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true">
+      <circle cx="10.5" cy="10.5" r="6.5" />
+      <path d="m15.5 15.5 5 5" />
+    </svg>
   );
 }
