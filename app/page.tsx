@@ -16,6 +16,15 @@ const guestQuestions = [
   { label: "비 오면 어디로 가요?", answer: "비 오는 날 코스", href: "#course-rainy-day" },
 ] as const;
 
+const featuredCourses = homeCourses.filter((course) => course.theme === "first-visit");
+const quickCourses = homeCourses.filter(
+  (course) => course.theme === "half-day" || course.theme === "one-night-two-days",
+);
+const situationalCourseThemes = ["family", "rainy-day", "seonyudo", "two-nights-three-days"] as const;
+const situationalCourses = situationalCourseThemes.flatMap((theme) =>
+  homeCourses.filter((course) => course.theme === theme),
+);
+
 const essentialContext: Record<string, { whyHere: string; courseLabel: string }> = {
   "eunpa-lake-park": {
     whyHere: "도심 일정을 마친 뒤 군산의 호수 풍경을 따라 산책하기 좋은 선택입니다.",
@@ -52,11 +61,30 @@ export default function Home() {
           <SectionTitle
             eyebrow="CHOOSE YOUR COURSE"
             title="군산 처음이면, 코스부터 고르세요"
-            description="일정과 상황 하나만 고르면 어디부터 볼지 바로 알 수 있습니다."
+            description="일정과 상황만 고르면 어디부터 볼지 바로 알 수 있습니다."
           />
-          <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {homeCourses.map((course, index) => (
-              <HomeCourseCard key={course.id} course={course} featured={index === 0} />
+
+          <div className="mt-8 grid gap-4 lg:grid-cols-[1.35fr_0.9fr]">
+            {featuredCourses.map((course) => (
+              <HomeCourseCard key={course.id} course={course} variant="featured" />
+            ))}
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+              {quickCourses.map((course) => (
+                <HomeCourseCard key={course.id} course={course} variant="secondary" />
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-9 flex items-end justify-between gap-4 border-t border-slate-200 pt-7">
+            <div>
+              <p className="text-[11px] font-black tracking-[0.14em] text-[#b64b31]">BY SITUATION</p>
+              <h3 className="mt-1 text-xl font-black tracking-[-0.035em] text-slate-950 sm:text-2xl">상황에 맞춰 고르기</h3>
+            </div>
+            <p className="hidden text-sm font-medium text-slate-500 sm:block">아이, 날씨, 바다 일정에 맞는 코스입니다.</p>
+          </div>
+          <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {situationalCourses.map((course) => (
+              <HomeCourseCard key={course.id} course={course} variant="compact" />
             ))}
           </div>
           <p className="mt-5 text-xs font-medium leading-5 text-slate-500">
