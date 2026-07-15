@@ -35,17 +35,17 @@ const stayResults: Record<Stay, { title: string; description: string; href: stri
   "day-trip": {
     title: "반나절 군산 핵심",
     description: "근대거리와 대표 풍경에 집중하고, 선유도는 별도의 하루로 나누는 편이 안전합니다.",
-    href: "#course-half-day",
+    href: "/courses/half-day",
   },
   "one-night": {
     title: "1박 2일 처음 여행",
     description: "첫날은 근대도시, 다음 날은 새만금과 바다 방향으로 여행의 결을 나눕니다.",
-    href: "#course-one-night-two-days",
+    href: "/courses/one-night-two-days",
   },
   "two-nights": {
     title: "2박 3일 천천히 군산",
     description: "도심과 고군산을 나누고 마지막 날은 동행자에게 맞는 산책이나 체험을 선택합니다.",
-    href: "#course-two-nights-three-days",
+    href: "/courses/two-nights-three-days",
   },
 };
 
@@ -62,7 +62,7 @@ const companionNotes: Record<Companion, { title: string; note: string; href?: st
   "family-kids": {
     title: "아이와 쉬어갈 수 있는 흐름을 우선합니다",
     note: "실내 장소, 화장실, 휴식 지점과 날씨 대안을 먼저 확인하고 등반 부담이 있는 장소는 기본 코스에서 뺍니다.",
-    href: "#course-family",
+    href: "/courses/family",
   },
   "family-parents": {
     title: "보행 부담과 주차 이동을 줄입니다",

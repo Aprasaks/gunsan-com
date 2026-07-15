@@ -86,7 +86,7 @@ export default function HomeCourseCard({ course, variant }: HomeCourseCardProps)
       )}
 
       <Link
-        href="#essential"
+        href={`/courses/${course.slug}`}
         className={[
           "mt-auto inline-flex items-center font-black",
           featured ? "pt-7 text-base text-cyan-100" : compact ? "pt-5 text-xs text-[#174d73]" : "pt-5 text-sm text-[#174d73]",
