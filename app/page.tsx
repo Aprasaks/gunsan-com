@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import CourseFinder from "@/components/CourseFinder";
 import FeaturedPlaceCard from "@/components/FeaturedPlaceCard";
 import Header from "@/components/Header";
 import HomeCourseCard from "@/components/HomeCourseCard";
@@ -63,6 +64,8 @@ export default function Home() {
             title="군산 처음이면, 코스부터 고르세요"
             description="일정과 상황만 고르면 어디부터 볼지 바로 알 수 있습니다."
           />
+
+          <CourseFinder />
 
           <div className="mt-8 grid gap-4 lg:grid-cols-[1.35fr_0.9fr]">
             {featuredCourses.map((course) => (
