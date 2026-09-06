@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import type { ReactNode } from "react";
 
 import type { Course } from "@/types/course";
 
@@ -75,13 +76,13 @@ export default function TravelPreview({ course, compact = false }: TravelPreview
             src={item.image}
             alt=""
             fill
+            preload={index === 0}
             sizes={compact ? "(max-width: 1024px) 100vw, 720px" : "100vw"}
             className={[
               "object-cover transition-opacity duration-700",
               index === sceneIndex ? "opacity-100" : "opacity-0",
               viewMode === "drone" ? "preview-drift" : "preview-walk",
             ].join(" ")}
-            priority={index === 0}
           />
         ))}
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(4,18,28,0.82)_0%,rgba(4,18,28,0.45)_48%,rgba(4,18,28,0.2)_100%)]" />
@@ -151,7 +152,7 @@ export default function TravelPreview({ course, compact = false }: TravelPreview
   );
 }
 
-function ModeButton({ selected, onClick, children }: { selected: boolean; onClick: () => void; children: React.ReactNode }) {
+function ModeButton({ selected, onClick, children }: { selected: boolean; onClick: () => void; children: ReactNode }) {
   return (
     <button
       type="button"
