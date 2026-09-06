@@ -15,6 +15,8 @@ export type CourseStop = {
   stopType: "place" | "food" | "cafe" | "rest" | "move" | "event";
   reason: string;
   note?: string;
+  stayDuration?: string;
+  nextMove?: string;
 };
 
 export type Course = {
@@ -24,8 +26,13 @@ export type Course = {
   subtitle: string;
   theme: CourseTheme;
   durationLabel: string;
+  estimatedTime: string;
+  transportLabel: string;
   recommendedFor: string[];
+  notRecommendedFor: string[];
   summary: string;
   stops: CourseStop[];
+  routeNote: string;
+  alternativeStops: string[];
   sourceNote: string;
 };
