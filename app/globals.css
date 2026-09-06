@@ -36,46 +36,45 @@ body {
   font-family: "Pretendard Variable", Pretendard, var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 
+button,
+summary,
+a { -webkit-tap-highlight-color: transparent; }
+
+:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--lantern-orange) 80%, white);
+  outline-offset: 3px;
+}
+
 ::selection {
-  background: #b9dcff;
-  color: #082b48;
+  background: #f8c28e;
+  color: #0f2e4d;
 }
 
-.preview-drift {
-  animation: preview-drift 14s ease-in-out infinite alternate;
-}
-
-.preview-walk {
-  animation: preview-walk 9s ease-in-out infinite alternate;
+.preview-drift { animation: preview-drift 14s ease-in-out infinite alternate; }
+.preview-walk { animation: preview-walk 9s ease-in-out infinite alternate; }
+.preview-progress {
+  animation: preview-progress 3.2s linear infinite;
+  transform-origin: left;
 }
 
 @keyframes preview-drift {
-  from {
-    transform: scale(1.02) translate3d(-0.6%, -0.4%, 0);
-  }
-
-  to {
-    transform: scale(1.11) translate3d(1.2%, 0.8%, 0);
-  }
+  from { transform: scale(1.02) translate3d(-0.6%, -0.4%, 0); }
+  to { transform: scale(1.11) translate3d(1.2%, 0.8%, 0); }
 }
 
 @keyframes preview-walk {
-  from {
-    transform: scale(1.08) translate3d(-1.1%, 0.7%, 0);
-  }
+  from { transform: scale(1.08) translate3d(-1.1%, 0.7%, 0); }
+  to { transform: scale(1.16) translate3d(1.4%, -0.7%, 0); }
+}
 
-  to {
-    transform: scale(1.16) translate3d(1.4%, -0.7%, 0);
-  }
+@keyframes preview-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
+  html { scroll-behavior: auto; }
   .preview-drift,
-  .preview-walk {
-    animation: none;
-  }
+  .preview-walk,
+  .preview-progress { animation: none; }
 }

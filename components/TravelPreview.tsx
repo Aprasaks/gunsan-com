@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import type { ReactNode } from "react";
 
 import type { Course } from "@/types/course";
@@ -29,6 +29,22 @@ const fallbackImages = [
   "/images/categories/category-cafe.webp",
 ];
 
+const SAVED_COURSES_KEY = "gunsan-saved-courses";
+const SAVED_COURSES_EVENT = "gunsan-saved-courses-change";
+
+function subscribeToSavedCourses(onStoreChange: () => void) {
+  window.addEventListener("storage", onStoreChange);
+  window.addEventListener(SAVED_COURSES_EVENT, onStoreChange);
+  return () => {
+    window.removeEventListener("storage", onStoreChange);
+    window.removeEventListener(SAVED_COURSES_EVENT, onStoreChange);
+  };
+}
+
+function getSavedCoursesSnapshot() {
+  return window.localStorage.getItem(SAVED_COURSES_KEY) ?? "";
+}
+
 export default function TravelPreview({ course, compact = false }: TravelPreviewProps) {
   const scenes = useMemo(
     () =>
@@ -42,6 +58,8 @@ export default function TravelPreview({ course, compact = false }: TravelPreview
   const [sceneIndex, setSceneIndex] = useState(0);
   const [playing, setPlaying] = useState(true);
   const [viewMode, setViewMode] = useState<ViewMode>("drone");
+  const savedCourses = useSyncExternalStore(subscribeToSavedCourses, getSavedCoursesSnapshot, () => "");
+  const saved = savedCourses.split(",").includes(course.slug);
 
   useEffect(() => {
     if (!playing || scenes.length < 2) {
@@ -60,6 +78,20 @@ export default function TravelPreview({ course, compact = false }: TravelPreview
   if (!scene) {
     return null;
   }
+
+  const nextScene = scenes[(sceneIndex + 1) % scenes.length];
+  const moveScene = (direction: -1 | 1) => {
+    setSceneIndex((current) => (current + direction + scenes.length) % scenes.length);
+    setPlaying(false);
+  };
+  const toggleSaved = () => {
+    const current = (window.localStorage.getItem(SAVED_COURSES_KEY) ?? "")
+      .split(",")
+      .filter(Boolean);
+    const next = saved ? current.filter((slug) => slug !== course.slug) : [...new Set([...current, course.slug])];
+    window.localStorage.setItem(SAVED_COURSES_KEY, next.join(","));
+    window.dispatchEvent(new Event(SAVED_COURSES_EVENT));
+  };
 
   return (
     <section
@@ -88,15 +120,19 @@ export default function TravelPreview({ course, compact = false }: TravelPreview
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(4,18,28,0.82)_0%,rgba(4,18,28,0.45)_48%,rgba(4,18,28,0.2)_100%)]" />
         <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[#06131c] via-[#06131c]/35 to-transparent" />
 
-        <div className="relative flex min-h-[inherit] flex-col p-5 sm:p-7 lg:p-10">
+        <div className="relative flex min-h-[inherit] flex-col p-5 sm:p-7 lg:p-10" aria-live="polite">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="flex items-center gap-2 rounded-full border border-white/20 bg-black/25 p-1 backdrop-blur-md">
               <ModeButton selected={viewMode === "drone"} onClick={() => setViewMode("drone")}>드론 시점</ModeButton>
               <ModeButton selected={viewMode === "walk"} onClick={() => setViewMode("walk")}>1인칭 시점</ModeButton>
             </div>
-            <p className="rounded-full border border-white/20 bg-black/25 px-3 py-2 text-xs font-black backdrop-blur-md">
-              {sceneIndex + 1} / {scenes.length}
-            </p>
+            <div className="flex items-center gap-2">
+              <button type="button" onClick={() => moveScene(-1)} className="grid h-9 w-9 place-items-center rounded-full border border-white/20 bg-black/25 text-sm backdrop-blur hover:bg-white/10" aria-label="이전 장소 보기">←</button>
+              <p className="rounded-full border border-white/20 bg-black/25 px-3 py-2 text-xs font-black backdrop-blur-md">
+                {sceneIndex + 1} / {scenes.length}
+              </p>
+              <button type="button" onClick={() => moveScene(1)} className="grid h-9 w-9 place-items-center rounded-full border border-white/20 bg-black/25 text-sm backdrop-blur hover:bg-white/10" aria-label="다음 장소 보기">→</button>
+            </div>
           </div>
 
           <div className="mt-auto max-w-2xl pb-3">
@@ -109,6 +145,11 @@ export default function TravelPreview({ course, compact = false }: TravelPreview
               <div>
                 <h3 className="text-xl font-black sm:text-2xl">{scene.title}</h3>
                 <p className="mt-1 max-w-xl text-sm font-semibold leading-6 text-white/72 sm:text-base">{scene.reason}</p>
+                {nextScene && scenes.length > 1 ? (
+                  <p className="mt-3 text-xs font-bold text-[#a8d5e8]">
+                    다음 · {nextScene.title}
+                  </p>
+                ) : null}
               </div>
             </div>
 
@@ -124,10 +165,18 @@ export default function TravelPreview({ course, compact = false }: TravelPreview
               <Link href={`/courses/${course.slug}`} className="rounded-full border border-white/35 bg-black/20 px-4 py-2.5 text-sm font-black text-white backdrop-blur transition hover:bg-white/12">
                 이 코스로 여행하기 →
               </Link>
+              <button
+                type="button"
+                onClick={toggleSaved}
+                aria-pressed={saved}
+                className="rounded-full border border-white/35 bg-black/20 px-4 py-2.5 text-sm font-black text-white backdrop-blur transition hover:bg-white/12"
+              >
+                {saved ? "♥ 저장됨" : "♡ 내 여행에 저장"}
+              </button>
             </div>
           </div>
 
-          <div className="mt-5 grid grid-cols-4 gap-2 sm:grid-cols-6">
+          <div className="mt-5 grid grid-cols-4 gap-2 sm:grid-cols-6" aria-label="코스 장면 선택">
             {scenes.slice(0, 6).map((item, index) => (
               <button
                 key={item.id}
@@ -145,6 +194,9 @@ export default function TravelPreview({ course, compact = false }: TravelPreview
                 <Image src={item.image} alt="" fill sizes="140px" className="object-cover" />
               </button>
             ))}
+          </div>
+          <div className="mt-4 h-0.5 overflow-hidden bg-white/15">
+            {playing ? <span key={`${scene.id}-${sceneIndex}`} className="preview-progress block h-full bg-lantern" /> : null}
           </div>
         </div>
       </div>
