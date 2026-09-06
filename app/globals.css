@@ -2,19 +2,32 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f6f8fb;
-  --foreground: #0f172a;
+  --background: #f7f4ed;
+  --foreground: #122233;
+  --gunsan-navy: #0f2e4d;
+  --sea-blue: #4e8ca8;
+  --lantern-orange: #f2994a;
+  --ivory: #f7f4ed;
+  --navy-soft: #e9eef2;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-gunsan-navy: var(--gunsan-navy);
+  --color-sea-blue: var(--sea-blue);
+  --color-lantern: var(--lantern-orange);
+  --color-ivory: var(--ivory);
+  --color-navy-soft: var(--navy-soft);
   --font-sans: "Pretendard Variable", Pretendard, var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
+* { box-sizing: border-box; }
+
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
 }
 
 body {

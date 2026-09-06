@@ -13,9 +13,24 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "군산.com | 군산 생활 정보 검증소",
+  metadataBase: new URL("https://gunsan.com"),
+  title: "군산.com | 그대로 따라가는 군산 여행코스",
   description:
-    "군산에서 매번 다시 물어봐야 했던 생활 정보를 모아 검증하는 지역 정보 웹사이트",
+    "관광지부터 맛집·카페·놀거리까지, 군산에서 가야 할 곳을 실제 여행 동선으로 이어드립니다.",
+  openGraph: {
+    title: "군산.com | 그대로 따라가는 군산 여행코스",
+    description: "오늘 군산, 어떻게 여행할까요? 관광지부터 맛집·카페까지 하나의 코스로 이어드립니다.",
+    images: [{ url: "/og.png", width: 1730, height: 909, alt: "오늘 군산, 어떻게 여행할까요?" }],
+    locale: "ko_KR",
+    siteName: "군산.com",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "군산.com | 그대로 따라가는 군산 여행코스",
+    description: "관광지부터 맛집·카페까지, 하나의 코스로.",
+    images: ["/og.png"],
+  },
 };
 
 export default function RootLayout({
