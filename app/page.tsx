@@ -2,8 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 import CourseFinder from "@/components/CourseFinder";
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import HomeCourseCard from "@/components/HomeCourseCard";
+import MobileNavigation from "@/components/MobileNavigation";
 import SearchHero from "@/components/SearchHero";
 import TravelPreview from "@/components/TravelPreview";
 import { homeCourses } from "@/data/courses";
@@ -14,39 +16,56 @@ const featuredCourses = featuredSlugs
   .filter((course): course is (typeof homeCourses)[number] => Boolean(course));
 const previewCourse = homeCourses.find((course) => course.slug === "first-gunsan") ?? homeCourses[0];
 
+const mobileQuickLinks = [
+  { label: "내 주변", href: "/map" },
+  { label: "여행코스", href: "#courses" },
+  { label: "맛집", href: "/places" },
+  { label: "카페", href: "/places" },
+  { label: "축제", href: "#spot" },
+] as const;
+
 export default function Home() {
   return (
-    <main className="min-h-screen overflow-x-hidden bg-[#f6f8fb] text-slate-950">
+    <main className="min-h-screen overflow-x-hidden bg-ivory text-foreground">
       <div className="relative">
         <Header overlay />
         <SearchHero />
       </div>
 
-      <section id="start" className="scroll-mt-20 px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-        <div className="mx-auto w-full max-w-[1180px]">
+      <nav className="grid grid-cols-5 border-b border-slate-200 bg-white px-3 py-3 lg:hidden" aria-label="빠른 메뉴">
+        {mobileQuickLinks.map((item, index) => (
+          <Link key={item.label} href={item.href} className="flex flex-col items-center gap-1.5 py-2 text-[11px] font-bold text-slate-600">
+            <span className="grid h-8 w-8 place-items-center rounded-full bg-navy-soft font-mono text-[10px] text-gunsan-navy" aria-hidden="true">0{index + 1}</span>
+            {item.label}
+          </Link>
+        ))}
+      </nav>
+
+      <section id="start" className="px-5 py-16 sm:px-8 sm:py-20 lg:px-10 lg:py-28">
+        <div className="mx-auto w-full max-w-[1280px]">
           <SectionLead
-            eyebrow="START YOUR GUNSAN"
-            title="세 가지만 고르면, 여행이 시작됩니다"
-            description="누구와 오는지, 얼마나 머무는지, 어떻게 이동하는지만 알려주세요. 장소 목록 대신 가장 맞는 코스부터 보여드립니다."
+            eyebrow="FIND YOUR COURSE"
+            title="네 가지만 고르면, 군산의 하루가 정해집니다"
+            description="검색 결과 수십 개 대신 지금 여행에 맞는 코스 세 개만 남깁니다. 첫 번째 추천부터 그대로 따라가도 됩니다."
           />
           <CourseFinder />
         </div>
       </section>
 
-      <section id="courses" className="scroll-mt-20 border-y border-slate-200 bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+      <section id="courses" className="border-y border-slate-200 bg-[#f0ede5] px-5 py-16 sm:px-8 sm:py-20 lg:px-10 lg:py-28">
         <div className="mx-auto w-full max-w-[1280px]">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <SectionLead
               eyebrow="CURATED COURSES"
-              title="처음에는 세 코스만 보세요"
-              description="정보를 더 보여주는 대신 결정을 줄였습니다. 도심, 바다, 가족 여행 중 지금 내 여행에 가까운 흐름부터 고르면 됩니다."
+              title="처음엔, 이 세 코스만 보세요"
+              description="도심의 시간, 선유도의 바다, 가족의 속도. 장소를 늘리는 대신 서로 다른 하루 세 개로 압축했습니다."
             />
-            <Link href="/places" className="shrink-0 text-sm font-black text-[#0f75d8] transition hover:text-[#0b66bf]">
-              전체 장소는 필요할 때 보기 →
+            <Link href="#start" className="shrink-0 border-b border-gunsan-navy pb-1 text-sm font-black text-gunsan-navy">
+              내 조건으로 다시 고르기 ↗
             </Link>
           </div>
 
-          <div className="mt-9 grid gap-5 lg:grid-cols-[1.16fr_0.84fr_0.84fr]">
+          <div className="mt-10 grid gap-5 lg:grid-cols-[1.16fr_0.84fr_0.84fr]">
             {featuredCourses.map((course, index) => (
               <HomeCourseCard key={course.id} course={course} variant={index === 0 ? "featured" : "secondary"} />
             ))}
@@ -55,13 +74,15 @@ export default function Home() {
       </section>
 
       {previewCourse ? (
-        <section className="bg-[#081b28] px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+        <section className="bg-[#071925] px-5 py-16 sm:px-8 sm:py-20 lg:px-10 lg:py-28">
           <div className="mx-auto w-full max-w-[1280px]">
-            <div className="mb-8 max-w-3xl text-white">
-              <p className="text-xs font-black tracking-[0.18em] text-cyan-300">TRAVEL BEFORE YOU GO</p>
-              <h2 className="mt-3 text-3xl font-black tracking-[-0.055em] sm:text-4xl lg:text-5xl">가기 전에, 군산을 먼저 여행해보세요</h2>
-              <p className="mt-4 text-sm font-semibold leading-7 text-white/66 sm:text-base">
-                지도만 보는 대신 코스의 장면을 따라가며 분위기와 이동 순서를 먼저 느낍니다. 실제 영상이 준비되면 같은 UI에 드론·1인칭 클립을 그대로 연결할 수 있습니다.
+            <div className="mb-9 grid gap-5 text-white lg:grid-cols-[1fr_0.72fr] lg:items-end">
+              <div>
+                <p className="text-[11px] font-black tracking-[0.2em] text-[#9ecadf]">TRAVEL BEFORE YOU GO</p>
+                <h2 className="mt-3 text-4xl font-black tracking-[-0.06em] sm:text-5xl lg:text-6xl">가기 전에,<br />한 번 먼저 걸어보세요</h2>
+              </div>
+              <p className="max-w-xl text-sm font-medium leading-7 text-white/58 sm:text-base">
+                현재는 군산 사진의 장면 전환으로 코스의 순서를 체험합니다. 이후 같은 구조에 드론·1인칭 영상 클립을 교체할 수 있습니다.
               </p>
             </div>
             <TravelPreview course={previewCourse} />
@@ -69,87 +90,70 @@ export default function Home() {
         </section>
       ) : null}
 
-      <section className="px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-        <div className="mx-auto grid w-full max-w-[1280px] gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
+      <section className="px-5 py-16 sm:px-8 sm:py-20 lg:px-10 lg:py-28">
+        <div className="mx-auto grid w-full max-w-[1280px] gap-10 lg:grid-cols-[0.76fr_1.24fr] lg:items-center">
           <div>
             <SectionLead
-              eyebrow="ROUTE, NOT A LIST"
-              title="지도도 장소 찾기가 아니라 여행 흐름을 보여줍니다"
-              description="관광지와 맛집, 카페를 따로 찍는 대신 선택한 코스의 순서와 다음 이동을 한 화면에서 확인하는 구조입니다."
+              eyebrow="ROUTE MAP"
+              title="지도에는 장소보다 순서가 먼저 보입니다"
+              description="선택한 코스의 관광지, 식사 구간, 카페, 다음 장소를 하나의 흐름으로 확인합니다. 실제 지도 SDK와 길찾기는 검증된 좌표가 준비된 뒤 연결합니다."
             />
-
-            <div className="mt-7 space-y-3">
-              <RouteNote number="1" title="관광지를 먼저 선택" text="군산근대역사박물관처럼 코스의 기준이 되는 장소에서 시작합니다." />
-              <RouteNote number="2" title="먹거리·카페를 동선에 삽입" text="검색 순위가 아니라 지금 가는 길에서 자연스럽게 들를 수 있는 선택지를 보여줍니다." />
-              <RouteNote number="3" title="다음 장소까지 이어서 안내" text="이동 시간과 다음 목적지를 한 흐름으로 보여줘 다시 검색하지 않게 만듭니다." />
-            </div>
-
-            <Link href="/map" className="mt-7 inline-flex rounded-full bg-[#0d3557] px-5 py-3 text-sm font-black text-white transition hover:bg-[#092a46]">
-              여행지도 보기 →
+            <Link href="/map" className="mt-8 inline-flex min-h-12 items-center rounded-full bg-gunsan-navy px-6 text-sm font-black text-white transition hover:-translate-y-0.5">
+              여행지도에서 전체 흐름 보기 →
             </Link>
           </div>
 
-          <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-[#e9f4fb] p-4 shadow-xl shadow-slate-200/60 sm:p-6">
-            <div className="relative aspect-[16/10] overflow-hidden rounded-[1.45rem] bg-white">
-              <Image src="/images/ui/map-preview.webp" alt="군산 여행 경로 지도 미리보기" fill sizes="(max-width: 1024px) 100vw, 760px" className="object-cover" />
-              <div className="absolute left-4 top-4 rounded-full bg-white/92 px-3 py-2 text-xs font-black text-[#0d3557] shadow-sm backdrop-blur">군산 시간여행 코스</div>
-              <div className="absolute bottom-4 left-4 right-4 rounded-2xl border border-white/60 bg-white/92 p-4 shadow-lg backdrop-blur sm:left-auto sm:w-[300px]">
-                <p className="text-[11px] font-black tracking-[0.12em] text-[#0f75d8]">NEXT STOP</p>
-                <h3 className="mt-1 text-lg font-black">초원사진관 방향으로 이동</h3>
-                <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">다음 장소와 이동 중 들를 먹거리·카페를 함께 확인하는 화면</p>
+          <div className="relative min-h-[470px] overflow-hidden border border-slate-200 bg-white p-5 shadow-xl shadow-slate-900/5 sm:p-8">
+            <Image src="/images/ui/map-preview.webp" alt="코스 동선을 표현하는 지도 배경 예시" fill sizes="(max-width: 1024px) 100vw, 760px" className="object-cover opacity-28" />
+            <div className="relative z-10 flex h-full min-h-[410px] flex-col justify-between">
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <p className="text-[10px] font-black tracking-[0.16em] text-sea-blue">SELECTED COURSE</p>
+                  <h3 className="mt-1 text-xl font-black tracking-[-0.04em] text-gunsan-navy">군산 처음 코스</h3>
+                </div>
+                <span className="rounded-full bg-white px-3 py-2 text-xs font-bold text-slate-500 shadow-sm">코스 흐름 MVP</span>
+              </div>
+              <RouteMap />
+              <div className="self-end border-l-2 border-lantern bg-white/92 px-4 py-3 shadow-sm backdrop-blur">
+                <p className="text-[10px] font-black tracking-[0.12em] text-sea-blue">NEXT STOP</p>
+                <p className="mt-1 text-sm font-black text-gunsan-navy">월명공원으로 이어가기</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="spot" className="scroll-mt-20 bg-[#eaf5ff] px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-        <div className="mx-auto grid w-full max-w-[1180px] gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-center">
+      <section id="spot" className="bg-[#dfe9e9] px-5 py-16 sm:px-8 sm:py-20 lg:px-10 lg:py-28">
+        <div className="mx-auto grid w-full max-w-[1180px] gap-10 lg:grid-cols-[1fr_0.82fr] lg:items-center">
           <div>
-            <p className="text-xs font-black tracking-[0.18em] text-[#0f75d8]">GUNSAN.COM SPOT</p>
-            <h2 className="mt-3 text-3xl font-black tracking-[-0.055em] sm:text-4xl lg:text-5xl">여행은 현장 QR에서도 계속됩니다</h2>
-            <p className="mt-4 max-w-2xl text-sm font-semibold leading-7 text-slate-600 sm:text-base">
-              관광지에서 군산.com QR을 찍으면 그 장소의 짧은 이야기, 사진 포인트, 근처 먹거리, 다음 관광지를 바로 이어서 볼 수 있습니다.
+            <p className="text-[11px] font-black tracking-[0.2em] text-sea-blue">GUNSAN.COM SPOT</p>
+            <h2 className="mt-3 text-4xl font-black tracking-[-0.06em] text-gunsan-navy sm:text-5xl lg:text-6xl">도착한 뒤에도,<br />여행은 이어집니다</h2>
+            <p className="mt-5 max-w-2xl text-sm font-medium leading-7 text-slate-600 sm:text-base">
+              관광지의 군산.com SPOT을 스캔하면 현재 장소의 1분 이야기와 사진 포인트, 근처 먹거리, 다음 관광지를 한 손 안에서 이어봅니다.
             </p>
-
-            <div className="mt-7 flex flex-wrap gap-2 text-sm font-black text-[#0d3557]">
-              {['장소 이야기', '근처 맛집', '다음 관광지', '내 코스 저장'].map((label) => (
-                <span key={label} className="rounded-full border border-[#b9d8f2] bg-white px-4 py-2.5">{label}</span>
+            <div className="mt-7 flex flex-wrap gap-x-5 gap-y-3 text-sm font-black text-gunsan-navy">
+              {["1분 이야기", "사진 포인트", "근처 선택", "다음 관광지"].map((label, index) => (
+                <span key={label} className="flex items-center gap-2"><b className="font-mono text-[10px] text-lantern">0{index + 1}</b>{label}</span>
               ))}
             </div>
           </div>
 
-          <div className="mx-auto w-full max-w-[480px] rounded-[2rem] bg-white p-5 shadow-xl shadow-blue-100/80 sm:p-7">
-            <div className="grid grid-cols-[96px_minmax(0,1fr)] gap-5 sm:grid-cols-[120px_minmax(0,1fr)]">
-              <div className="grid aspect-square place-items-center rounded-2xl bg-slate-950 p-3 text-white">
-                <div className="grid h-full w-full grid-cols-5 gap-1" aria-label="QR 코드 예시">
-                  {Array.from({ length: 25 }, (_, index) => (
-                    <span key={index} className={index % 3 === 0 || index % 7 === 0 ? "rounded-[2px] bg-white" : "rounded-[2px] bg-slate-800"} />
-                  ))}
-                </div>
-              </div>
-              <div>
-                <p className="text-xs font-black tracking-[0.12em] text-[#0f75d8]">지금 이곳</p>
-                <h3 className="mt-1 text-2xl font-black tracking-[-0.04em]">군산근대역사박물관</h3>
-                <p className="mt-2 text-sm font-semibold leading-6 text-slate-500">QR을 찍고 현재 장소에서 다음 여행을 이어갑니다.</p>
-                <button type="button" className="mt-4 rounded-full bg-[#0f75d8] px-4 py-2.5 text-sm font-black text-white">다음 장소 보기 →</button>
-              </div>
+          <div className="mx-auto w-full max-w-[430px] rounded-t-[11rem] bg-gunsan-navy px-7 pb-8 pt-20 text-white shadow-2xl">
+            <div className="mx-auto grid h-24 w-24 grid-cols-3 gap-1 border border-white/20 bg-white p-2" aria-label="군산.com SPOT QR 연결 예시">
+              {Array.from({ length: 9 }, (_, index) => <span key={index} className={index % 2 === 0 ? "bg-gunsan-navy" : "bg-navy-soft"} />)}
             </div>
+            <p className="mt-6 text-center text-[10px] font-black tracking-[0.18em] text-[#9ecadf]">YOU ARE HERE</p>
+            <h3 className="mt-2 text-center text-2xl font-black tracking-[-0.04em]">군산근대역사박물관</h3>
+            <div className="mt-6 grid grid-cols-2 border-t border-white/14 pt-5 text-center text-xs font-bold text-white/62">
+              <span>현재 장소 이야기</span><span>다음 장소 보기 →</span>
+            </div>
+            <p className="mt-5 text-center text-[11px] font-medium text-white/38">실제 QR 연결은 후속 단계에서 제공합니다.</p>
           </div>
         </div>
       </section>
 
-      <section className="px-4 py-14 sm:px-6 lg:px-8 lg:py-18">
-        <div className="mx-auto flex w-full max-w-[1180px] flex-col gap-5 rounded-[2rem] bg-[#0d3557] px-6 py-8 text-white sm:px-8 sm:py-10 lg:flex-row lg:items-center lg:justify-between">
-          <div>
-            <p className="text-xs font-black tracking-[0.16em] text-cyan-200">GUNSAN.COM</p>
-            <h2 className="mt-2 text-2xl font-black tracking-[-0.045em] sm:text-3xl">관광지를 찾는 사이트가 아니라, 군산의 하루를 만드는 사이트</h2>
-          </div>
-          <Link href="#start" className="shrink-0 rounded-full bg-white px-5 py-3 text-sm font-black text-[#0d3557] transition hover:bg-cyan-50">
-            내 코스 만들기 →
-          </Link>
-        </div>
-      </section>
+      <Footer />
+      <MobileNavigation />
     </main>
   );
 }
@@ -157,21 +161,32 @@ export default function Home() {
 function SectionLead({ eyebrow, title, description }: { eyebrow: string; title: string; description: string }) {
   return (
     <div className="max-w-3xl">
-      <p className="text-[11px] font-black tracking-[0.18em] text-[#0f75d8] sm:text-xs">{eyebrow}</p>
-      <h2 className="mt-2 text-3xl font-black tracking-[-0.055em] text-[#0d3557] sm:text-4xl lg:text-[2.85rem]">{title}</h2>
-      <p className="mt-3 text-sm font-semibold leading-7 text-slate-600 sm:text-base">{description}</p>
+      <p className="text-[10px] font-black tracking-[0.2em] text-sea-blue sm:text-[11px]">{eyebrow}</p>
+      <h2 className="mt-3 text-3xl font-black tracking-[-0.06em] text-gunsan-navy sm:text-4xl lg:text-5xl">{title}</h2>
+      <p className="mt-4 max-w-2xl text-sm font-medium leading-7 text-slate-600 sm:text-base">{description}</p>
     </div>
   );
 }
 
-function RouteNote({ number, title, text }: { number: string; title: string; text: string }) {
+function RouteMap() {
+  const stops = [
+    { label: "근대역사박물관", kind: "관광", tone: "bg-gunsan-navy" },
+    { label: "점심 선택", kind: "맛집", tone: "bg-lantern" },
+    { label: "월명공원", kind: "산책", tone: "bg-sea-blue" },
+    { label: "카페 선택", kind: "휴식", tone: "bg-lantern" },
+    { label: "은파호수공원", kind: "관광", tone: "bg-gunsan-navy" },
+  ] as const;
+
   return (
-    <div className="flex gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#e7f3ff] text-sm font-black text-[#0f75d8]">{number}</span>
-      <div>
-        <strong className="block text-sm font-black text-slate-900 sm:text-base">{title}</strong>
-        <p className="mt-1 text-sm font-medium leading-6 text-slate-500">{text}</p>
-      </div>
-    </div>
+    <ol className="my-10 flex items-start justify-between gap-1" aria-label="군산 처음 코스 지도 흐름">
+      {stops.map((stop, index) => (
+        <li key={stop.label} className="relative flex min-w-0 flex-1 flex-col items-center text-center">
+          {index < stops.length - 1 ? <span className="absolute left-1/2 top-4 h-px w-full border-t border-dashed border-sea-blue/55" aria-hidden="true" /> : null}
+          <span className={["relative z-10 grid h-8 w-8 place-items-center rounded-full text-[10px] font-black text-white shadow", stop.tone].join(" ")}>{index + 1}</span>
+          <strong className="mt-3 line-clamp-2 text-[11px] font-black text-gunsan-navy sm:text-sm">{stop.label}</strong>
+          <span className="mt-1 text-[9px] font-bold text-slate-400 sm:text-[10px]">{stop.kind}</span>
+        </li>
+      ))}
+    </ol>
   );
 }

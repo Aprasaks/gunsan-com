@@ -1,6 +1,8 @@
 import Link from "next/link";
 
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import MobileNavigation from "@/components/MobileNavigation";
 
 const heroBadges = ["광고 상품 아님", "사장님 인증 필요", "관리자 확인 후 반영"];
 
@@ -58,7 +60,7 @@ const registrationSteps = [
 
 export default function OwnersPage() {
   return (
-    <main className="min-h-screen overflow-x-hidden bg-slate-50 text-slate-950">
+    <main className="min-h-screen overflow-x-hidden bg-ivory text-slate-950">
       <Header />
 
       <section className="border-b border-slate-200 bg-white px-4 py-8 sm:px-6 lg:py-12">
@@ -259,6 +261,8 @@ export default function OwnersPage() {
           </aside>
         </div>
       </section>
+      <Footer />
+      <MobileNavigation />
     </main>
   );
 }

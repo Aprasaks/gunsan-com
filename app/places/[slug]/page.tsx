@@ -1,7 +1,10 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import MobileNavigation from "@/components/MobileNavigation";
 import StatusBadge from "@/components/StatusBadge";
 import { places } from "@/data/places";
 import type { PlaceOwnerInfo, PlaceVisitorInfo } from "@/types/place";
@@ -128,6 +131,18 @@ export function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata({ params }: PlaceDetailPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const place = places.find((item) => item.slug === slug);
+
+  return place ? {
+    title: `${place.name} | 군산.com`,
+    description: place.description,
+    openGraph: { title: `${place.name} | 군산.com`, description: place.description, images: [] },
+    twitter: { title: `${place.name} | 군산.com`, description: place.description, images: [] },
+  } : {};
+}
+
 export default async function PlaceDetailPage({ params }: PlaceDetailPageProps) {
   const { slug } = await params;
   const place = places.find((item) => item.slug === slug);
@@ -162,7 +177,7 @@ export default async function PlaceDetailPage({ params }: PlaceDetailPageProps) 
   );
 
   return (
-    <main className="min-h-screen overflow-x-hidden bg-slate-50 text-slate-950">
+    <main className="min-h-screen overflow-x-hidden bg-ivory text-slate-950">
       <Header />
 
       <section className="px-4 py-4 sm:px-6 lg:px-8">
@@ -295,6 +310,8 @@ export default async function PlaceDetailPage({ params }: PlaceDetailPageProps) 
           </section>
         </div>
       </section>
+      <Footer />
+      <MobileNavigation />
     </main>
   );
 }

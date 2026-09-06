@@ -1,72 +1,65 @@
-"use client";
+import Image from "next/image";
+import Link from "next/link";
 
-import CategoryTabs from "@/components/CategoryTabs";
-import FilterPanel from "@/components/FilterPanel";
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import PlaceCard from "@/components/PlaceCard";
-import RightSidebar from "@/components/RightSidebar";
-import { places } from "@/data/places";
+import MobileNavigation from "@/components/MobileNavigation";
+import { featuredPlaces } from "@/data/featuredPlaces";
+
+const courseLinks: Record<string, string> = {
+  "gunsan-modern-history-museum": "/courses/first-gunsan",
+  "wolmyeong-park": "/courses/half-day",
+  "eunpa-lake-park": "/courses/family",
+  "gyeongam-dong-railroad-village": "/courses/half-day",
+  "saemangeum-seawall": "/courses/seonyudo",
+};
 
 export default function PlacesPage() {
   return (
-    <main className="min-h-screen overflow-x-hidden bg-slate-50 text-slate-950">
+    <main className="min-h-screen overflow-x-hidden bg-ivory text-foreground">
       <Header />
+      <section className="px-5 pb-12 pt-12 sm:px-8 sm:pb-16 sm:pt-16 lg:px-10 lg:pb-20 lg:pt-20">
+        <div className="mx-auto grid w-full max-w-[1280px] gap-8 lg:grid-cols-[1fr_0.7fr] lg:items-end">
+          <div>
+            <p className="text-[10px] font-black tracking-[0.2em] text-sea-blue">PLACES IN A COURSE</p>
+            <h1 className="mt-3 text-4xl font-black tracking-[-0.065em] text-gunsan-navy sm:text-5xl lg:text-6xl">장소는 많게보다,<br />왜 가는지가 먼저</h1>
+          </div>
+          <p className="max-w-xl text-sm font-medium leading-7 text-slate-600 sm:text-base">
+            장소는 검색 결과가 아니라 여행 코스를 만드는 재료입니다. 군산을 처음 찾는 사람이 이유를 이해할 수 있는 대표 장소부터 보여드립니다.
+          </p>
+        </div>
+      </section>
 
-      <section className="border-b border-slate-100 bg-white px-4 py-7 sm:px-6 lg:py-8">
-        <div className="mx-auto w-full max-w-6xl">
-          <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-            <div className="min-w-0">
-              <p className="text-sm font-semibold text-cyan-700">장소 탐색</p>
-              <h1 className="mt-3 text-2xl font-bold leading-tight text-slate-950 sm:text-4xl">
-                군산 장소 둘러보기
-              </h1>
-              <p className="mt-4 max-w-3xl text-base leading-7 text-slate-600">
-                밥 먹을 곳, 쉬어갈 카페, 급하게 찾는 병원과 생활업체까지.
-                군산에서 필요한 장소를 조건별로 둘러보세요.
-              </p>
-              <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-500">
-                업체가 알려준 정보와 방문자가 확인한 정보를 나눠서
-                보여줍니다.
-              </p>
-            </div>
+      <section className="border-y border-slate-200 bg-[#f0ede5] px-5 py-16 sm:px-8 sm:py-20 lg:px-10 lg:py-24">
+        <div className="mx-auto w-full max-w-[1280px]">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {featuredPlaces.map((place, index) => (
+              <article key={place.slug} className={index === 0 ? "group overflow-hidden bg-white sm:col-span-2 lg:row-span-2" : "group overflow-hidden bg-white"}>
+                <div className={index === 0 ? "relative h-72 sm:h-[440px]" : "relative h-56"}>
+                  {place.image ? <Image src={place.image} alt={place.imageAlt} fill sizes={index === 0 ? "(max-width: 1024px) 100vw, 820px" : "(max-width: 1024px) 50vw, 420px"} className="object-cover transition duration-700 group-hover:scale-[1.03]" /> : null}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/72 via-black/5 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-5 text-white sm:p-6">
+                    <p className="text-[10px] font-black tracking-[0.14em] text-[#b9e0ef]">{place.meta}</p>
+                    <h2 className="mt-1 text-2xl font-black tracking-[-0.05em]">{place.name}</h2>
+                    <p className="mt-2 max-w-lg text-sm font-medium leading-6 text-white/72">{place.description}</p>
+                    <Link href={courseLinks[place.slug] ?? "/#courses"} className="mt-4 inline-flex border-b border-white/55 pb-1 text-sm font-black">포함된 코스 보기 →</Link>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
 
-            <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
-              <span className="inline-flex h-10 items-center justify-center rounded-lg border border-cyan-200 bg-cyan-50 px-3 text-sm font-semibold text-cyan-800">
-                목록으로 보기
-              </span>
-              <span className="inline-flex h-10 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 px-3 text-sm font-semibold text-slate-500">
-                지도에서 보기 준비 중
-              </span>
-            </div>
+          <div className="mt-8 grid gap-5 border-t border-slate-300 pt-8 lg:grid-cols-[1fr_auto] lg:items-center">
+            <p className="max-w-3xl text-sm font-medium leading-7 text-slate-600">
+              맛집과 카페는 이름만 많이 나열하지 않습니다. 코스 상세의 식사·휴식 구간에 운영 정보와 이동 맥락이 확인된 후보만 2~3곳씩 연결합니다.
+            </p>
+            <Link href="/#start" className="inline-flex min-h-12 items-center justify-center rounded-full bg-gunsan-navy px-6 text-sm font-black text-white">내 코스부터 고르기 →</Link>
           </div>
         </div>
       </section>
 
-      <CategoryTabs />
-
-      <section className="px-4 py-6 sm:px-6 lg:py-10">
-        <div className="mx-auto grid w-full max-w-6xl gap-5 lg:grid-cols-[288px_minmax(0,1fr)_320px] lg:items-start">
-          <FilterPanel />
-
-          <section aria-label="군산 장소 목록" className="space-y-4">
-            <div className="rounded-xl border border-slate-200 bg-white p-4 sm:p-5">
-              <p className="text-sm font-semibold text-cyan-700">장소 목록</p>
-              <h2 className="mt-2 text-xl font-bold text-slate-950 sm:text-2xl">
-                조건에 맞는 군산 장소를 비교하세요
-              </h2>
-              <p className="mt-3 text-sm leading-6 text-slate-600">
-                카테고리와 확인 상태를 보면서 장소 정보를 빠르게 비교할 수
-                있습니다. 지금은 목록 중심으로 먼저 정리하고 있습니다.
-              </p>
-            </div>
-            {places.map((place) => (
-              <PlaceCard key={place.id} place={place} />
-            ))}
-          </section>
-
-          <RightSidebar />
-        </div>
-      </section>
+      <Footer />
+      <MobileNavigation />
     </main>
   );
 }

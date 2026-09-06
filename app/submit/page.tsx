@@ -1,6 +1,8 @@
 import Link from "next/link";
 
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import MobileNavigation from "@/components/MobileNavigation";
 
 const reportTypes = [
   {
@@ -54,7 +56,7 @@ const informationRules = [
 
 export default function SubmitPage() {
   return (
-    <main className="min-h-screen overflow-x-hidden bg-slate-50 text-slate-950">
+    <main className="min-h-screen overflow-x-hidden bg-ivory text-slate-950">
       <Header />
 
       <section className="border-b border-slate-200 bg-white px-4 py-8 sm:px-6 lg:py-14">
@@ -283,6 +285,8 @@ export default function SubmitPage() {
           </aside>
         </div>
       </section>
+      <Footer />
+      <MobileNavigation />
     </main>
   );
 }
