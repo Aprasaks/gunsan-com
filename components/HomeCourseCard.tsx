@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import type { Course } from "@/types/course";
@@ -9,91 +10,69 @@ type HomeCourseCardProps = {
   variant: HomeCourseCardVariant;
 };
 
+const courseImages: Partial<Record<Course["theme"], string>> = {
+  "first-visit": "/images/places/gunsan-modern-history-museum.webp",
+  "half-day": "/images/places/gyeongam-dong-railroad-village.webp",
+  "one-night-two-days": "/images/gunsan-hero-banner.webp",
+  "two-nights-three-days": "/images/places/eunpa-lake-park.webp",
+  family: "/images/places/eunpa-lake-park.webp",
+  "rainy-day": "/images/places/gunsan-modern-history-museum.webp",
+  seonyudo: "/images/places/saemangeum-seawall.webp",
+};
+
 export default function HomeCourseCard({ course, variant }: HomeCourseCardProps) {
   const featured = variant === "featured";
-  const compact = variant === "compact";
-  const visibleStops = course.stops.slice(0, 3);
+  const image = courseImages[course.theme] ?? "/images/gunsan-hero-banner.webp";
+  const visibleStops = course.stops.slice(0, 4);
 
   return (
     <article
       id={`course-${course.slug}`}
       className={[
-        "flex h-full flex-col border shadow-sm transition hover:-translate-y-1 hover:shadow-lg",
-        featured
-          ? "rounded-[1.75rem] border-[#174d73] bg-[#174d73] p-6 text-white sm:p-8"
-          : compact
-            ? "rounded-[1.25rem] border-slate-200 bg-white p-4 text-slate-950"
-            : "rounded-[1.4rem] border-slate-200 bg-white p-5 text-slate-950 sm:p-6",
+        "group overflow-hidden rounded-[1.7rem] border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl",
+        featured ? "lg:min-h-[520px]" : "h-full",
       ].join(" ")}
     >
-      <div className="flex items-center justify-between gap-3">
-        <span className={[
-          "rounded-full font-black",
-          compact ? "px-2.5 py-1 text-[11px]" : "px-3 py-1 text-xs",
-          featured ? "bg-white/15 text-cyan-100" : "bg-orange-50 text-[#b64b31]",
-        ].join(" ")}>
-          {featured ? "군산 처음이면 이 코스부터" : course.durationLabel}
-        </span>
-        {!compact ? (
-          <span className={featured ? "text-xs font-bold text-white/60" : "text-xs font-bold text-slate-400"}>
-            {course.stops.length}개 정류장
-          </span>
-        ) : null}
+      <div className={featured ? "relative h-64 sm:h-72" : "relative h-52"}>
+        <Image
+          src={image}
+          alt=""
+          fill
+          sizes={featured ? "(max-width: 1024px) 100vw, 680px" : "(max-width: 768px) 100vw, 420px"}
+          className="object-cover transition duration-700 group-hover:scale-[1.04]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/68 via-black/10 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 text-white sm:p-6">
+          <div>
+            <span className="rounded-full bg-white/18 px-3 py-1.5 text-xs font-black backdrop-blur-md">{course.durationLabel}</span>
+            <h3 className={featured ? "mt-3 text-3xl font-black tracking-[-0.05em]" : "mt-3 text-2xl font-black tracking-[-0.045em]"}>{course.title}</h3>
+          </div>
+          <span className="rounded-full border border-white/25 bg-black/20 px-3 py-1.5 text-xs font-black backdrop-blur-md">{course.stops.length} stops</span>
+        </div>
       </div>
 
-      <h3 className={[
-        "font-black tracking-[-0.04em]",
-        featured ? "mt-6 text-3xl sm:text-[2.35rem]" : compact ? "mt-4 text-lg" : "mt-4 text-xl sm:text-2xl",
-      ].join(" ")}>
-        {course.title}
-      </h3>
+      <div className="flex h-full flex-col p-5 sm:p-6">
+        <p className="text-sm font-bold text-[#0f75d8]">{course.subtitle}</p>
+        <p className="mt-2 text-sm font-medium leading-6 text-slate-600">{course.summary}</p>
 
-      <p className={[
-        "font-bold",
-        featured ? "mt-2 text-base text-cyan-100" : compact ? "mt-1 text-xs text-[#23678c]" : "mt-1 text-sm text-[#23678c]",
-      ].join(" ")}>
-        {course.recommendedFor[0]}
-      </p>
-
-      {featured ? (
-        <p className="mt-4 max-w-xl text-sm leading-6 text-white/72 sm:text-base">{course.summary}</p>
-      ) : null}
-
-      {compact ? (
-        <p className="mt-4 line-clamp-2 text-xs font-semibold leading-5 text-slate-600">
-          {visibleStops.map((stop) => stop.title).join(" · ")}
-        </p>
-      ) : (
-        <ol className={featured ? "mt-6 grid gap-2.5 sm:grid-cols-3" : "mt-4 flex flex-wrap gap-2"} aria-label={`${course.title} 대표 정류장`}>
+        <ol className="mt-5 flex flex-wrap gap-2" aria-label={`${course.title} 주요 순서`}>
           {visibleStops.map((stop) => (
-            <li
-              key={stop.id}
-              className={[
-                "flex min-w-0 items-center gap-2 text-sm font-bold",
-                featured ? "rounded-xl bg-white/10 px-3 py-3" : "rounded-full bg-slate-50 px-3 py-2 text-xs",
-              ].join(" ")}
-            >
-              <span className={[
-                "grid h-6 w-6 shrink-0 place-items-center rounded-full text-[10px] font-black",
-                featured ? "bg-white text-[#174d73]" : "bg-white text-slate-500 ring-1 ring-slate-200",
-              ].join(" ")}>
-                {stop.order}
-              </span>
-              <span className="truncate">{stop.title}</span>
+            <li key={stop.id} className="inline-flex items-center gap-1.5 rounded-full bg-slate-50 px-3 py-2 text-xs font-bold text-slate-600">
+              <span className="grid h-5 w-5 place-items-center rounded-full bg-[#e7f3ff] text-[10px] font-black text-[#0f75d8]">{stop.order}</span>
+              {stop.title}
             </li>
           ))}
         </ol>
-      )}
 
-      <Link
-        href={`/courses/${course.slug}`}
-        className={[
-          "mt-auto inline-flex items-center font-black",
-          featured ? "pt-7 text-base text-cyan-100" : compact ? "pt-5 text-xs text-[#174d73]" : "pt-5 text-sm text-[#174d73]",
-        ].join(" ")}
-      >
-        {featured ? "이 코스 보기" : "코스 보기"} <span className="ml-2" aria-hidden="true">→</span>
-      </Link>
+        <div className="mt-auto flex flex-wrap gap-2 pt-6">
+          <Link href={`/courses/${course.slug}`} className="rounded-full bg-[#0d3557] px-4 py-2.5 text-sm font-black text-white transition hover:bg-[#092a46]">
+            코스 자세히 보기
+          </Link>
+          <Link href={`/courses/${course.slug}#preview`} className="rounded-full border border-slate-200 px-4 py-2.5 text-sm font-black text-slate-700 transition hover:border-[#0f75d8] hover:text-[#0f75d8]">
+            ▶ 미리 여행
+          </Link>
+        </div>
+      </div>
     </article>
   );
 }
