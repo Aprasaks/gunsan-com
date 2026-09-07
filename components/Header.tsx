@@ -1,87 +1,98 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import BrandLogo from "@/components/brand/BrandLogo";
 
-const primaryLinks = [
-  { label: "여행코스", href: "/#courses" },
-  { label: "관광지", href: "/places" },
-  { label: "맛집·카페", href: "/places" },
-  { label: "축제·체험", href: "/#spot" },
-  { label: "여행지도", href: "/map" },
+const browseLinks = [
+  { label: "명소", href: "/places" },
+  { label: "맛집", href: "/places" },
+  { label: "카페", href: "/places" },
 ] as const;
 
-export default function Header({ overlay = false }: { overlay?: boolean }) {
-  return (
-    <header
-      className={[
-        "z-50 w-full border-b",
-        overlay
-          ? "absolute inset-x-0 top-0 border-white/15 bg-gradient-to-b from-black/45 to-transparent"
-          : "sticky top-0 border-slate-200/70 bg-ivory/92 backdrop-blur-xl",
-      ].join(" ")}
-    >
-      <div className="mx-auto flex h-[4.5rem] w-full max-w-[1440px] items-center px-5 sm:px-8 lg:h-[5.25rem] lg:px-10">
-        <BrandLogo inverse={overlay} />
+export default function Header() {
+  const pathname = usePathname();
+  const courseActive = pathname.startsWith("/courses");
+  const browseActive = pathname.startsWith("/places");
 
-        <nav className="ml-12 hidden items-center gap-7 xl:flex" aria-label="주요 메뉴">
-          {primaryLinks.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              className={[
-                "text-sm font-bold tracking-[-0.02em] transition",
-                overlay ? "text-white/78 hover:text-white" : "text-slate-600 hover:text-gunsan-navy",
-              ].join(" ")}
+  return (
+    <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white">
+      <div className="mx-auto grid h-[4.5rem] w-full max-w-[1280px] grid-cols-[minmax(0,1fr)_44px] items-center px-5 sm:h-20 sm:px-8 lg:h-28 lg:grid-cols-[290px_minmax(0,1fr)] lg:px-10">
+        <BrandLogo />
+
+        <nav className="hidden items-center justify-center gap-14 lg:flex" aria-label="주요 메뉴">
+          <Link
+            href="/#courses"
+            aria-current={courseActive ? "page" : undefined}
+            className={menuClass(courseActive)}
+          >
+            여행코스
+          </Link>
+
+          <span
+            className="cursor-default py-2 text-sm font-semibold tracking-[-0.02em] text-gunsan-navy"
+            aria-disabled="true"
+            title="축제·체험 전용 페이지 준비 중"
+          >
+            축제·체험
+          </span>
+
+          <details className="group relative">
+            <summary
+              className={[menuClass(browseActive), "flex cursor-pointer list-none items-center gap-2 [&::-webkit-details-marker]:hidden"].join(" ")}
+              aria-current={browseActive ? "page" : undefined}
             >
-              {link.label}
-            </Link>
-          ))}
+              둘러보기
+              <ChevronIcon />
+            </summary>
+            <div className="absolute left-1/2 top-[calc(100%+0.75rem)] w-44 -translate-x-1/2 border border-slate-200 bg-white py-2">
+              {browseLinks.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="block px-5 py-2.5 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-50 hover:text-gunsan-navy"
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <span className="block cursor-default px-5 py-2.5 text-sm font-medium text-slate-400" aria-disabled="true" title="숙소 전용 페이지 준비 중">
+                숙소
+              </span>
+            </div>
+          </details>
         </nav>
 
-        <div className="ml-auto hidden items-center gap-1 sm:flex">
-          <Link
-            href="/places"
-            aria-label="군산 장소 검색"
-            className={[
-              "grid h-10 w-10 place-items-center rounded-full transition",
-              overlay ? "text-white hover:bg-white/10" : "text-gunsan-navy hover:bg-navy-soft",
-            ].join(" ")}
-          >
-            <SearchIcon />
-          </Link>
-          <Link
-            href="/#preview"
-            className={[
-              "px-3 py-2 text-sm font-bold transition",
-              overlay ? "text-white/78 hover:text-white" : "text-slate-600 hover:text-gunsan-navy",
-            ].join(" ")}
-          >
-            찜·저장
-          </Link>
-          <Link
-            href="/#start"
-            className="ml-2 rounded-full bg-lantern px-5 py-2.5 text-sm font-black text-gunsan-navy shadow-sm transition hover:-translate-y-0.5 hover:bg-[#ffad5e]"
-          >
-            코스 추천받기
-          </Link>
-        </div>
-
-        <details className="group relative ml-auto sm:hidden">
+        <details className="group relative justify-self-end lg:hidden">
           <summary
-            className={[
-              "grid h-10 w-10 cursor-pointer list-none place-items-center rounded-full [&::-webkit-details-marker]:hidden",
-              overlay ? "text-white" : "text-gunsan-navy",
-            ].join(" ")}
+            className="grid h-10 w-10 cursor-pointer list-none place-items-center text-gunsan-navy [&::-webkit-details-marker]:hidden"
             aria-label="메뉴 열기"
           >
             <MenuIcon />
           </summary>
-          <nav className="absolute right-0 top-12 w-52 overflow-hidden rounded-2xl border border-slate-200 bg-white p-2 text-gunsan-navy shadow-2xl" aria-label="모바일 메뉴">
-            {primaryLinks.map((link) => (
-              <Link key={link.label} href={link.href} className="block rounded-xl px-4 py-3 text-sm font-bold hover:bg-navy-soft">
-                {link.label}
-              </Link>
-            ))}
+          <nav className="absolute right-0 top-12 w-60 border border-slate-200 bg-white p-2 text-gunsan-navy" aria-label="모바일 메뉴">
+            <Link href="/#courses" className={mobileMenuClass(courseActive)} aria-current={courseActive ? "page" : undefined}>
+              여행코스
+            </Link>
+            <span className="block cursor-default px-4 py-3 text-sm font-semibold" aria-disabled="true" title="축제·체험 전용 페이지 준비 중">
+              축제·체험
+            </span>
+            <details className="group/browse border-t border-slate-100">
+              <summary className="flex cursor-pointer list-none items-center justify-between px-4 py-3 text-sm font-semibold [&::-webkit-details-marker]:hidden">
+                둘러보기
+                <ChevronIcon />
+              </summary>
+              <div className="border-t border-slate-100 bg-slate-50 py-1">
+                {browseLinks.map((link) => (
+                  <Link key={link.label} href={link.href} className="block px-6 py-2.5 text-sm font-medium text-slate-600">
+                    {link.label}
+                  </Link>
+                ))}
+                <span className="block cursor-default px-6 py-2.5 text-sm font-medium text-slate-400" aria-disabled="true" title="숙소 전용 페이지 준비 중">
+                  숙소
+                </span>
+              </div>
+            </details>
           </nav>
         </details>
       </div>
@@ -89,11 +100,24 @@ export default function Header({ overlay = false }: { overlay?: boolean }) {
   );
 }
 
-function SearchIcon() {
+function menuClass(active: boolean) {
+  return [
+    "border-b py-2 text-sm font-semibold tracking-[-0.02em] text-gunsan-navy transition-colors",
+    active ? "border-sea-blue" : "border-transparent hover:border-slate-300",
+  ].join(" ");
+}
+
+function mobileMenuClass(active: boolean) {
+  return [
+    "block border-l-2 px-4 py-3 text-sm font-semibold",
+    active ? "border-sea-blue bg-slate-50" : "border-transparent",
+  ].join(" ");
+}
+
+function ChevronIcon() {
   return (
-    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
-      <circle cx="10.5" cy="10.5" r="6.5" />
-      <path d="m15.5 15.5 5 5" />
+    <svg viewBox="0 0 16 16" className="h-3.5 w-3.5 text-slate-400 transition-transform group-open:rotate-180 group-open/browse:rotate-180" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+      <path d="m4 6 4 4 4-4" />
     </svg>
   );
 }

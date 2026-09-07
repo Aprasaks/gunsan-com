@@ -16,38 +16,14 @@ const featuredCourses = featuredSlugs
   .filter((course): course is (typeof homeCourses)[number] => Boolean(course));
 const previewCourse = homeCourses.find((course) => course.slug === "first-gunsan") ?? homeCourses[0];
 
-const mobileQuickLinks = [
-  { label: "내 주변", href: "/map" },
-  { label: "여행코스", href: "#courses" },
-  { label: "맛집", href: "/places" },
-  { label: "카페", href: "/places" },
-  { label: "축제", href: "#spot" },
-] as const;
-
 export default function Home() {
   return (
     <main className="min-h-screen overflow-x-hidden bg-ivory text-foreground">
-      <div className="relative">
-        <Header overlay />
-        <SearchHero />
-      </div>
+      <Header />
+      <SearchHero />
 
-      <nav className="grid grid-cols-5 border-b border-slate-200 bg-white px-3 py-3 lg:hidden" aria-label="빠른 메뉴">
-        {mobileQuickLinks.map((item, index) => (
-          <Link key={item.label} href={item.href} className="flex flex-col items-center gap-1.5 py-2 text-[11px] font-bold text-slate-600">
-            <span className="grid h-8 w-8 place-items-center rounded-full bg-navy-soft font-mono text-[10px] text-gunsan-navy" aria-hidden="true">0{index + 1}</span>
-            {item.label}
-          </Link>
-        ))}
-      </nav>
-
-      <section id="start" className="px-5 py-16 sm:px-8 sm:py-20 lg:px-10 lg:py-28">
+      <section id="start" className="scroll-mt-20 border-b border-slate-200 bg-white px-5 py-8 sm:px-8 sm:py-10 lg:px-10">
         <div className="mx-auto w-full max-w-[1280px]">
-          <SectionLead
-            eyebrow="FIND YOUR COURSE"
-            title="네 가지만 고르면, 군산의 하루가 정해집니다"
-            description="검색 결과 수십 개 대신 지금 여행에 맞는 코스 세 개만 남깁니다. 첫 번째 추천부터 그대로 따라가도 됩니다."
-          />
           <CourseFinder />
         </div>
       </section>
