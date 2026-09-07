@@ -10,35 +10,26 @@ export default function BrandLogo({ inverse = false, compact = false }: BrandLog
   return (
     <Link
       href="/"
-      className="inline-flex shrink-0 items-center gap-3"
+      className={[
+        "relative block shrink-0 overflow-hidden",
+        compact ? "aspect-square w-14" : "aspect-[3.8] w-[215px] sm:w-[240px] lg:w-[280px]",
+      ].join(" ")}
       aria-label="군산.com 홈"
     >
       <Image
-        src="/images/logo.png"
+        src="/images/gunsan-logo-header-v2.webp"
         alt=""
-        width={1225}
-        height={1284}
-        sizes="48px"
-        className="h-11 w-auto shrink-0 object-contain sm:h-12"
+        width={1672}
+        height={941}
+        sizes={compact ? "56px" : "(max-width: 640px) 215px, (max-width: 1024px) 240px, 280px"}
+        style={compact
+          ? { left: "-102%", top: "-119%", width: "590%" }
+          : { left: "-26%", top: "-115%", width: "150%" }}
+        className={[
+          "absolute h-auto max-w-none",
+          inverse ? "brightness-0 invert" : "",
+        ].join(" ")}
       />
-      <span className={compact ? "sr-only" : "block"}>
-        <span
-          className={[
-            "block text-[1.45rem] font-black leading-none tracking-[-0.055em]",
-            inverse ? "text-white" : "text-gunsan-navy",
-          ].join(" ")}
-        >
-          군산<span className="text-lantern">.com</span>
-        </span>
-        <span
-          className={[
-            "mt-1 block text-[9px] font-bold tracking-[0.16em]",
-            inverse ? "text-white/55" : "text-slate-500",
-          ].join(" ")}
-        >
-          COURSE CURATION
-        </span>
-      </span>
     </Link>
   );
 }
