@@ -1,36 +1,148 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 군산.com
 
-## Getting Started
+> 군산의 장소를 더 많이 보여주는 포털이 아니라, 처음 온 사람이 그대로 따라갈 수 있는 여행 코스와 선택지를 정리하는 지역 여행 큐레이션 프로젝트입니다.
 
-First, run the development server:
+- Live: https://gunsan-com.vercel.app
+- Stack: Next.js · React · TypeScript · Tailwind CSS
+
+---
+
+## Why
+
+군산 관광 정보는 부족하지 않습니다.
+
+공식 관광 사이트, 지도, 블로그, SNS에는 이미 많은 장소가 있습니다. 실제 문제는 처음 방문한 사람이 **무엇부터 봐야 하는지, 다음에는 어디로 가야 하는지, 자신의 일정에 무엇이 맞는지 다시 판단해야 한다는 것**이었습니다.
+
+그래서 제품 방향을 “군산의 모든 장소를 보여주는 포털”에서 **선택을 줄여주는 코스 중심 여행 큐레이션**으로 전환했습니다.
+
+---
+
+## Product Definition
+
+> 군산 처음이면, 이 코스 그대로 가보세요.
+
+군산.com의 핵심 역할은 정보량이 아니라 다음 3가지입니다.
+
+- **선택 압축** — 한 번에 너무 많은 장소를 보여주지 않기
+- **동선 연결** — 다음 장소와 이동 흐름을 이해할 수 있게 하기
+- **검증 상태 표시** — 사실, 업체 제공, 현장 확인, 편집 추천을 구분하기
+
+---
+
+## Target Users
+
+### 1. 군산 첫 방문 관광객
+가장 우선하는 사용자입니다.
+
+- 대표 경험을 빠르게 고르고 싶다
+- 반나절 / 1박 2일 / 아이 동반 / 비 오는 날처럼 상황별 답이 필요하다
+- 장소를 왜 가는지와 다음에 어디로 이동할지만 알고 싶다
+
+### 2. 재방문 관광객
+선유도, 영화 촬영지, 산책, 비 오는 날처럼 목적형 코스를 찾는 사용자입니다.
+
+### 3. 숙박업 운영자
+최종 사용자가 아니라 **코스를 손님에게 전달하는 유통 파트너**로 정의했습니다.
+
+---
+
+## Current Product Structure
+
+현재 코스 테마는 7개 방향으로 구성되어 있습니다.
+
+1. 군산 처음
+2. 반나절
+3. 1박 2일
+4. 2박 3일
+5. 아이랑
+6. 비 오는 날
+7. 선유도
+
+한 코스는 **3~5개 정류장**만 강하게 보여주는 것을 기준으로 합니다.
+
+---
+
+## Content Verification
+
+콘텐츠는 아래 9단계로 제작하는 것을 기준으로 설계했습니다.
+
+1. 질문 수집
+2. 후보 발견
+3. 출처 검증
+4. 편집 압축
+5. 동선 초안
+6. 현장 테스트
+7. 검수
+8. 발행
+9. 운영
+
+정보 상태도 다음 5가지로 구분합니다.
+
+- 공식 확인
+- 업체 제공
+- 현장 확인
+- 편집 추천
+- 재확인 필요
+
+추천을 공식 사실처럼 표시하지 않고, 오래된 운영시간이나 가격을 최신 정보처럼 사용하지 않는 것이 기본 원칙입니다.
+
+---
+
+## PM / Product Decisions
+
+- **Course가 중심이고 Place는 재료**라는 기준으로 정보구조를 재설계했습니다.
+- 검색보다 코스 선택을 첫 행동으로 두었습니다.
+- 대표 선택지는 한 번에 3~5개만 보여주도록 제한했습니다.
+- 장소의 인기보다 **왜 이 코스에 들어가는지**를 설명하도록 했습니다.
+- 페이지뷰보다 코스 선택률, 정류장 열기, 지도·공식 링크 이동, QR 유입 같은 실제 여행 결정 행동을 지표로 설계했습니다.
+- 광고비가 추천 순서나 검증 상태를 바꾸지 못하도록 제품 원칙을 정의했습니다.
+
+---
+
+## Current Scope
+
+### 구현되어 있는 것
+- 코스 중심 홈
+- Course / CourseStop 데이터 구조
+- 상황별 코스 진입
+- 장소 상세 진입 경로
+- 지도 / 제보 / 사업자 등록 진입 구조
+- 대표 장소와 먹거리/카페 편집 영역
+
+### 앞으로 검증해야 하는 것
+- 코스별 고유 상세 URL
+- 실제 이동 순서와 대체 정류장
+- 공식 출처 / 마지막 확인일 / 검증 상태 운영
+- 현장 테스트 완료 코스
+- 숙박업 파트너 QR 공유 실험
+- 실제 행동 데이터 측정
+
+---
+
+## Metrics We Intend to Track
+
+단순 PV보다 아래 행동을 우선합니다.
+
+- 홈 방문 대비 코스 선택률
+- 코스 상세에서 정류장 열기 비율
+- 지도 / 공식 링크 이동률
+- 공유 / QR 유입
+- 정보 수정 제보 처리 시간
+- 현장 테스트 완료 코스 비율
+
+실제 데이터가 쌓이기 전에는 “실시간 인기”, “만족도”, “누적 이용자” 같은 수치를 만들지 않습니다.
+
+---
+
+## Local Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## My Role
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+제품 포지셔닝 전환 · 핵심 사용자 정의 · 정보구조 · MVP 우선순위 · 콘텐츠 검증 기준 · 코스 운영 프로세스 · 지표 설계 · 웹 구현
