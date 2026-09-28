@@ -8,7 +8,8 @@
 그 코스를 따라 맛집·카페·볼거리까지 자연스럽게 찾을 수 있도록 만드는  
 **군산 관광 플랫폼**입니다.
 
-- Live: https://gunsan-com.vercel.app
+- Live: [군산.com](https://xn--6e0b287a.com)  
+- Preview: https://gunsan-com.vercel.app
 - Stack: Next.js · React · TypeScript · Tailwind CSS · Vercel
 
 ---
