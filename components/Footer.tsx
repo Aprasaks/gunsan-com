@@ -18,11 +18,11 @@ export default function Footer() {
           <p className="mt-6 max-w-xl text-2xl font-extrabold leading-snug tracking-[-0.04em] sm:text-3xl">
             걷는 순간, 다시 만나는 군산
           </p>
-          <p className="mt-3 text-sm font-medium leading-6 text-white/58">
+          <p className="mt-3 text-[16px] font-medium leading-7 text-white/68">
             시간이 머문 거리에서, 새로운 여행이 시작됩니다.
           </p>
         </div>
-        <nav className="flex flex-wrap gap-x-6 gap-y-3 text-sm font-bold text-white/72" aria-label="하단 메뉴">
+        <nav className="flex flex-wrap gap-x-6 gap-y-3 text-[15px] font-bold text-white/78" aria-label="하단 메뉴">
           {footerLinks.map((link) => (
             <Link key={link.label} href={link.href} className="transition hover:text-white">
               {link.label}
@@ -30,7 +30,7 @@ export default function Footer() {
           ))}
         </nav>
       </div>
-      <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-2 pt-6 text-xs leading-5 text-white/42 sm:flex-row sm:justify-between">
+      <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-2 pt-6 text-[14px] leading-6 text-white/55 sm:flex-row sm:justify-between">
         <p>군산 여행을 고르는 시간을 줄이고, 실제 이동 순서를 안내합니다.</p>
         <p>운영 정보는 방문 전 각 장소의 공식 출처에서 확인해 주세요.</p>
       </div>
