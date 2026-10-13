@@ -58,7 +58,7 @@ export default function Home() {
               title="지금, 어떤 군산을 볼까요?"
               description="정보를 많이 늘어놓기보다 오늘의 여행 흐름을 고르기 쉽게 보여줍니다. 운영정보와 시즌 콘텐츠는 확인된 정보부터 순차적으로 연결합니다."
             />
-            <Link href="/places" className="shrink-0 text-sm font-black text-gunsan-navy hover:text-sea-blue">
+            <Link href="/places" className="shrink-0 text-[15px] font-black text-gunsan-navy hover:text-sea-blue">
               군산 전체 둘러보기 →
             </Link>
           </div>
@@ -79,9 +79,9 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#071d31]/95 via-[#071d31]/18 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-6 text-white">
-                  <p className="text-[10px] font-black tracking-[0.2em] text-[#9fd4ed]">{card.eyebrow}</p>
+                  <p className="text-[12px] font-black tracking-[0.18em] text-[#9fd4ed]">{card.eyebrow}</p>
                   <h3 className="mt-2 text-2xl font-black tracking-[-0.05em]">{card.title}</h3>
-                  <p className="mt-2 max-w-md text-sm font-medium leading-6 text-white/72">{card.description}</p>
+                  <p className="mt-2 max-w-md text-[16px] font-medium leading-7 text-white/78">{card.description}</p>
                 </div>
               </Link>
             ))}
@@ -97,7 +97,7 @@ export default function Home() {
               title="검색 대신, 여행을 고르세요"
               description="처음 온 사람, 1박 2일 여행, 아이와 함께하는 가족처럼 실제 검색하는 상황을 기준으로 코스를 정리합니다."
             />
-            <Link href="#start" className="shrink-0 text-sm font-black text-gunsan-navy hover:text-sea-blue">
+            <Link href="#start" className="shrink-0 text-[15px] font-black text-gunsan-navy hover:text-sea-blue">
               내 조건으로 다시 고르기 →
             </Link>
           </div>
@@ -127,8 +127,8 @@ export default function Home() {
                 <div key={num} className="flex gap-4 border-t border-slate-200 py-4">
                   <span className="font-mono text-xs font-black text-lantern">{num}</span>
                   <div>
-                    <h3 className="text-sm font-black text-gunsan-navy">{title}</h3>
-                    <p className="mt-1 text-xs font-medium leading-5 text-slate-500">{desc}</p>
+                    <h3 className="text-[15px] font-black text-gunsan-navy">{title}</h3>
+                    <p className="mt-1 text-[14px] font-medium leading-6 text-slate-600">{desc}</p>
                   </div>
                 </div>
               ))}
@@ -143,10 +143,10 @@ export default function Home() {
                   <p className="text-[10px] font-black tracking-[0.16em] text-sea-blue">COURSE PROGRESS MAP</p>
                   <h3 className="mt-1 text-xl font-black tracking-[-0.04em] text-gunsan-navy">군산 처음 코스</h3>
                 </div>
-                <span className="rounded-full bg-white px-3 py-2 text-xs font-bold text-slate-500 shadow-sm">어디로 갈지 먼저</span>
+                <span className="rounded-full bg-white px-3 py-2 text-[14px] font-bold text-slate-600 shadow-sm">어디로 갈지 먼저</span>
               </div>
               <RouteMap />
-              <Link href="/map" className="self-end rounded-full bg-gunsan-navy px-5 py-3 text-xs font-black text-white transition hover:-translate-y-0.5">
+              <Link href="/map" className="self-end rounded-full bg-gunsan-navy px-5 py-3 text-[14px] font-black text-white transition hover:-translate-y-0.5">
                 코스 지도 보기 →
               </Link>
             </div>
@@ -163,7 +163,7 @@ export default function Home() {
               <br />
               지역의 혜택도 이어지게
             </h2>
-            <p className="mt-5 max-w-2xl text-sm font-medium leading-7 text-white/62 sm:text-base">
+            <p className="mt-5 max-w-2xl text-[17px] font-medium leading-8 text-white/72 sm:text-base">
               군산패스는 단순 할인쿠폰보다 여행 코스 안에서 쓰는 로컬 혜택 네트워크를 목표로 합니다. 현재는 가맹점 인터뷰와 무료 Pilot을 위한 구조를 준비하고 있습니다.
             </p>
           </div>
@@ -175,9 +175,9 @@ export default function Home() {
               ["VERIFY", "실제 사용 기록", "QR 사용으로 방문과 혜택을 확인"],
             ].map(([tag, title, desc]) => (
               <div key={tag} className="rounded-2xl bg-white/[0.07] p-5">
-                <p className="text-[9px] font-black tracking-[0.18em] text-[#80c4e5]">{tag}</p>
+                <p className="text-[12px] font-black tracking-[0.15em] text-[#80c4e5]">{tag}</p>
                 <h3 className="mt-3 text-base font-black">{title}</h3>
-                <p className="mt-2 text-xs font-medium leading-5 text-white/52">{desc}</p>
+                <p className="mt-2 text-[14px] font-medium leading-6 text-white/62">{desc}</p>
               </div>
             ))}
           </div>
@@ -193,9 +193,9 @@ export default function Home() {
 function SectionLead({ eyebrow, title, description }: { eyebrow: string; title: string; description: string }) {
   return (
     <div className="max-w-3xl">
-      <p className="text-[10px] font-black tracking-[0.2em] text-sea-blue sm:text-[11px]">{eyebrow}</p>
+      <p className="text-[12px] font-black tracking-[0.18em] text-sea-blue sm:text-[11px]">{eyebrow}</p>
       <h2 className="mt-3 text-3xl font-black tracking-[-0.06em] text-gunsan-navy sm:text-4xl lg:text-5xl">{title}</h2>
-      <p className="mt-4 max-w-2xl text-sm font-medium leading-7 text-slate-600 sm:text-base">{description}</p>
+      <p className="mt-4 max-w-2xl text-[17px] font-medium leading-8 text-slate-600 sm:text-base">{description}</p>
     </div>
   );
 }
@@ -215,8 +215,8 @@ function RouteMap() {
         <li key={stop.label} className="relative flex min-w-0 flex-1 flex-col items-center text-center">
           {index < stops.length - 1 ? <span className="absolute left-1/2 top-4 h-px w-full border-t border-dashed border-sea-blue/55" aria-hidden="true" /> : null}
           <span className={["relative z-10 grid h-8 w-8 place-items-center rounded-full text-[10px] font-black text-white shadow", stop.tone].join(" ")}>{index + 1}</span>
-          <strong className="mt-3 line-clamp-2 text-[11px] font-black text-gunsan-navy sm:text-sm">{stop.label}</strong>
-          <span className="mt-1 text-[9px] font-bold text-slate-400 sm:text-[10px]">{stop.kind}</span>
+          <strong className="mt-3 line-clamp-2 text-[13px] font-black text-gunsan-navy sm:text-sm">{stop.label}</strong>
+          <span className="mt-1 text-[12px] font-bold text-slate-500 sm:text-[10px]">{stop.kind}</span>
         </li>
       ))}
     </ol>
