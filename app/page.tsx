@@ -56,7 +56,7 @@ export default function Home() {
             <SectionLead
               eyebrow="NOW IN GUNSAN"
               title="지금, 어떤 군산을 볼까요?"
-              description="정보를 많이 늘어놓기보다 오늘의 여행 흐름을 고르기 쉽게 보여줍니다. 운영정보와 시즌 콘텐츠는 확인된 정보부터 순차적으로 연결합니다."
+              description="원도심의 시간, 은파의 저녁, 고군산의 바다처럼 지금 떠나기 좋은 군산의 흐름부터 골라보세요."
             />
             <Link href="/places" className="shrink-0 text-[15px] font-black text-gunsan-navy hover:text-sea-blue">
               군산 전체 둘러보기 →
@@ -164,7 +164,7 @@ export default function Home() {
               지역의 혜택도 이어지게
             </h2>
             <p className="mt-5 max-w-2xl text-[17px] font-medium leading-8 text-white/72 sm:text-base">
-              군산패스는 단순 할인쿠폰보다 여행 코스 안에서 쓰는 로컬 혜택 네트워크를 목표로 합니다. 현재는 가맹점 인터뷰와 무료 Pilot을 위한 구조를 준비하고 있습니다.
+              군산패스는 여행 코스 안에서 자연스럽게 쓰는 로컬 혜택입니다. 관광객에게는 더 좋은 여행을, 지역 가게에는 실제 방문으로 이어지는 연결을 만듭니다.
             </p>
           </div>
 
