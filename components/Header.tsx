@@ -5,60 +5,53 @@ import { usePathname } from "next/navigation";
 
 import BrandLogo from "@/components/brand/BrandLogo";
 
-type NavItem = {
-  label: string;
-  href?: string;
-  disabled?: boolean;
-};
-
-const navItems: NavItem[] = [
-  { label: "여행코스", href: "/#courses" },
-  { label: "지금 군산", disabled: true },
-  { label: "둘러보기", href: "/places" },
-  { label: "군산패스", disabled: true },
-];
+const navItems = [
+  { label: "추천 코스", href: "/#courses" },
+  { label: "여행지", href: "/places" },
+] as const;
 
 export default function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-slate-200/80 bg-white/95 backdrop-blur">
-      <div className="mx-auto grid h-16 w-full max-w-[1280px] grid-cols-[1fr_auto] items-center px-5 sm:px-8 lg:h-[72px] lg:grid-cols-[210px_minmax(0,1fr)_210px] lg:px-10">
+    <header className="sticky top-0 z-50 w-full border-b border-slate-200/80 bg-white/96 backdrop-blur">
+      <div className="mx-auto flex h-16 w-full max-w-[1280px] items-center px-5 sm:px-8 lg:h-[74px] lg:px-10">
         <div className="shrink-0">
           <BrandLogo />
         </div>
 
         <nav
-          className="hidden min-w-0 items-center justify-center gap-8 lg:flex xl:gap-10"
+          className="ml-auto hidden items-center gap-1 lg:flex"
           aria-label="주요 메뉴"
         >
-          {navItems.map((item) => {
-            if (item.disabled) {
-              return (
-                <span
-                  key={item.label}
-                  className="inline-flex h-11 cursor-default items-center text-[16px] font-bold tracking-[-0.03em] text-gunsan-navy"
-                  aria-disabled="true"
-                  title="준비 중"
-                >
-                  {item.label}
-                </span>
-              );
-            }
+          <Link
+            href="/#start"
+            className="mr-4 inline-flex h-11 items-center gap-2.5 rounded-[10px] bg-gunsan-navy px-5 text-[16px] font-extrabold tracking-[-0.035em] text-white shadow-[0_4px_14px_rgba(15,46,77,0.10)] transition hover:-translate-y-px hover:bg-[#163f67] hover:shadow-[0_7px_18px_rgba(15,46,77,0.14)]"
+          >
+            <span className="h-2 w-2 rounded-full bg-lantern" aria-hidden="true" />
+            여행 만들기
+          </Link>
 
-            const active = item.href === "/places" ? pathname.startsWith("/places") : false;
+          {navItems.map((item) => {
+            const active =
+              item.href === "/places"
+                ? pathname.startsWith("/places")
+                : false;
 
             return (
               <Link
                 key={item.label}
-                href={item.href ?? "/"}
+                href={item.href}
                 aria-current={active ? "page" : undefined}
-                className="group relative inline-flex h-11 items-center text-[16px] font-bold tracking-[-0.03em] text-gunsan-navy transition-colors hover:text-sea-blue"
+                className={[
+                  "group relative inline-flex h-11 items-center rounded-lg px-4 text-[16px] font-bold tracking-[-0.03em] text-gunsan-navy transition hover:bg-slate-50 hover:text-[#167db8]",
+                  active ? "text-[#167db8]" : "",
+                ].join(" ")}
               >
                 {item.label}
                 <span
                   className={[
-                    "absolute inset-x-0 bottom-0 h-[2px] origin-center scale-x-0 bg-sea-blue transition-transform group-hover:scale-x-100",
+                    "absolute inset-x-4 bottom-[3px] h-[2px] origin-center scale-x-0 bg-[#167db8] transition-transform group-hover:scale-x-100",
                     active ? "scale-x-100" : "",
                   ].join(" ")}
                   aria-hidden="true"
@@ -66,66 +59,64 @@ export default function Header() {
               </Link>
             );
           })}
+
+          <span className="mx-2 h-5 w-px bg-slate-200" aria-hidden="true" />
+
+          <span
+            className="inline-flex h-11 cursor-default items-center rounded-lg px-4 text-[16px] font-bold tracking-[-0.03em] text-gunsan-navy/72"
+            title="지금 군산 콘텐츠 준비 중"
+          >
+            지금 군산
+          </span>
+
+          <span
+            className="inline-flex h-11 cursor-default items-center rounded-lg px-4 text-[16px] font-bold tracking-[-0.03em] text-gunsan-navy/72"
+            title="군산패스 준비 중"
+          >
+            군산패스
+          </span>
         </nav>
 
-        <div className="hidden justify-self-end lg:block">
-          <Link
-            href="/#start"
-            className="inline-flex h-11 items-center gap-2.5 rounded-full bg-lantern px-5 text-[16px] font-black tracking-[-0.035em] text-gunsan-navy shadow-sm transition hover:-translate-y-0.5 hover:bg-[#ee8c35] hover:shadow-md"
-          >
-            내 여행 만들기
-            <span className="rounded-full bg-[#0d72b7] px-2 py-0.5 text-[11px] font-black tracking-normal text-white">
-              AI
-            </span>
-          </Link>
-        </div>
-
-        <details className="group relative justify-self-end lg:hidden">
+        <details className="group relative ml-auto lg:hidden">
           <summary
-            className="grid h-10 w-10 cursor-pointer list-none place-items-center rounded-full text-gunsan-navy transition hover:bg-slate-100 [&::-webkit-details-marker]:hidden"
+            className="grid h-11 w-11 cursor-pointer list-none place-items-center rounded-xl text-gunsan-navy transition hover:bg-slate-100 [&::-webkit-details-marker]:hidden"
             aria-label="메뉴 열기"
           >
             <MenuIcon />
           </summary>
 
           <nav
-            className="absolute right-0 top-12 w-72 overflow-hidden rounded-2xl border border-slate-200 bg-white p-2 shadow-2xl shadow-slate-900/10"
+            className="absolute right-0 top-13 w-72 overflow-hidden rounded-2xl border border-slate-200 bg-white p-2 shadow-2xl shadow-slate-900/10"
             aria-label="모바일 메뉴"
           >
             <Link
               href="/#start"
-              className="mb-2 flex items-center justify-between rounded-xl bg-lantern px-4 py-3.5 text-[16px] font-black tracking-[-0.03em] text-gunsan-navy"
+              className="mb-2 flex items-center gap-2.5 rounded-xl bg-gunsan-navy px-4 py-3.5 text-[16px] font-extrabold tracking-[-0.03em] text-white"
             >
-              <span>내 여행 만들기</span>
-              <span className="rounded-full bg-[#0d72b7] px-2 py-0.5 text-[11px] font-black tracking-normal text-white">
-                AI
-              </span>
+              <span className="h-2 w-2 rounded-full bg-lantern" aria-hidden="true" />
+              여행 만들기
             </Link>
 
-            {navItems.map((item) => {
-              if (item.disabled) {
-                return (
-                  <span
-                    key={item.label}
-                    className="flex items-center justify-between rounded-xl px-4 py-3 text-[16px] font-bold text-gunsan-navy"
-                    aria-disabled="true"
-                  >
-                    {item.label}
-                    <small className="text-[11px] font-bold text-slate-400">준비 중</small>
-                  </span>
-                );
-              }
+            {navItems.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="flex items-center rounded-xl px-4 py-3 text-[16px] font-bold tracking-[-0.025em] text-gunsan-navy transition hover:bg-slate-50"
+              >
+                {item.label}
+              </Link>
+            ))}
 
-              return (
-                <Link
-                  key={item.label}
-                  href={item.href ?? "/"}
-                  className="flex items-center rounded-xl px-4 py-3 text-[16px] font-bold text-gunsan-navy transition hover:bg-slate-50"
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
+            <div className="my-1 border-t border-slate-100" />
+
+            <span className="flex items-center justify-between rounded-xl px-4 py-3 text-[15px] font-bold text-gunsan-navy/60">
+              지금 군산
+              <small className="text-[11px] font-semibold text-slate-400">준비 중</small>
+            </span>
+            <span className="flex items-center justify-between rounded-xl px-4 py-3 text-[15px] font-bold text-gunsan-navy/60">
+              군산패스
+              <small className="text-[11px] font-semibold text-slate-400">준비 중</small>
+            </span>
           </nav>
         </details>
       </div>
