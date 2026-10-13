@@ -5,9 +5,12 @@ import { usePathname } from "next/navigation";
 
 import BrandLogo from "@/components/brand/BrandLogo";
 
-type NavItem =
-  | { label: string; href: string; accent?: boolean }
-  | { label: string; disabled: true };
+type NavItem = {
+  label: string;
+  href?: string;
+  accent?: boolean;
+  disabled?: boolean;
+};
 
 const primaryLinks: NavItem[] = [
   { label: "내 여행 만들기", href: "/#start", accent: true },
@@ -47,7 +50,7 @@ export default function Header() {
             return (
               <Link
                 key={link.label}
-                href={link.href}
+                href={link.href ?? "/"}
                 aria-current={active ? "page" : undefined}
                 className={[
                   "group relative inline-flex h-10 items-center text-[15px] font-extrabold tracking-[-0.025em] text-gunsan-navy transition-colors hover:text-sea-blue xl:text-base",
@@ -109,7 +112,7 @@ export default function Header() {
               return (
                 <Link
                   key={link.label}
-                  href={link.href}
+                  href={link.href ?? "/"}
                   className="flex items-center justify-between rounded-xl px-4 py-3 text-base font-extrabold text-gunsan-navy transition hover:bg-slate-50"
                 >
                   <span>{link.label}</span>
