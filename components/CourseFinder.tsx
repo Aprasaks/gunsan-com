@@ -38,13 +38,13 @@ export default function CourseFinder() {
     <div className="overflow-hidden rounded-[28px] border border-white/80 bg-white shadow-[0_20px_70px_rgba(15,46,77,0.08)]">
       <div className="grid gap-0 xl:grid-cols-[1.05fr_4fr_0.95fr]">
         <div className="border-b border-slate-100 bg-[#f7fbfd] p-6 sm:p-7 xl:border-b-0 xl:border-r">
-          <p className="text-[10px] font-black tracking-[0.24em] text-[#167db8]">SMART TRIP PLANNER</p>
-          <h2 className="mt-3 text-2xl font-black tracking-[-0.05em] text-gunsan-navy sm:text-[1.8rem]">
+          <p className="text-[12px] font-black tracking-[0.2em] text-[#167db8]">SMART TRIP PLANNER</p>
+          <h2 className="mt-3 text-[1.9rem] font-black tracking-[-0.05em] text-gunsan-navy sm:text-[2rem]">
             어떤 군산 여행을
             <br />
             원하세요?
           </h2>
-          <p className="mt-3 text-sm font-medium leading-6 text-slate-500">
+          <p className="mt-3 text-[16px] font-medium leading-7 text-slate-600">
             지금은 검증 코스를 조건에 맞춰 추천하고,
             <br className="hidden xl:block" /> 이후 AI 코스 엔진으로 확장합니다.
           </p>
@@ -109,8 +109,8 @@ export default function CourseFinder() {
             className="group flex min-h-28 w-full items-center justify-between rounded-2xl bg-[#0b67aa] px-5 py-5 text-left text-white shadow-lg shadow-blue-950/10 transition hover:-translate-y-0.5 hover:bg-[#095d9b]"
           >
             <span>
-              <span className="block text-[10px] font-black tracking-[0.2em] text-white/65">MY ROUTE</span>
-              <span className="mt-2 block text-lg font-black leading-6">
+              <span className="block text-[12px] font-black tracking-[0.16em] text-white/70">MY ROUTE</span>
+              <span className="mt-2 block text-[1.25rem] font-black leading-7">
                 내 조건으로
                 <br />
                 코스 찾기
@@ -136,8 +136,8 @@ function ChoiceGroup({
   return (
     <div className="min-h-[150px] border-b border-slate-100 p-5 md:[&:nth-last-child(-n+1)]:border-b-0 xl:border-b-0 xl:border-r xl:last:border-r-0">
       <div className="mb-4 flex items-center gap-2">
-        <p className="text-xs font-black tracking-[-0.02em] text-gunsan-navy">{title}</p>
-        {hint ? <span className="text-[10px] font-semibold text-slate-400">({hint})</span> : null}
+        <p className="text-[15px] font-extrabold tracking-[-0.02em] text-gunsan-navy">{title}</p>
+        {hint ? <span className="text-[12px] font-semibold text-slate-500">({hint})</span> : null}
       </div>
       {children}
     </div>
@@ -159,7 +159,7 @@ function ChoiceButton({
       onClick={onClick}
       aria-pressed={active}
       className={[
-        "rounded-full border px-3 py-2 text-xs font-bold transition",
+        "rounded-full border px-3.5 py-2.5 text-[14px] font-bold transition",
         active
           ? "border-[#0b67aa] bg-[#0b67aa] text-white shadow-sm"
           : "border-slate-200 bg-white text-slate-600 hover:border-[#6ca8ca] hover:text-gunsan-navy",
