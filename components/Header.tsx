@@ -32,13 +32,13 @@ export default function Header() {
                 href={link.href}
                 aria-current={active ? "page" : undefined}
                 className={[
-                  "group relative inline-flex h-10 items-center text-[14px] font-bold tracking-[-0.025em] text-gunsan-navy transition-colors hover:text-sea-blue",
+                  "group relative inline-flex h-10 items-center text-[15px] font-extrabold xl:text-base tracking-[-0.025em] text-gunsan-navy transition-colors hover:text-sea-blue",
                   "accent" in link && link.accent ? "gap-2" : "",
                 ].join(" ")}
               >
                 {link.label}
                 {"accent" in link && link.accent ? (
-                  <span className="rounded-full bg-[#0d72b7] px-2 py-0.5 text-[10px] font-black tracking-normal text-white">
+                  <span className="rounded-full bg-[#0d72b7] px-2 py-0.5 text-[11px] font-black tracking-normal text-white">
                     AI
                   </span>
                 ) : null}
@@ -77,13 +77,13 @@ export default function Header() {
               <Link
                 key={link.label}
                 href={link.href}
-                className="flex items-center justify-between rounded-xl px-4 py-3 text-sm font-bold text-gunsan-navy transition hover:bg-slate-50"
+                className="flex items-center justify-between rounded-xl px-4 py-3 text-base font-extrabold text-gunsan-navy transition hover:bg-slate-50"
               >
                 <span>{link.label}</span>
-                {"accent" in link && link.accent ? <span className="rounded-full bg-[#0d72b7] px-2 py-0.5 text-[10px] font-black text-white">AI</span> : null}
+                {"accent" in link && link.accent ? <span className="rounded-full bg-[#0d72b7] px-2 py-0.5 text-[11px] font-black text-white">AI</span> : null}
               </Link>
             ))}
-            <Link href="/places" className="mt-1 flex items-center gap-2 border-t border-slate-100 px-4 py-3 text-sm font-semibold text-slate-500">
+            <Link href="/places" className="mt-1 flex items-center gap-2 border-t border-slate-100 px-4 py-3 text-[15px] font-semibold text-slate-600">
               <SearchIcon />
               군산에서 찾기
             </Link>
