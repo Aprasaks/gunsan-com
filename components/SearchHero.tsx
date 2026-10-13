@@ -18,7 +18,7 @@ export default function SearchHero() {
 
       <div className="mx-auto flex min-h-[500px] w-full max-w-[1440px] items-center px-5 py-14 sm:px-8 sm:py-16 lg:min-h-[540px] lg:px-10 lg:py-20">
         <div className="max-w-[650px]">
-          <div className="flex items-center gap-3 text-[10px] font-black tracking-[0.28em] text-sea-blue sm:text-[11px]">
+          <div className="flex items-center gap-3 text-[12px] font-black tracking-[0.22em] text-sea-blue sm:text-[13px]">
             <span className="h-px w-9 bg-sea-blue" aria-hidden="true" />
             GUNSAN TRAVEL GUIDE
           </div>
@@ -29,7 +29,7 @@ export default function SearchHero() {
             다시 만나는 <span className="text-[#147cba]">군산</span>
           </h1>
 
-          <p className="mt-6 max-w-[560px] text-base font-semibold leading-7 text-slate-700 sm:text-lg sm:leading-8">
+          <p className="mt-6 max-w-[560px] text-[18px] font-semibold leading-8 text-slate-700 sm:text-[20px] sm:leading-9">
             직접 확인한 군산의 장소를
             <br className="hidden sm:block" /> 당신의 일정과 취향에 맞는 여행으로 연결합니다.
           </p>
@@ -37,21 +37,21 @@ export default function SearchHero() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link
               href="#start"
-              className="inline-flex h-12 items-center justify-center rounded-full bg-lantern px-6 text-sm font-black text-gunsan-navy shadow-sm transition hover:-translate-y-0.5 hover:bg-[#ee8c35]"
+              className="inline-flex h-12 items-center justify-center rounded-full bg-lantern px-6 text-[15px] font-black text-gunsan-navy shadow-sm transition hover:-translate-y-0.5 hover:bg-[#ee8c35]"
             >
               내 군산여행 만들기
               <span className="ml-3" aria-hidden="true">→</span>
             </Link>
             <Link
               href="#courses"
-              className="inline-flex h-12 items-center justify-center rounded-full border border-gunsan-navy bg-white/80 px-6 text-sm font-black text-gunsan-navy backdrop-blur transition hover:-translate-y-0.5 hover:bg-gunsan-navy hover:text-white"
+              className="inline-flex h-12 items-center justify-center rounded-full border border-gunsan-navy bg-white/80 px-6 text-[15px] font-black text-gunsan-navy backdrop-blur transition hover:-translate-y-0.5 hover:bg-gunsan-navy hover:text-white"
             >
               추천 코스 보기
               <span className="ml-3" aria-hidden="true">→</span>
             </Link>
           </div>
 
-          <div className="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-xs font-bold text-gunsan-navy/70">
+          <div className="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-[14px] font-bold text-gunsan-navy/75">
             <span>✓ 직접 확인한 장소</span>
             <span>✓ 실제 이동 순서</span>
             <span>✓ 가족·커플·뚜벅이 맞춤</span>
@@ -59,7 +59,7 @@ export default function SearchHero() {
         </div>
       </div>
 
-      <div className="absolute bottom-5 right-5 hidden rounded-full bg-slate-950/55 px-3 py-1.5 text-[11px] font-bold text-white backdrop-blur md:block">
+      <div className="absolute bottom-5 right-5 hidden rounded-full bg-slate-950/55 px-3 py-1.5 text-[12px] font-bold text-white backdrop-blur md:block">
         군산 여행의 시작 · 군산.com
       </div>
     </section>
