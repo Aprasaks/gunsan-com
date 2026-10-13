@@ -45,8 +45,8 @@ export default function CourseFinder() {
             원하세요?
           </h2>
           <p className="mt-3 text-[16px] font-medium leading-7 text-slate-600">
-            지금은 검증 코스를 조건에 맞춰 추천하고,
-            <br className="hidden xl:block" /> 이후 AI 코스 엔진으로 확장합니다.
+            인원·동행·일정·이동수단과 취향을 고르면
+            <br className="hidden xl:block" /> 지금 여행에 맞는 코스를 보여드립니다.
           </p>
         </div>
 
