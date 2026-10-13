@@ -5,13 +5,17 @@ import { usePathname } from "next/navigation";
 
 import BrandLogo from "@/components/brand/BrandLogo";
 
-const primaryLinks = [
+type NavItem =
+  | { label: string; href: string; accent?: boolean }
+  | { label: string; disabled: true };
+
+const primaryLinks: NavItem[] = [
   { label: "내 여행 만들기", href: "/#start", accent: true },
   { label: "여행코스", href: "/#courses" },
   { label: "지금 군산", disabled: true },
   { label: "둘러보기", href: "/places" },
   { label: "군산패스", disabled: true },
-] as const;
+];
 
 export default function Header() {
   const pathname = usePathname();
@@ -25,9 +29,7 @@ export default function Header() {
 
         <nav className="hidden min-w-0 flex-1 items-center justify-center gap-6 lg:flex xl:gap-9" aria-label="주요 메뉴">
           {primaryLinks.map((link) => {
-            const active = "href" in link && link.href === "/places" ? pathname.startsWith("/places") : false;
-
-            if ("disabled" in link && link.disabled) {
+            if ("disabled" in link) {
               return (
                 <span
                   key={link.label}
@@ -39,6 +41,8 @@ export default function Header() {
                 </span>
               );
             }
+
+            const active = link.href === "/places" ? pathname.startsWith("/places") : false;
 
             return (
               <Link
