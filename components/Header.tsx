@@ -33,11 +33,11 @@ export default function Header() {
                 aria-current={active ? "page" : undefined}
                 className={[
                   "group relative inline-flex h-10 items-center text-[14px] font-bold tracking-[-0.025em] text-gunsan-navy transition-colors hover:text-sea-blue",
-                  link.accent ? "gap-2" : "",
+                  "accent" in link && link.accent ? "gap-2" : "",
                 ].join(" ")}
               >
                 {link.label}
-                {link.accent ? (
+                {"accent" in link && link.accent ? (
                   <span className="rounded-full bg-[#0d72b7] px-2 py-0.5 text-[10px] font-black tracking-normal text-white">
                     AI
                   </span>
@@ -80,7 +80,7 @@ export default function Header() {
                 className="flex items-center justify-between rounded-xl px-4 py-3 text-sm font-bold text-gunsan-navy transition hover:bg-slate-50"
               >
                 <span>{link.label}</span>
-                {link.accent ? <span className="rounded-full bg-[#0d72b7] px-2 py-0.5 text-[10px] font-black text-white">AI</span> : null}
+                {"accent" in link && link.accent ? <span className="rounded-full bg-[#0d72b7] px-2 py-0.5 text-[10px] font-black text-white">AI</span> : null}
               </Link>
             ))}
             <Link href="/places" className="mt-1 flex items-center gap-2 border-t border-slate-100 px-4 py-3 text-sm font-semibold text-slate-500">
