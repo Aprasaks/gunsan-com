@@ -179,3 +179,93 @@ html{scroll-behavior:smooth}
 @media(max-width:1050px){.stories__grid{grid-template-columns:repeat(2,minmax(0,1fr))}.stories-card__art{height:220px}.stories-card__body{min-height:185px}}
 @media(max-width:860px){.stories{padding:52px 0 58px}.stories__inner{padding:0 20px}.stories__heading{gap:14px}.stories__heading h2{font-size:30px}.stories__subheading{font-size:13px}.stories__all{font-size:12px}.stories__all-note{display:none}}
 @media(max-width:560px){.stories__heading{align-items:flex-start;flex-direction:column;gap:18px;margin-bottom:23px}.stories__heading h2{font-size:29px}.stories__grid{grid-template-columns:1fr;gap:17px}.stories-card__art{height:205px}.stories-card__body{min-height:0;padding:18px 17px}.stories-card h3{font-size:20px}.stories-card__body p{margin-bottom:20px}.stories__footnote{font-size:10px}}
+
+/* PHASE 04 · SEONYUDO SPECIAL ISSUE */
+.seonyudo{background:#f8f5f0;color:var(--ink);position:relative}
+.seonyudo__feature{min-height:475px;position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(90deg,#f3eee7 0%,#f5f1eb 48%,#a2bbc4 48%,#789ba7 100%)}
+.seonyudo__feature:after{content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;background:linear-gradient(90deg,#f7f2ea 0%,#f7f2ea 31%,rgba(247,242,234,.98) 39%,rgba(247,242,234,.7) 50%,rgba(247,242,234,.06) 69%,transparent 100%)}
+.seonyudo__art{position:absolute;inset:0 0 0 34%;z-index:-2;background:#84a2ae url("/visuals/seonyudo-issue-concept.svg") center 57%/cover no-repeat}
+.seonyudo__container{max-width:1536px;margin:0 auto;min-height:475px;padding:62px clamp(24px,5vw,76px) 27px;position:relative;display:flex;flex-direction:column;justify-content:space-between}
+.seonyudo__copy{position:relative;z-index:1;max-width:580px}
+.seonyudo__eyebrow{font-family:Georgia,"Times New Roman",serif;font-size:11px;letter-spacing:.31em;color:#4d5d60;font-weight:600;margin:0 0 26px}
+.seonyudo__eyebrow span{padding:0 6px;color:#9f8c78}
+.seonyudo__copy h2{font-family:"Batang","Nanum Myeongjo","AppleMyungjo",serif;line-height:1.3;letter-spacing:-.076em;font-size:clamp(30px,3vw,43px);font-weight:600;margin:0 0 20px;word-break:keep-all}
+.seonyudo__intro{font-size:15px;line-height:1.82;letter-spacing:-.042em;margin:0 0 17px;color:#555c5b}
+.seonyudo__progress{display:inline-flex;align-items:center;gap:9px;padding:7px 12px;border-radius:3px;background:rgba(241,236,228,.9);border:1px solid #ded5c8;font-size:12px;color:#74695e;letter-spacing:-.03em}
+.seonyudo__progress-dot{width:6px;height:6px;border-radius:50%;background:#aa8b6e}
+.seonyudo__actions{display:flex;gap:17px;align-items:center;flex-wrap:wrap;margin-top:21px}
+.seonyudo__primary{min-height:42px;border:1px solid #24353b;border-radius:24px;background:#223239;color:white;display:inline-flex;align-items:center;gap:17px;font-size:12px;font-weight:600;letter-spacing:-.028em;padding:0 18px;transition:background .15s}
+.seonyudo__primary:hover{background:#425158}
+.seonyudo__primary span{font-size:15px;line-height:1}
+.seonyudo__secondary{font-size:12px;line-height:1.6;color:#515a58;padding-bottom:3px;border-bottom:1px solid #7c8681;white-space:nowrap}
+.seonyudo__secondary span{margin-left:3px}
+.seonyudo__visual-note{align-self:flex-end;max-width:350px;text-align:right;font-size:10px;letter-spacing:-.015em;color:#28404b;background:rgba(249,245,237,.78);border:1px solid rgba(249,245,237,.68);padding:7px 9px;border-radius:2px}
+.seonyudo__folio{position:absolute;left:clamp(24px,5vw,76px);bottom:32px;font-size:10px;letter-spacing:.22em;font-family:Georgia,serif;color:#7a7770}
+.seonyudo__details{background:#efebe4;border-top:1px solid #e4dcd0;border-bottom:1px solid #e0d8ca}
+.seonyudo__details-inner{max-width:1536px;margin:auto;padding:26px clamp(24px,5vw,76px) 30px;display:grid;grid-template-columns:1.2fr 1.8fr;align-items:center;gap:20px 35px}
+.seonyudo__details-label{font:10px Georgia,serif;letter-spacing:.19em;color:#846d59;margin:0 0 10px}
+.seonyudo__details h3{font-size:18px;margin:0 0 9px;letter-spacing:-.045em}
+.seonyudo__details p:not(.seonyudo__details-label){font-size:12px;color:#7a746d;margin:0;line-height:1.7}
+.seonyudo__details-steps{display:flex;gap:12px;align-items:center;justify-content:flex-end}
+.seonyudo__details-steps span:nth-child(odd){display:block;min-height:52px;padding:15px 16px;text-align:center;flex:1;background:#f9f6f0;border:1px solid #ded5c8;font-size:13px;letter-spacing:-.035em;white-space:nowrap}
+.seonyudo__details-steps span:nth-child(even){color:#988a79;font-size:19px}
+.seonyudo__details-disclaimer{grid-column:1/-1;padding-top:12px;border-top:1px solid #ded7ce}
+.seonyudo__bottom{background:#fffdf9;border-top:1px solid #eee7df}
+.seonyudo__bottom-inner{max-width:1536px;margin:auto;padding:23px clamp(24px,5vw,76px) 36px}
+.seonyudo__bottom-heading{display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:11px;color:#7f776e;margin-bottom:14px}
+.seonyudo__bottom-heading span:first-child{font-family:Georgia,serif;letter-spacing:.17em;color:#4f5553}
+.seonyudo__topics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.seonyudo__topic{padding:17px 17px 14px;border:1px solid #e5dfd7;background:#f9f5ef;display:flex;flex-direction:column;min-height:171px;gap:9px}
+.seonyudo__topic:nth-child(2){background:#f5f3ef}
+.seonyudo__topic:nth-child(3){background:#f2f1eb}
+.seonyudo__topic:nth-child(4){background:#eaf0f0}
+.seonyudo__topic-index{display:flex;align-items:center;justify-content:space-between;gap:9px;color:#6e6a62;font-family:Georgia,"Times New Roman",serif;font-size:10px;letter-spacing:.12em}
+.seonyudo__topic-index span:last-child{font-size:9px;text-align:right;color:#89827a;letter-spacing:.08em}
+.seonyudo__topic h3{font-family:"Batang","Nanum Myeongjo","AppleMyungjo",serif;font-size:20px;letter-spacing:-.065em;line-height:1.3;margin:13px 0 0;font-weight:600}
+.seonyudo__topic p{font-size:12px;color:#6e716e;letter-spacing:-.025em;line-height:1.5;margin:0}
+.seonyudo__topic-status{display:block;align-self:flex-start;color:#877565;font-size:10px;letter-spacing:-.015em;border-top:1px solid #d9d0c6;padding-top:9px;margin-top:auto}
+.seonyudo__bottom-note{margin:19px 0 0;color:#999088;font-size:10px;line-height:1.65;letter-spacing:-.025em}
+@media(max-width:1020px){
+.seonyudo__feature{min-height:465px}
+.seonyudo__container{min-height:465px}
+.seonyudo__art{left:24%}
+.seonyudo__feature:after{background:linear-gradient(90deg,#f7f2ea 0%,rgba(247,242,234,.99) 39%,rgba(247,242,234,.75) 58%,rgba(247,242,234,.05) 88%)}
+.seonyudo__topic{padding:15px 12px}
+.seonyudo__topic h3{font-size:18px}
+.seonyudo__details-inner{grid-template-columns:1fr}
+.seonyudo__details-steps{justify-content:flex-start}
+}
+@media(max-width:740px){
+.seonyudo__feature{min-height:650px;background:#f7f2ea}
+.seonyudo__art{inset:240px 0 0;background-position:60% 62%}
+.seonyudo__feature:after{background:linear-gradient(180deg,#f7f2ea 0%,#f7f2ea 34%,rgba(247,242,234,.95) 42%,rgba(247,242,234,.05) 69%,rgba(247,242,234,0) 85%)}
+.seonyudo__container{min-height:650px;padding:37px 20px 23px}
+.seonyudo__copy{max-width:100%}
+.seonyudo__eyebrow{margin-bottom:20px;font-size:10px}
+.seonyudo__copy h2{font-size:32px;margin-bottom:12px}
+.seonyudo__intro{font-size:13px;line-height:1.7;margin-bottom:12px}
+.seonyudo__progress{font-size:11px;padding:5px 10px}
+.seonyudo__actions{gap:11px;margin-top:14px}
+.seonyudo__primary{font-size:11px;min-height:39px;padding:0 13px}
+.seonyudo__secondary{font-size:11px}
+.seonyudo__visual-note{align-self:flex-end;max-width:250px;color:#264653;background:rgba(249,245,237,.78);font-size:9px;line-height:1.4}
+.seonyudo__folio{display:none}
+.seonyudo__bottom-inner{padding:24px 20px 29px}
+.seonyudo__topics{grid-template-columns:repeat(2,minmax(0,1fr))}
+.seonyudo__topic{min-height:165px}
+.seonyudo__details-inner{padding:23px 20px 26px}
+}
+@media(max-width:430px){
+.seonyudo__feature,.seonyudo__container{min-height:675px}
+.seonyudo__copy h2{font-size:30px}
+.seonyudo__art{top:268px;background-position:61% center}
+.seonyudo__feature:after{background:linear-gradient(180deg,#f7f2ea 0%,#f7f2ea 31%,rgba(247,242,234,.96) 44%,rgba(247,242,234,.02) 72%)}
+.seonyudo__topics{gap:8px}
+.seonyudo__topic{padding:14px 11px;min-height:165px}
+.seonyudo__topic h3{font-size:16px}
+.seonyudo__topic p{font-size:11px}
+.seonyudo__bottom-heading span:last-child{font-size:10px}
+.seonyudo__details-steps{gap:5px}
+.seonyudo__details-steps span:nth-child(odd){min-height:56px;padding:13px 5px;white-space:normal;font-size:11px}
+.seonyudo__details-steps span:nth-child(even){font-size:15px}
+}

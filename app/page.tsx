@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import TravelMood from "@/components/TravelMood";
 import EditorialStories from "@/components/EditorialStories";
+import SeonyudoSpecial from "@/components/SeonyudoSpecial";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
         <Hero />
         <TravelMood />
         <EditorialStories />
+        <SeonyudoSpecial />
       </main>
     </>
   );

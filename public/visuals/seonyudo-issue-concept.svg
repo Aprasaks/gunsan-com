@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1720" height="790" viewBox="0 0 1720 790" role="img" aria-labelledby="title">
+<title id="title">군산 선유도 특집을 위한 가상의 바다와 유람선 콘셉트 일러스트</title>
+<defs>
+<linearGradient id="sky" x1="0" y1="0" x2=".12" y2="1">
+  <stop offset="0" stop-color="#8fb3ca"/>
+  <stop offset=".43" stop-color="#c2d5d5"/>
+  <stop offset=".72" stop-color="#e5d4bd"/>
+  <stop offset="1" stop-color="#bad0d3"/>
+</linearGradient>
+<linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#8baeb9"/>
+  <stop offset=".33" stop-color="#568a9e"/>
+  <stop offset="1" stop-color="#2b657b"/>
+</linearGradient>
+<linearGradient id="island" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#778c72"/>
+  <stop offset=".5" stop-color="#667466"/>
+  <stop offset="1" stop-color="#475b5c"/>
+</linearGradient>
+<linearGradient id="hull" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#fefdf7"/>
+  <stop offset=".6" stop-color="#e1edf0"/>
+  <stop offset=".61" stop-color="#2f6d86"/>
+  <stop offset="1" stop-color="#173c59"/>
+</linearGradient>
+<radialGradient id="glow">
+  <stop stop-color="#fff8d4" stop-opacity=".63"/>
+  <stop offset=".45" stop-color="#fff0d8" stop-opacity=".23"/>
+  <stop offset="1" stop-color="#fff0d8" stop-opacity="0"/>
+</radialGradient>
+<filter id="grain" x="0" y="0" width="100%" height="100%">
+  <feTurbulence type="fractalNoise" baseFrequency=".46" numOctaves="2" stitchTiles="stitch" seed="6" result="n"/>
+  <feColorMatrix in="n" type="saturate" values="0" result="gray"/>
+  <feComponentTransfer in="gray" result="a"><feFuncA type="linear" slope=".075"/></feComponentTransfer>
+  <feBlend in="SourceGraphic" in2="a" mode="multiply"/>
+</filter>
+</defs>
+<rect width="1720" height="790" fill="url(#sky)"/>
+<circle cx="1228" cy="219" r="250" fill="url(#glow)"/>
+<circle cx="1228" cy="219" r="33" fill="#fcf1d5" opacity=".67"/>
+<path d="M0 409 C220 403 378 427 576 401 C683 387 759 380 827 395 C941 425 1038 388 1150 398 C1338 420 1467 383 1720 402 L1720 790 L0 790Z" fill="#93a7a6" opacity=".3"/>
+<path d="M0 473 Q133 460 230 470 Q340 427 443 447 Q500 457 576 469 Q677 428 790 467 Q877 485 930 460 Q1058 409 1142 452 Q1230 475 1343 439 Q1489 410 1583 458 L1720 461 L1720 790 L0 790Z" fill="#7c9996" opacity=".36"/>
+<path d="M632 464 C716 450 761 409 800 412 C843 412 887 447 938 462 L947 504 L618 504Z" fill="url(#island)" opacity=".7"/>
+<path d="M917 475 C996 441 1005 378 1072 378 C1132 368 1152 419 1225 456 L1278 494 L901 502Z" fill="url(#island)" opacity=".88"/>
+<path d="M1291 472 C1360 430 1407 424 1456 428 C1524 421 1561 457 1639 460 L1720 491 L1260 505Z" fill="#5f7775" opacity=".72"/>
+<path d="M0 482 L1720 478 L1720 790 L0 790Z" fill="url(#sea)"/>
+<path d="M890 501 L1437 501 L1609 790 L711 790Z" fill="#e9dfc9" opacity=".095"/>
+<g fill="none" stroke="#dbe6df" stroke-linecap="round" opacity=".33">
+  <path d="M825 521l143 0m66 9l219 0m134 4l200 0" stroke-width="2"/>
+  <path d="M777 565l164 0m121 8l299 0m-47 35l237 0" stroke-width="3"/>
+  <path d="M815 636l187 0m68 10l301 0m-95 28l260 0" stroke-width="3"/>
+  <path d="M722 728l352 0m125 4l321 0" stroke-width="4"/>
+</g>
+<!-- Abstract ferry concept; not a real operator, vessel, or route -->
+<g transform="translate(1028 466)">
+  <path d="M24 135 C112 158 295 163 414 133 L396 184 C279 208 115 206 65 191Z" fill="#17445e"/>
+  <path d="M22 127 C115 149 297 155 421 126 L397 163 C281 186 121 184 57 172Z" fill="url(#hull)" stroke="#174b68" stroke-width="3"/>
+  <path d="M76 79L341 79L365 132 C290 147 148 148 58 127Z" fill="#f5f7f3" stroke="#648497" stroke-width="2"/>
+  <path d="M99 47L302 47L327 83L85 83Z" fill="#e9eee9" stroke="#628092" stroke-width="2"/>
+  <path d="M118 15L280 15L300 47L101 47Z" fill="#f0f1eb" stroke="#668394" stroke-width="2"/>
+  <rect x="138" y="-10" width="9" height="26" fill="#dce6e5"/>
+  <path d="M143 -9L143 -45" stroke="#607f8b" stroke-width="3"/>
+  <path d="M143 -42L190 -23L143 -23Z" fill="#d4d0c2"/>
+  <rect x="162" y="17" width="60" height="19" rx="3" fill="#2c5b73"/>
+  <rect x="230" y="17" width="40" height="19" rx="3" fill="#2c5b73"/>
+  <g fill="#2b566c">
+    <rect x="106" y="54" width="36" height="21" rx="3"/>
+    <rect x="149" y="54" width="36" height="21" rx="3"/>
+    <rect x="192" y="54" width="36" height="21" rx="3"/>
+    <rect x="235" y="54" width="36" height="21" rx="3"/>
+    <rect x="278" y="54" width="27" height="21" rx="3"/>
+    <rect x="84" y="91" width="48" height="29" rx="3"/>
+    <rect x="140" y="91" width="48" height="29" rx="3"/>
+    <rect x="196" y="91" width="48" height="29" rx="3"/>
+    <rect x="252" y="91" width="48" height="29" rx="3"/>
+    <rect x="308" y="91" width="29" height="29" rx="3"/>
+  </g>
+  <path d="M67 88H354M59 127H370" stroke="#6e92a2" stroke-width="4"/>
+  <path d="M60 169 C151 183 275 188 402 158" stroke="#d7e1dc" stroke-width="6" fill="none" opacity=".8"/>
+  <path d="M-32 190C29 172 78 184 123 200C208 223 329 221 429 185" fill="none" stroke="#fcfff4" stroke-width="8" opacity=".55" stroke-linecap="round"/>
+</g>
+<path d="M979 663 C1061 655 1139 666 1204 677" fill="none" stroke="#dae7df" stroke-width="3" opacity=".3"/>
+<rect width="1720" height="790" opacity=".2" fill="#eee9dc" filter="url(#grain)"/>
+</svg>
