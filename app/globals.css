@@ -137,3 +137,45 @@ html{scroll-behavior:smooth}
 .journey__desktop-break{display:none}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+
+/* PHASE 03 · EDITORIAL FIELD STORIES */
+.stories{background:#fffdf9;border-top:1px solid #eeeae4;padding:69px 0 79px}
+.stories__inner{width:min(100%,1536px);margin:0 auto;padding:0 clamp(24px,5vw,76px)}
+.stories__heading{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:26px}
+.stories__heading .section-overline{margin-bottom:14px}
+.stories__heading h2{margin:0 0 12px;color:var(--ink);font-family:"Batang","Nanum Myeongjo","AppleMyungjo",serif;font-size:clamp(30px,3vw,42px);font-weight:600;letter-spacing:-.073em;line-height:1.3}
+.stories__subheading{margin:0;color:#77736c;font-size:14px;letter-spacing:-.035em;line-height:1.65}
+.stories__all{display:inline-flex;align-items:center;gap:9px;position:relative;flex-shrink:0;padding-bottom:7px;border-bottom:1px solid #a9a097;color:#6f6d69;font-size:13px;white-space:nowrap}
+.stories__all span:first-child{font-size:15px}
+.stories__all-note{display:block;position:absolute;right:0;top:calc(100% + 5px);font-size:9px;color:#969088;white-space:nowrap}
+.stories__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px}
+.stories-card{min-width:0;border:1px solid #ebe7e0;border-radius:4px;background:#fffdfa;overflow:hidden;display:flex;flex-direction:column}
+.stories-card__art{height:clamp(170px,17vw,230px);position:relative;display:flex;align-items:flex-end;overflow:hidden;isolation:isolate}
+.stories-card__art::before,.stories-card__art::after{content:"";display:block;position:absolute;pointer-events:none;z-index:-1}
+.stories-card__art--streets{background:linear-gradient(140deg,#b7a48e 0%,#d9bfa0 53%,#716a63 100%)}
+.stories-card__art--streets::before{inset:28% 0 0;background:linear-gradient(90deg,#504d49,#9b7b66);clip-path:polygon(0 0,35% 21%,35% 100%,0 100%,0 0,49% 14%,67% 0,67% 100%,49% 100%,49% 14%,73% 25%,100% 12%,100% 100%,73% 100%)}
+.stories-card__art--streets::after{left:42%;top:2%;height:98%;width:1px;background:rgba(38,38,37,.4);box-shadow:34px 15px 0 rgba(38,38,37,.22),-57px -6px 0 rgba(38,38,37,.16)}
+.stories-card__art--sea{background:linear-gradient(165deg,#8298a7 2%,#e6b29a 47%,#f1cb9b 55%,#456778 57%,#234355 100%)}
+.stories-card__art--sea::before{width:110%;height:65%;left:-5%;top:31%;background:#415966;clip-path:polygon(0 56%,17% 46%,33% 49%,46% 25%,57% 53%,70% 35%,83% 42%,100% 32%,100% 100%,0 100%);opacity:.52}
+.stories-card__art--sea::after{height:28px;width:28px;top:25%;left:69%;background:#fff0d2;border-radius:50%;box-shadow:0 0 55px 23px rgba(255,210,162,.4)}
+.stories-card__art--food{background:radial-gradient(circle at 50% 55%,#c98f5d 0 17%,#5a332a 17.5% 20%,#cfc1ac 20.5% 24%,transparent 24.5%),radial-gradient(circle at 43% 47%,#ba6e3e 0 29%,#50332b 30% 36%,transparent 37%),linear-gradient(145deg,#9d8873,#60493d)}
+.stories-card__art--food::before{width:170px;height:170px;left:calc(50% - 85px);top:calc(50% - 85px);border-radius:50%;border:14px solid rgba(240,231,213,.28);box-shadow:0 13px 44px rgba(46,21,15,.2)}
+.stories-card__art--food::after{width:120%;height:1px;background:rgba(255,245,230,.26);top:18%;left:-10%;transform:rotate(-22deg)}
+.stories-card__art--trail{background:linear-gradient(167deg,#bbc4b8 0%,#c8c8b4 46%,#87968a 47%,#344e49 100%)}
+.stories-card__art--trail::before{inset:26% 0 0;background:#2a4e50;opacity:.82;clip-path:polygon(0 53%,18% 28%,30% 42%,53% 0,78% 47%,89% 19%,100% 39%,100% 100%,0 100%)}
+.stories-card__art--trail::after{width:125%;height:90px;left:8%;bottom:-40px;transform:rotate(-10deg);background:linear-gradient(180deg,#c4b59a,#756c58);clip-path:polygon(20% 0,65% 0,100% 100%,0 100%)}
+.stories-card__art:before{transition:transform .4s ease}
+.stories-card__art-issue{position:absolute;top:14px;left:15px;color:rgba(255,255,255,.89);font:10px Georgia,serif;letter-spacing:.14em;text-shadow:0 1px 4px rgba(0,0,0,.16)}
+.stories-card__art-word{display:block;width:100%;padding:20px 16px 32px;background:linear-gradient(0deg,rgba(21,28,29,.4),transparent);font:16px Georgia,serif;letter-spacing:.08em;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.22)}
+.stories-card__art-note{position:absolute;bottom:11px;right:13px;color:#f8f5f0;font-size:10px;letter-spacing:-.03em}
+.stories-card__body{display:flex;flex-direction:column;gap:0;flex:1;min-height:210px;padding:20px 17px 16px}
+.stories-card__category{font-size:11px;color:#846e5d;letter-spacing:-.025em;margin-bottom:13px}
+.stories-card h3{font-family:"Batang","Nanum Myeongjo","AppleMyungjo",serif;font-size:20px;letter-spacing:-.056em;line-height:1.44;margin:0 0 10px;font-weight:600;word-break:keep-all}
+.stories-card__body p{color:#7b7770;font-size:12px;line-height:1.65;letter-spacing:-.03em;word-break:keep-all;margin:0 0 23px}
+.stories-card__status{margin-top:auto;padding-top:11px;border-top:1px solid #eee9e2;color:#8a857e;font-size:11px;display:flex;align-items:center;gap:8px}
+.stories-card__status-dot{height:5px;width:5px;background:#a99076;border-radius:50%;flex-shrink:0}
+.stories__footnote{font-size:11px;color:#99948d;line-height:1.65;letter-spacing:-.01em;margin:22px 0 0}
+@media(max-width:1050px){.stories__grid{grid-template-columns:repeat(2,minmax(0,1fr))}.stories-card__art{height:220px}.stories-card__body{min-height:185px}}
+@media(max-width:860px){.stories{padding:52px 0 58px}.stories__inner{padding:0 20px}.stories__heading{gap:14px}.stories__heading h2{font-size:30px}.stories__subheading{font-size:13px}.stories__all{font-size:12px}.stories__all-note{display:none}}
+@media(max-width:560px){.stories__heading{align-items:flex-start;flex-direction:column;gap:18px;margin-bottom:23px}.stories__heading h2{font-size:29px}.stories__grid{grid-template-columns:1fr;gap:17px}.stories-card__art{height:205px}.stories-card__body{min-height:0;padding:18px 17px}.stories-card h3{font-size:20px}.stories-card__body p{margin-bottom:20px}.stories__footnote{font-size:10px}}
