@@ -75,12 +75,10 @@ export default function TravelMood() {
               </button>
             ))}
 
-            <button
-              type="button"
-              className={`journey-card journey-card--recommend ${choice === "recommend" ? "journey-card--selected" : ""}`}
-              onClick={() => setChoice("recommend")}
-              aria-pressed={choice === "recommend"}
-              aria-label="나에게 맞는 군산 여행 추천받기 기능 준비 현황 보기"
+            <a
+              href="/recommend"
+              className="journey-card journey-card--recommend"
+              aria-label="나에게 맞는 군산 여행 추천받기 페이지로 이동"
             >
               <span className="journey-card__recommend-art" aria-hidden="true">
                 <span className="journey-card__recommend-issue">YOUR OWN JOURNEY</span>
@@ -91,12 +89,12 @@ export default function TravelMood() {
                 <strong>군산 여행 추천받기</strong>
                 <span className="journey-card__arrow journey-card__arrow--filled" aria-hidden="true">→</span>
               </span>
-            </button>
+            </a>
           </div>
 
           {choice && (
             <div className="journey__feedback" role="status" aria-live="polite">
-              <strong>{choice === "recommend" ? "맞춤 여행 추천" : travelTypes.find(item => item.id === choice)?.title}</strong>
+              <strong>{travelTypes.find(item => item.id === choice)?.title}</strong>
               <span>직접 검증한 여행 코스를 준비하고 있어요. 다음 단계에서 기능을 연결합니다.</span>
               <button type="button" onClick={() => setChoice(null)} aria-label="안내 닫기">×</button>
             </div>
