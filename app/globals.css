@@ -58,7 +58,7 @@ html{scroll-behavior:smooth}
 .hero__jump{display:inline-flex;align-items:center;gap:24px;border-bottom:1px solid rgba(255,255,255,.76);padding-bottom:9px;font-size:12px;letter-spacing:.04em;font-weight:600}
 .hero__jump span{font-size:17px}
 .hero__jump:hover{border-color:#fff}
-.hero__foot{font-family:Georgia,"Times New Roman",serif;font-size:11px;letter-spacing:.18em;display:flex;justify-content:space-between;align-items:end;gap:20px;opacity:.85}
+.hero__foot{font-family:Georgia,"Times New Roman",serif;font-size:11px;letter-spacing:.18em;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;opacity:.85}
 .hero__foot span span{padding:0 8px;opacity:.6}
 .hero__image-note{position:absolute;right:clamp(24px,5vw,76px);bottom:65px;margin:0;font-size:10px;letter-spacing:.02em;opacity:.8;text-align:right}
 .journey{background:#faf8f4;padding:43px 0 62px;scroll-margin-top:18px}
