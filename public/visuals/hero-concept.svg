@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 760" preserveAspectRatio="xMidYMid slice">
+  <title>군산 여행 메인 비주얼 디자인용 임시 바다 풍경</title>
+  <defs>
+    <linearGradient id="sky" x2=".78" y2="1">
+      <stop offset="0" stop-color="#183a52"/>
+      <stop offset=".37" stop-color="#55728b"/>
+      <stop offset=".65" stop-color="#b58988"/>
+      <stop offset=".86" stop-color="#efb37a"/>
+      <stop offset="1" stop-color="#e5b284"/>
+    </linearGradient>
+    <linearGradient id="water" x2="0" y2="1">
+      <stop stop-color="#986f70"/>
+      <stop offset=".3" stop-color="#516d7a"/>
+      <stop offset="1" stop-color="#182d38"/>
+    </linearGradient>
+    <radialGradient id="sun-glow">
+      <stop stop-color="#ffe7bb" stop-opacity=".95"/>
+      <stop offset=".28" stop-color="#ffd9a8" stop-opacity=".5"/>
+      <stop offset="1" stop-color="#ffd6a3" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="reflection" x2="0" y2="1">
+      <stop stop-color="#ffefc3" stop-opacity=".75"/>
+      <stop offset="1" stop-color="#fff3ce" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="near" x2="0" y2="1">
+      <stop stop-color="#2d4852"/>
+      <stop offset="1" stop-color="#0a1c28"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="760" fill="url(#sky)"/>
+  <path d="M0 128 Q340 101 680 154 T1600 155" stroke="#c7aaac" stroke-width="2" opacity=".13" fill="none"/>
+  <path d="M0 210 Q390 171 770 206 T1600 203" stroke="#edc7b1" stroke-width="3" opacity=".11" fill="none"/>
+  <circle cx="1145" cy="358" r="200" fill="url(#sun-glow)"/>
+  <circle cx="1145" cy="358" r="27" fill="#ffe9c2"/>
+  <path d="M0 433 Q95 428 157 417 Q230 379 302 397 Q360 421 419 428 Q480 404 533 402 Q611 367 673 411 Q734 426 800 420 Q895 381 954 406 Q1006 424 1080 423 Q1182 389 1250 403 Q1350 425 1423 393 Q1516 367 1600 413 L1600 760 L0 760Z" fill="#596b74" opacity=".68"/>
+  <path d="M0 452 Q150 427 245 447 Q310 447 363 433 Q426 407 492 435 Q560 451 608 440 Q670 420 736 446 Q785 457 861 445 Q940 413 1020 444 Q1070 453 1120 444 Q1225 429 1305 447 Q1400 423 1500 443 L1600 457 L1600 760 L0 760Z" fill="#324e5c" opacity=".7"/>
+  <rect x="0" y="450" width="1600" height="310" fill="url(#water)" opacity=".88"/>
+  <path d="M1100 454 L1190 454 L1385 760 L902 760Z" fill="url(#reflection)" opacity=".64"/>
+  <path d="M1150 460 l32 0 M1125 488 l75 0 M1100 518 l110 0 M1043 556 l190 0 M1021 596 l225 0 M960 659 l350 0 M905 726 l480 0" stroke="#fbe6bc" stroke-linecap="round" stroke-width="4" opacity=".25"/>
+  <g fill="none" stroke="#d7c1aa" stroke-opacity=".21" stroke-width="2">
+    <path d="M0 492 Q280 475 480 492 T990 496 T1600 481"/>
+    <path d="M0 532 Q350 524 700 532 T1600 529"/>
+    <path d="M0 592 Q210 583 480 588 T1030 586 T1600 590"/>
+    <path d="M0 672 Q300 650 630 674 T1600 666"/>
+  </g>
+  <path d="M0 550 Q105 525 194 565 Q279 581 326 606 Q398 617 480 593 Q557 569 610 602 L612 760H0Z" fill="url(#near)"/>
+  <path d="M1412 564 Q1490 534 1600 570 L1600 760 L1380 760 Q1360 657 1412 564Z" fill="#152b35"/>
+  <path d="M1488 560 l10 -115 3 115 m-15 -80 l-25 -21 m37 -12 l30 -27" fill="none" stroke="#142934" stroke-width="5" opacity=".7"/>
+</svg>
